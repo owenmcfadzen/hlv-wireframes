@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HLV — the three arcs (cross-track reflection)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11121A; --paper:#FAFAF7; --mute:#8A8A90; --mute2:#5C5C62;
+    --blu:#1E9BFE; --blud:#0B5FB0; --pur:#B884FE; --purd:#7649C2; --grn:#14D960; --grnd:#0A8C3D; --warn:#FF6B6B;
+    --sans:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"Menlo",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#0e0f13;color:#e9e9ec;font-family:var(--sans);padding:1.1rem clamp(.5rem,2vw,1.4rem) 3rem}
+  h1{font-weight:800;font-size:clamp(1.1rem,4vw,1.6rem);margin:0 0 .2rem}
+  .lede{color:var(--mute);font-size:.86rem;max-width:60ch;margin:0 0 .5rem;line-height:1.45}
+  .judge{font:600 .8rem/1.5 var(--mono);color:#cfcfd6;background:#171922;border:1px solid #262934;border-radius:8px;padding:.7rem .9rem;margin:.6rem 0 1.4rem}
+  .judge b{color:#fff}
+  .track{margin-bottom:1.5rem}
+  .thead{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.5rem;flex-wrap:wrap}
+  .tname{font-weight:800;font-size:1.05rem}
+  .tadjust{font:600 .76rem/1 var(--mono);color:var(--mute);letter-spacing:.02em}
+  .tmat{font:600 .72rem/1 var(--mono);margin-left:auto;opacity:.85}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+  @media (max-width:680px){ .row{grid-template-columns:1fr} }
+  .cell{border-radius:10px;padding:.8rem .85rem;border:1px solid #262934;background:#14161d;position:relative;overflow:hidden}
+  .cell::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .market .cell::before{background:var(--blu)} .product .cell::before{background:var(--pur)} .business .cell::before{background:var(--grn)}
+  .phase{font:700 .68rem/1 var(--mono);color:var(--mute2);letter-spacing:.08em}
+  .code{font:800 .95rem/1 var(--mono);margin:.25rem 0 .1rem}
+  .market .code{color:var(--blu)} .product .code{color:var(--pur)} .business .code{color:var(--grn)}
+  .nm{font-size:.82rem;color:#c7c7cf;margin-bottom:.5rem}
+  .move{font-weight:800;font-size:1.02rem;margin:.1rem 0 .15rem}
+  .fail{font-size:.78rem;color:var(--mute);line-height:1.4}
+  .matur{font:600 .68rem/1.3 var(--mono);margin-top:.5rem;color:#aeb0ba}
+  .matur .new{color:var(--warn)} .matur .deep{color:var(--grn)}
+  a.wf{display:inline-block;margin-top:.5rem;font:600 .7rem/1 var(--mono);color:#8aa;text-decoration:none;border:1px solid #2a3340;border-radius:5px;padding:.3rem .45rem}
+  a.wf:hover{border-color:#4a6} a.wf.none{color:var(--mute2);border-style:dashed;border-color:#333}
+  .conv{margin-top:.4rem;font:600 .72rem/1.4 var(--mono);color:#cd90ff}
+  .foot{margin-top:1.4rem;border-top:1px solid #262934;padding-top:1rem;font-size:.8rem;color:var(--mute);line-height:1.5}
+  .foot b{color:#dcdce2} .foot .gap{color:var(--warn)}
+  code{font-family:var(--mono);font-size:.92em;color:#cfd}
+</style>
+</head>
+<body>
+<h1>HLV — the three arcs, laid flat</h1>
+<p class="lede">Each track's relationship with the AI is one posture (the ADAPT <b>Adjust</b> step), maturing across three phases. Read each row left to right as one through-line.</p>
+<div class="judge">What this view is for: <b>do the arcs hold</b> (does each move follow from the last), and <b>do the three tracks stay distinct</b> from each other (market sharpens perception, product shapes the artifact, business defends). If two rows feel like the same move, that is the finding.</div>
+
+<div class="track market">
+  <div class="thead"><span class="tname">Market</span><span class="tadjust">Adjust = sharpen perception into rigour</span><span class="tmat" style="color:var(--blu)">maturation: new verb each phase</span></div>
+  <div class="row">
+    <div class="cell"><div class="phase">PHASE 1</div><div class="code">M1 · Landscape Map</div><div class="nm">map how the problem is solved today</div><div class="move">Widen</div><div class="fail">the AI misses players, so confront your blind spot and widen the field</div><div class="matur">start of the arc</div><a class="wf none">cold-run (no wireframe)</a></div>
+    <div class="cell"><div class="phase">PHASE 2</div><div class="code">M2 · Validation Design</div><div class="nm">design experiments that can fail</div><div class="move">Disconfirm</div><div class="fail">the AI's plan confirms, so redesign it to be able to come back no</div><div class="matur"><span class="new">new verb</span> · perception → falsifiable rigour</div><a class="wf" href="m2.html">M2 wireframe →</a></div>
+    <div class="cell"><div class="phase">PHASE 3</div><div class="code">M3 · First Moves</div><div class="nm">first channels, first 100 users</div><div class="move">Commit (moves)</div><div class="fail">the AI lists channels, so commit to the first concrete moves and signals</div><div class="matur"><span class="new">new verb</span> · briefed inside B3M3</div><a class="wf" href="b3m3.html">in B3M3 →</a></div>
+  </div>
+</div>
+
+<div class="track product">
+  <div class="thead"><span class="tname">Product</span><span class="tadjust">Adjust = turn relevance into shippability</span><span class="tmat" style="color:var(--pur)">maturation: new verb each phase</span></div>
+  <div class="row">
+    <div class="cell"><div class="phase">PHASE 1</div><div class="code">P1 · Solution Blueprint</div><div class="nm">find the moment of truth</div><div class="move">Cut</div><div class="fail">the AI over-builds, so trim the features to the one friction</div><div class="matur">start of the arc</div><a class="wf none">cold-run (no wireframe)</a></div>
+    <div class="cell"><div class="phase">PHASE 2</div><div class="code">P2 · Product Definition</div><div class="nm">scope V1, pick the party feature</div><div class="move">Commit to scope</div><div class="fail">the AI defines everything, so commit to one buildable V1</div><div class="matur"><span class="new">new verb</span> · relevant → shippable</div><a class="wf" href="p2.html">P2 wireframe →</a></div>
+    <div class="cell"><div class="phase">PHASE 3</div><div class="code">P3 · Prototype Build</div><div class="nm">build rough, test, change one thing</div><div class="move">Iterate</div><div class="fail">the AI builds polished, so keep it rough and change one thing on evidence</div><div class="matur"><span class="new">new verb</span> · shippable → tested</div><a class="wf" href="p3.html">P3 wireframe →</a></div>
+  </div>
+</div>
+
+<div class="track business">
+  <div class="thead"><span class="tname">Business</span><span class="tadjust">Adjust = turn plausible into defended</span><span class="tmat" style="color:var(--grn)">maturation: same verb, deeper object</span></div>
+  <div class="row">
+    <div class="cell"><div class="phase">PHASE 1</div><div class="code">B1 · Canvas Lite</div><div class="nm">who pays, defend the price, the trap</div><div class="move">Stress-test (logic)</div><div class="fail">the AI's model is confident, so break it: payer, price, trap</div><div class="matur">start of the arc</div><a class="wf" href="b1.html">B1 wireframe →</a></div>
+    <div class="cell"><div class="phase">PHASE 2</div><div class="code">B2 · Napkin Economics</div><div class="nm">unit economics, the killer number</div><div class="move">Stress-test (math)</div><div class="fail">the AI's numbers look like proof, so break them: all costs in, find the killer</div><div class="matur"><span class="deep">same verb, deeper object</span> · logic → numbers</div><a class="wf" href="b2.html">B2 wireframe →</a></div>
+    <div class="cell"><div class="phase">PHASE 3</div><div class="code">B3 · 100-Day Plan</div><div class="nm">sequence the defended economics</div><div class="move">Sequence + reconcile</div><div class="fail">commit the defended model to 100 startable days, reconciled with market</div><div class="matur"><span class="deep">deepens</span> · defended → committed-to-a-sequence</div><a class="wf" href="b3m3.html">in B3M3 →</a></div>
+  </div>
+</div>
+
+<div class="conv">▸ Phase 3 convergence: B3 + M3 reconcile into the one Joint 100-Day Plan (B3M3) on the acquisition number; P3 (product) runs its own build alongside (room co-tenancy).</div>
+
+<div class="foot">
+  <b>How to read the maturation column:</b> the market and product arcs change verb each phase (widen→disconfirm→commit; cut→commit→iterate); the business arc keeps the verb and hardens the object (stress-test logic→numbers→sequence). Both are valid maturation, per <code>adapt-posture.md</code>.<br><br>
+  <b>Distinctness check:</b> market acts on <b>perception</b> (what you can see / test), product acts on <b>the artifact</b> (what you build), business acts on <b>defensibility</b> (what survives a probe). No two rows share a move.<br><br>
+  <span class="gap"><b>Known gaps (state of the artifacts, not the arcs):</b></span> M1 and P1 exist as <code>_test/</code> cold-run briefs only — no served wireframe, and not Anya-continuous (M1 used Mariana, P1 used Rui). M3 and B3 are briefed as the two sides of B3M3, not as standalone decks. The <i>moves</i> above are settled; the missing artifacts are the production gap.
+</div>
+</body>
+</html>
