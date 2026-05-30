@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>B2 Back-of-Napkin Economics — wireframe flip-through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11121A; --paper:#FAFAF7; --blue:#0B5FB0;
+    --grn:#0A8C3D; --grn-bright:#14D960;
+    --red:#C2342B; --red-bright:#FF6B6B;
+    --mute:#8A8A90; --mute2:#5C5C62;
+    --sans:"Plus Jakarta Sans", system-ui, sans-serif;
+    --mono:"Menlo", ui-monospace, "SF Mono", monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#2a2b30;color:#111;font-family:var(--sans);-webkit-text-size-adjust:100%}
+  header.bar{position:sticky;top:0;z-index:10;background:#1b1c20;color:#e7e7ea;display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;font:600 13px/1 var(--mono);border-bottom:1px solid #000}
+  header.bar .title{flex:1;letter-spacing:.04em}
+  header.bar .count{color:var(--grn-bright)}
+  header.bar button{font:600 12px/1 var(--mono);color:#e7e7ea;background:#34353b;border:1px solid #4a4b52;border-radius:6px;padding:.42rem .6rem;cursor:pointer}
+  header.bar button.on{background:var(--grn);border-color:var(--grn);color:#fff}
+  .hint{color:#9a9aa2;font:400 11px/1.4 var(--mono);padding:.5rem .8rem;text-align:center}
+  main{padding:.7rem clamp(.4rem,2vw,1rem) 3rem}
+  .frame{width:100%;max-width:760px;margin:0 auto 1rem;aspect-ratio:16/9;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 2px 14px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:clamp(.6rem,2.4vw,1.15rem);container-type:inline-size}
+  .frame.ink{background:var(--ink);color:var(--paper)}
+  .frame.paper{background:var(--paper);color:var(--ink)}
+  .frame.blue{background:var(--blue);color:var(--paper)}
+  .f-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .f-num{font:800 clamp(13px,3.4cqw,20px)/1 var(--mono);opacity:.85}
+  .f-arch{font:600 clamp(9px,2.5cqw,13px)/1.2 var(--mono);text-align:right;opacity:.55;max-width:55%}
+  .badge{display:inline-block;font:800 clamp(8px,2.2cqw,11px)/1 var(--mono);padding:.32em .5em;border-radius:5px;letter-spacing:.05em;vertical-align:middle}
+  .badge.do{background:var(--grn-bright);color:#06270f}
+  .badge.prop{background:transparent;border:1.5px dashed currentColor;opacity:.85}
+  .frame.paper .badge.do{background:var(--grn);color:#fff}
+  .f-focal{margin:.5cqw 0 .2rem;font:800 clamp(15px,4.6cqw,30px)/1.12 var(--sans);letter-spacing:-.01em;max-width:24ch}
+  .f-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5cqw}
+  .copyslot{border:1.5px dashed currentColor;opacity:.5;border-radius:6px;padding:.5em .7em;font:600 clamp(9px,2.4cqw,12px)/1 var(--mono);letter-spacing:.04em}
+  .diagram{border:2px solid var(--ax);border-radius:7px;padding:.6em .75em;color:inherit}
+  .diagram .dtype{font:800 clamp(9px,2.5cqw,12px)/1.1 var(--mono);color:var(--ax);letter-spacing:.05em;text-transform:uppercase}
+  .diagram .dlabels{margin-top:.3em;font:400 clamp(10px,2.7cqw,13px)/1.3 var(--sans);opacity:.92}
+  .f-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font:600 clamp(8px,2.1cqw,11px)/1 var(--mono);opacity:.6;margin-top:.4rem}
+  .dot{display:inline-block;width:.7em;height:.7em;border-radius:50%;vertical-align:-1px;margin-right:.3em}
+  body.step main{padding-top:1.2rem;min-height:70vh}
+  body.step .frame{display:none}
+  body.step .frame.current{display:flex}
+  @media (max-width:520px){ .f-focal{max-width:20ch} }
+</style>
+</head>
+<body class="scroll">
+<header class="bar">
+  <span class="title">B2 · NAPKIN ECONOMICS</span>
+  <span class="count" id="count">15 frames</span>
+  <button id="mode">scroll</button>
+</header>
+<div class="hint" id="hint">135-min session · scroll all 15 · tap “scroll” to step (arrows / swipe)</div>
+<main id="deck"></main>
+<script>
+// business accent GREEN: deep on paper, bright on ink; white on the blue divider plate
+const A = p => (p==="paper" ? "var(--grn)" : p==="blue" ? "var(--paper)" : "var(--grn-bright)");
+const frames = [
+ {n:1, plate:"ink", arch:"Cover", focal:"Numbers that survive a sponsor's probe.",
+  body:[{copy:"kicker · B2 / NAPKIN ECONOMICS"},{copy:"hero"},{copy:"sub"},{dia:"motif", l:"economics motif · small, corner"}]},
+ {n:2, plate:"paper", arch:"Statement · Tell", focal:"A confident projection is assumptions, not proof.",
+  body:[{copy:"kicker · WHY BOTHER"},{copy:"the tell (one line)"}]},
+ {n:3, plate:"ink", arch:"Worked-Frame", focal:"The optimistic model vs the honest unit.",
+  body:[{dia:"costs-omitted split · same product", l:"OPTIMISTIC: €8 − €1 product = €7, looks great  ↔  HONEST: €8 − €1 − €4 acquire − €1 support = €2, only if she stays"}]},
+ {n:4, plate:"ink", arch:"Prompt", focal:"Which number kills Anya's model?", badge:{k:"do",t:"DO · 90s predict"},
+  body:[{copy:"the question"},{dia:"team call", l:"the room guesses price or cost · the reveal is churn"}]},
+ {n:5, plate:"ink", arch:"Before / After", focal:"Every cost in flips the margin. Churn is the killer.",
+  body:[{dia:"optimistic → honest unit", l:"BEFORE margin looks healthy (acquisition + churn absent)  |  AFTER all costs in, margin thins · THE KILLER: dies if teens churn faster than 2 months (Anya's 3-weeks-then-stops, as a number)"}]},
+ {n:6, plate:"paper", arch:"Process-Flow", focal:"Honest unit first, break-even, find the killer.",
+  body:[{dia:"3-step method", l:"① HONEST UNIT FIRST (every cost, incl. acquisition) → ② BREAK-EVEN (only after the unit is honest) → ③ FIND THE KILLER"}]},
+ {n:7, plate:"paper", arch:"Formula", focal:"Revenue minus every cost, then “it dies if.”",
+  body:[{dia:"unit formula", l:"Revenue ___ − product ___ − acquisition ___ − support ___ = margin ___ · IT DIES IF ___"}]},
+ {n:8, plate:"blue", arch:"Divider · Your turn", focal:"Your turn: honest unit, draft, stress-test, project, killer.",
+  body:[{dia:"5-node stage flow", l:"HONEST UNIT (12m · do first) → DRAFT (18m · hard stop) → STRESS-TEST (30m · largest) → PROJECT (12m) → NAME THE KILLER (8m)"}]},
+ {n:9, plate:"paper", arch:"Activity Card", focal:"One customer, every cost in.",
+  body:[{dia:"the honest unit", l:"product + acquisition + support · if acquisition is missing, the unit is fiction"}]},
+ {n:10, plate:"paper", arch:"Activity Card", focal:"The AI is optimistic.",
+  body:[{dia:"numbers draft · suspect, not finished", l:"expect omitted costs + a hockey stick · that is what you fix next"},{copy:"hard stop · stop drafting, start breaking"}]},
+ {n:11, plate:"paper", arch:"Activity Card", focal:"Stress-test the math. The spine.",
+  body:[{dia:"all costs in · vs YOUR numbers", l:"break the optimistic figures · find the one number that breaks the model"},{copy:"checkpoint · every cost in, killer named"}]},
+ {n:12, plate:"paper", arch:"Activity Card", focal:"Break-even + 12-month projection.",
+  body:[{dia:"the projection", l:"fixed costs ÷ margin = customers · months 1-12 · only after the unit is honest"}]},
+ {n:13, plate:"paper", arch:"Activity Card · Formula", focal:"Name the economics killer. Lock it.",
+  body:[{dia:"the killer", l:"the one number-assumption the model rests on · what the sponsor will press"}]},
+ {n:14, plate:"paper", arch:"Stats · Recap", focal:"Can these survive a probe?",
+  body:[{dia:"4-up stats", l:"contribution margin · break-even · projection · the killer  ·  good vs lazy: survives-a-probe vs a line that only goes up"}]},
+ {n:15, plate:"ink", arch:"Handoff", focal:"A sponsor probes the math. Wednesday.",
+  body:[{dia:"forward pair", l:"SPONSOR FEEDBACK (Wed AM) · bring the killer yourself  |  feeds B3 100-Day Plan + the PRD business section"}]},
+];
+const accentName = "green";
+const deck = document.getElementById("deck");
+frames.forEach((f)=>{
+  const el = document.createElement("section");
+  el.className = "frame "+f.plate;
+  el.style.setProperty("--ax", A(f.plate));
+  const badge = f.badge ? `<span class="badge ${f.badge.k}">${f.badge.t}</span> ` : "";
+  let body = "";
+  for(const b of f.body){
+    if(b.copy){ body += `<div class="copyslot">▢ ${b.copy} — copy (voice pass)</div>`; }
+    else { body += `<div class="diagram"><div class="dtype">${b.dia}</div><div class="dlabels">${b.l}</div></div>`; }
+  }
+  const plateLabel = f.plate==="blue" ? "blue (divider)" : f.plate;
+  el.innerHTML = `
+    <div class="f-top"><span class="f-num">${String(f.n).padStart(2,"0")}</span><span class="f-arch">${f.arch}</span></div>
+    <div class="f-focal">${badge}${f.focal}</div>
+    <div class="f-body">${body}</div>
+    <div class="f-foot">
+      <span><span class="dot" style="background:${A(f.plate)}"></span>plate: ${plateLabel} · accent: ${accentName}</span>
+      <span>HLV · ${f.n} / 15</span>
+    </div>`;
+  deck.appendChild(el);
+});
+const body=document.body, modeBtn=document.getElementById("mode"), countEl=document.getElementById("count"), hintEl=document.getElementById("hint"), els=[...document.querySelectorAll(".frame")];
+let stepMode=false, cur=0;
+function setCurrent(i){
+  cur=Math.max(0,Math.min(frames.length-1,i));
+  els.forEach((e,k)=>e.classList.toggle("current",k===cur));
+  if(stepMode){ countEl.textContent=(cur+1)+" / 15"; els[cur].scrollIntoView({block:"center"}); }
+}
+modeBtn.addEventListener("click",()=>{
+  stepMode=!stepMode;
+  body.classList.toggle("step",stepMode); body.classList.toggle("scroll",!stepMode);
+  modeBtn.textContent=stepMode?"step":"scroll"; modeBtn.classList.toggle("on",stepMode);
+  hintEl.textContent=stepMode?"step mode · ← → arrows or swipe · tap “step” to return to scroll":"135-min session · scroll all 15 · tap “scroll” to step (arrows / swipe)";
+  if(stepMode) setCurrent(cur); else countEl.textContent="15 frames";
+});
+document.addEventListener("keydown",e=>{
+  if(!stepMode) return;
+  if(e.key==="ArrowRight"||e.key==="ArrowDown"){ setCurrent(cur+1); e.preventDefault(); }
+  if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ setCurrent(cur-1); e.preventDefault(); }
+});
+let tsX=0,tsY=0;
+document.addEventListener("touchstart",e=>{tsX=e.changedTouches[0].clientX;tsY=e.changedTouches[0].clientY;},{passive:true});
+document.addEventListener("touchend",e=>{
+  if(!stepMode) return;
+  const dx=e.changedTouches[0].clientX-tsX, dy=e.changedTouches[0].clientY-tsY;
+  if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ setCurrent(cur+(dx<0?1:-1)); }
+},{passive:true});
+</script>
+</body>
+</html>
