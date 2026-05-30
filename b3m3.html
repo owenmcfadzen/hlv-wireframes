@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>B3M3 — Joint 100-Day Plan — wireframe flip-through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11121A; --paper:#FAFAF7; --blue:#0B5FB0;
+    --grn:#0A8C3D; --grn-bright:#14D960; --blu:#0B5FB0; --blu-bright:#1E9BFE;
+    --red:#C2342B; --mute:#8A8A90; --mute2:#5C5C62;
+    --sans:"Plus Jakarta Sans", system-ui, sans-serif;
+    --mono:"Menlo", ui-monospace, "SF Mono", monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#2a2b30;color:#111;font-family:var(--sans);-webkit-text-size-adjust:100%}
+  header.bar{position:sticky;top:0;z-index:10;background:#1b1c20;color:#e7e7ea;display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;font:600 13px/1 var(--mono);border-bottom:1px solid #000}
+  header.bar .title{flex:1;letter-spacing:.04em}
+  header.bar .count{background:linear-gradient(90deg,var(--grn-bright),var(--blu-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header.bar button{font:600 12px/1 var(--mono);color:#e7e7ea;background:#34353b;border:1px solid #4a4b52;border-radius:6px;padding:.42rem .6rem;cursor:pointer}
+  header.bar button.on{background:var(--grn);border-color:var(--grn);color:#fff}
+  .hint{color:#9a9aa2;font:400 11px/1.4 var(--mono);padding:.5rem .8rem;text-align:center}
+  .hint b{background:linear-gradient(90deg,var(--grn-bright),var(--blu-bright));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+  main{padding:.7rem clamp(.4rem,2vw,1rem) 3rem}
+  .frame{width:100%;max-width:760px;margin:0 auto 1rem;aspect-ratio:16/9;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 2px 14px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:clamp(.6rem,2.4vw,1.15rem);container-type:inline-size}
+  .frame.ink{background:var(--ink);color:var(--paper)}
+  .frame.paper{background:var(--paper);color:var(--ink)}
+  .frame.blue{background:var(--blue);color:var(--paper)}
+  .f-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .f-num{font:800 clamp(13px,3.4cqw,20px)/1 var(--mono);opacity:.85}
+  .f-arch{font:600 clamp(9px,2.5cqw,13px)/1.2 var(--mono);text-align:right;opacity:.55;max-width:55%}
+  .badge{display:inline-block;font:800 clamp(8px,2.2cqw,11px)/1 var(--mono);padding:.32em .5em;border-radius:5px;letter-spacing:.05em;vertical-align:middle}
+  .badge.do{color:#fff;background:linear-gradient(90deg,var(--grn),var(--blu))}
+  .badge.gate{color:#fff;background:var(--red)}
+  .f-focal{margin:.5cqw 0 .2rem;font:800 clamp(15px,4.6cqw,30px)/1.12 var(--sans);letter-spacing:-.01em;max-width:24ch}
+  .f-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5cqw}
+  .copyslot{border:1.5px dashed currentColor;opacity:.5;border-radius:6px;padding:.5em .7em;font:600 clamp(9px,2.4cqw,12px)/1 var(--mono);letter-spacing:.04em}
+  /* dual-accent: green→blue gradient border = the two tracks converging (sanctioned for B3M3 only) */
+  .diagram{border:2px solid transparent;border-image:linear-gradient(90deg,var(--grn-bright),var(--blu-bright)) 1;border-radius:0;padding:.6em .75em;color:inherit}
+  .diagram .dtype{font:800 clamp(9px,2.5cqw,12px)/1.1 var(--mono);letter-spacing:.05em;text-transform:uppercase;background:linear-gradient(90deg,var(--grn-bright),var(--blu-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .frame.paper .diagram .dtype{background:linear-gradient(90deg,var(--grn),var(--blu));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .diagram .dlabels{margin-top:.3em;font:400 clamp(10px,2.7cqw,13px)/1.3 var(--sans);opacity:.92}
+  .f-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font:600 clamp(8px,2.1cqw,11px)/1 var(--mono);opacity:.6;margin-top:.4rem}
+  .dot{display:inline-block;width:1.4em;height:.7em;border-radius:3px;vertical-align:-1px;margin-right:.3em;background:linear-gradient(90deg,var(--grn-bright),var(--blu-bright))}
+  body.step main{padding-top:1.2rem;min-height:70vh}
+  body.step .frame{display:none}
+  body.step .frame.current{display:flex}
+  @media (max-width:520px){ .f-focal{max-width:20ch} }
+</style>
+</head>
+<body class="scroll">
+<header class="bar">
+  <span class="title">B3M3 · JOINT 100-DAY PLAN</span>
+  <span class="count" id="count">13 frames</span>
+  <button id="mode">scroll</button>
+</header>
+<div class="hint" id="hint">B + M converge · <b>green + blue meeting = the reconciliation</b> · scroll, or tap “scroll” to step</div>
+<main id="deck"></main>
+<script>
+const frames = [
+ {n:1, plate:"ink", arch:"Cover", focal:"The week's two halves reconcile into one plan.",
+  body:[{copy:"kicker · B3M3 / JOINT 100-DAY PLAN"},{copy:"hero"},{copy:"sub"},{dia:"motif · two marks meeting", l:"green + blue converging on one point"}]},
+ {n:2, plate:"paper", arch:"Statement · Tell", focal:"Two plans stapled is not one plan.",
+  body:[{copy:"kicker · WHY BOTHER"},{copy:"the tell (one line)"}]},
+ {n:3, plate:"ink", arch:"Worked-Frame", focal:"The two numbers meet.",
+  body:[{dia:"two-number collision", l:"BUSINESS (green): can afford €4 / acquired dad  →●←  MARKET (blue): best-reach channel costs €10 · they must agree or there is no plan"}]},
+ {n:4, plate:"ink", arch:"Prompt", focal:"Do these two numbers reconcile?", badge:{k:"do",t:"DO · 90s predict"},
+  body:[{copy:"the question"},{dia:"team call", l:"the room sees the killer fire (€10 channel vs €4 budget)"}]},
+ {n:5, plate:"ink", arch:"Before / After", focal:"Stapled fails. Reconciled is one plan.",
+  body:[{dia:"stapled vs reconciled", l:"STAPLED: B's budget | M's channels, never met → €10 breaks €4 → KILLER FIRES, dead  |  RECONCILED: swap to a €4 channel (flyer / newsletter / referral), lo-fi, budget funds it · THE POINT: not two sections"}]},
+ {n:6, plate:"paper", arch:"Process-Flow", focal:"Reconcile the number first, then sequence.",
+  body:[{dia:"gated method", l:"RECONCILE (one agreed acquisition cost) ‖ GATE ‖ SEQUENCE (validate / build / grow) · the gate is drawn because skipping it is the failure"}]},
+ {n:7, plate:"paper", arch:"Formula", focal:"Afford / channel cost / reconcile or the killer.",
+  body:[{dia:"reconcile formula · both fill it", l:"We can afford ___ /user (green) · our channel costs ___ /user (blue) · RECONCILE, OR THE KILLER FIRES"}]},
+ {n:8, plate:"blue", arch:"Divider · Your turn", focal:"Your turn: reconcile, sequence, round.",
+  body:[{dia:"gated stage flow", l:"RECONCILE (22m · gated · both own the number) ‖GATE‖ SEQUENCE (48m · validate/build/grow) → ROUND (15m · read 3 milestones)"}]},
+ {n:9, plate:"paper", arch:"Activity Card", focal:"Reconcile first. The spine.", badge:{k:"gate",t:"GATED"},
+  body:[{dia:"the reconcile · gated", l:"both numbers on the table → agree ONE acquisition cost (or change a channel / revise the economics)"},{copy:"checkpoint · one number you both own, killer does not fire — no milestone until this holds"}]},
+ {n:10, plate:"paper", arch:"Activity Card", focal:"Sequence the 100 days.",
+  body:[{dia:"validate / build / grow", l:"each: goal · 3 lo-fi actions · north-star · on the reconciled number · startable Monday"}]},
+ {n:11, plate:"paper", arch:"Activity Card", focal:"Budget funds the moves. Scorecard is reachable.",
+  body:[{dia:"budget + scorecard (green) × channels (blue)", l:"MVP budget (B) funds the first moves (M) · day-100 scorecard (B) reachable by the channel sequence (M) · a dependency, not two lists"}]},
+ {n:12, plate:"paper", arch:"Stats · Recap", focal:"Did the two halves agree, or staple?",
+  body:[{dia:"4-up stats", l:"reconciled number · 3 phases · MVP budget · day-100 scorecard  ·  good vs lazy: one reconciled plan vs two stapled"}]},
+ {n:13, plate:"ink", arch:"Handoff", focal:"Read three milestones. Into the build.",
+  body:[{dia:"forward pair", l:"the round (read 3 aloud) · into the build day + Friday reveal  |  feeds LPP + PRD · carry: the reconciled number + the first lo-fi move"}]},
+];
+const deck = document.getElementById("deck");
+frames.forEach((f)=>{
+  const el = document.createElement("section");
+  el.className = "frame "+f.plate;
+  const badge = f.badge ? `<span class="badge ${f.badge.k}">${f.badge.t}</span> ` : "";
+  let body = "";
+  for(const b of f.body){
+    if(b.copy){ body += `<div class="copyslot">▢ ${b.copy} — copy (voice pass)</div>`; }
+    else { body += `<div class="diagram"><div class="dtype">${b.dia}</div><div class="dlabels">${b.l}</div></div>`; }
+  }
+  const plateLabel = f.plate==="blue" ? "blue (divider)" : f.plate;
+  el.innerHTML = `
+    <div class="f-top"><span class="f-num">${String(f.n).padStart(2,"0")}</span><span class="f-arch">${f.arch}</span></div>
+    <div class="f-focal">${badge}${f.focal}</div>
+    <div class="f-body">${body}</div>
+    <div class="f-foot">
+      <span><span class="dot"></span>plate: ${plateLabel} · accent: green + blue (convergence)</span>
+      <span>HLV · ${f.n} / 13</span>
+    </div>`;
+  deck.appendChild(el);
+});
+const body=document.body, modeBtn=document.getElementById("mode"), countEl=document.getElementById("count"), hintEl=document.getElementById("hint"), els=[...document.querySelectorAll(".frame")];
+let stepMode=false, cur=0;
+function setCurrent(i){
+  cur=Math.max(0,Math.min(frames.length-1,i));
+  els.forEach((e,k)=>e.classList.toggle("current",k===cur));
+  if(stepMode){ countEl.textContent=(cur+1)+" / 13"; els[cur].scrollIntoView({block:"center"}); }
+}
+modeBtn.addEventListener("click",()=>{
+  stepMode=!stepMode;
+  body.classList.toggle("step",stepMode); body.classList.toggle("scroll",!stepMode);
+  modeBtn.textContent=stepMode?"step":"scroll"; modeBtn.classList.toggle("on",stepMode);
+  if(stepMode){ hintEl.innerHTML="step mode · ← → arrows or swipe · tap “step” to return to scroll"; setCurrent(cur); }
+  else { hintEl.innerHTML="B + M converge · <b>green + blue meeting = the reconciliation</b> · scroll, or tap “scroll” to step"; countEl.textContent="13 frames"; }
+});
+document.addEventListener("keydown",e=>{
+  if(!stepMode) return;
+  if(e.key==="ArrowRight"||e.key==="ArrowDown"){ setCurrent(cur+1); e.preventDefault(); }
+  if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ setCurrent(cur-1); e.preventDefault(); }
+});
+let tsX=0,tsY=0;
+document.addEventListener("touchstart",e=>{tsX=e.changedTouches[0].clientX;tsY=e.changedTouches[0].clientY;},{passive:true});
+document.addEventListener("touchend",e=>{
+  if(!stepMode) return;
+  const dx=e.changedTouches[0].clientX-tsX, dy=e.changedTouches[0].clientY-tsY;
+  if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ setCurrent(cur+(dx<0?1:-1)); }
+},{passive:true});
+</script>
+</body>
+</html>
