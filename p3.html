@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>P3 Prototype Build — wireframe flip-through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11121A; --paper:#FAFAF7; --blue:#0B5FB0;
+    --pur:#B884FE; --purd:#7649C2; --red:#C2342B; --mute:#8A8A90;
+    --sans:"Plus Jakarta Sans", system-ui, sans-serif;
+    --mono:"Menlo", ui-monospace, "SF Mono", monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#2a2b30;color:#111;font-family:var(--sans);-webkit-text-size-adjust:100%}
+  header.bar{position:sticky;top:0;z-index:10;background:#1b1c20;color:#e7e7ea;display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;font:600 13px/1 var(--mono);border-bottom:1px solid #000}
+  header.bar .title{flex:1;letter-spacing:.04em}
+  header.bar .count{color:var(--pur)}
+  header.bar button{font:600 12px/1 var(--mono);color:#e7e7ea;background:#34353b;border:1px solid #4a4b52;border-radius:6px;padding:.42rem .6rem;cursor:pointer}
+  header.bar button.on{background:var(--purd);border-color:var(--purd);color:#fff}
+  .hint{color:#9a9aa2;font:400 11px/1.4 var(--mono);padding:.5rem .8rem;text-align:center}
+  main{padding:.7rem clamp(.4rem,2vw,1rem) 3rem}
+  .frame{width:100%;max-width:760px;margin:0 auto 1rem;aspect-ratio:16/9;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 2px 14px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:clamp(.6rem,2.4vw,1.15rem);container-type:inline-size}
+  .frame.ink{background:var(--ink);color:var(--paper)}
+  .frame.paper{background:var(--paper);color:var(--ink)}
+  .frame.blue{background:var(--blue);color:var(--paper)}
+  .f-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .f-num{font:800 clamp(13px,3.4cqw,20px)/1 var(--mono);opacity:.85}
+  .f-arch{font:600 clamp(9px,2.5cqw,13px)/1.2 var(--mono);text-align:right;opacity:.55;max-width:55%}
+  .badge{display:inline-block;font:800 clamp(8px,2.2cqw,11px)/1 var(--mono);padding:.32em .5em;border-radius:5px;letter-spacing:.05em;vertical-align:middle}
+  .badge.do{background:var(--pur);color:#23104a}
+  .frame.paper .badge.do{background:var(--purd);color:#fff}
+  .f-focal{margin:.5cqw 0 .2rem;font:800 clamp(15px,4.6cqw,30px)/1.12 var(--sans);letter-spacing:-.01em;max-width:24ch}
+  .f-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5cqw}
+  .copyslot{border:1.5px dashed currentColor;opacity:.5;border-radius:6px;padding:.5em .7em;font:600 clamp(9px,2.4cqw,12px)/1 var(--mono);letter-spacing:.04em}
+  .diagram{border:2px solid var(--ax);border-radius:7px;padding:.6em .75em;color:inherit}
+  .diagram .dtype{font:800 clamp(9px,2.5cqw,12px)/1.1 var(--mono);color:var(--ax);letter-spacing:.05em;text-transform:uppercase}
+  .diagram .dlabels{margin-top:.3em;font:400 clamp(10px,2.7cqw,13px)/1.3 var(--sans);opacity:.92}
+  .f-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font:600 clamp(8px,2.1cqw,11px)/1 var(--mono);opacity:.6;margin-top:.4rem}
+  .dot{display:inline-block;width:.7em;height:.7em;border-radius:50%;vertical-align:-1px;margin-right:.3em}
+  body.step main{padding-top:1.2rem;min-height:70vh}
+  body.step .frame{display:none}
+  body.step .frame.current{display:flex}
+  @media (max-width:520px){ .f-focal{max-width:20ch} }
+</style>
+</head>
+<body class="scroll">
+<header class="bar">
+  <span class="title">P3 · PROTOTYPE BUILD</span>
+  <span class="count" id="count">14 frames</span>
+  <button id="mode">scroll</button>
+</header>
+<div class="hint" id="hint">scroll all 14 · tap “scroll” to step (arrows / swipe)</div>
+<main id="deck"></main>
+<script>
+const A = p => (p==="paper" ? "var(--purd)" : p==="blue" ? "var(--paper)" : "var(--pur)");
+const frames = [
+ {n:1, plate:"ink", arch:"Cover", focal:"Build rough, test, change one thing.",
+  body:[{copy:"kicker · P3 / PROTOTYPE BUILD"},{copy:"hero"},{copy:"sub"},{dia:"motif", l:"prototype motif · small, corner"}]},
+ {n:2, plate:"paper", arch:"Statement · Tell", focal:"A polished prototype you won't change is a demo, not a test.",
+  body:[{copy:"kicker · WHY BOTHER"},{copy:"the tell (one line)"}]},
+ {n:3, plate:"ink", arch:"Worked-Frame", focal:"Anya's prototype A: a rough lock.",
+  body:[{dia:"the rough build", l:"a lock, rough · plus over-built extras the team is proud of: settings, streaks, dashboard"}]},
+ {n:4, plate:"ink", arch:"Prompt", focal:"A teen does this with it. Predict the one change.", badge:{k:"do",t:"DO · 90s predict"},
+  body:[{copy:"the observation"},{dia:"team call", l:"she turns the lock off in a day, never opens the dashboard"}]},
+ {n:5, plate:"ink", arch:"Before / After", focal:"A → test → B. One change.",
+  body:[{dia:"prototype A → B", l:"A: rough lock + settings/streaks/dashboard  |  TEST: turns it off in a day, ignores dashboard  |  B: ONE change — lock harder to turn off at 11pm, dashboard CUT · rougher, not bigger"}]},
+ {n:6, plate:"paper", arch:"Process-Flow", focal:"Questions first, build rough, change one thing.",
+  body:[{dia:"3-step method", l:"① TEST QUESTIONS FIRST → ② BUILD ROUGH (only enough to test) → ③ CHANGE ONE THING (evidence-driven)"}]},
+ {n:7, plate:"paper", arch:"Formula", focal:"This works if a user ___.",
+  body:[{dia:"test-question formula", l:"This works if a user ___ (an OBSERVABLE BEHAVIOUR, e.g. keeps the lock on past the first night) · not “likes it”"}]},
+ {n:8, plate:"blue", arch:"Divider · Your turn", focal:"Your turn: questions, build, test, change one thing.",
+  body:[{dia:"4-node stage flow", l:"3 QUESTIONS (8m · first) → BUILD A (25m · rough, capped) → TEST (20m · watch behaviour) → CHANGE ONE → B (15m)"}]},
+ {n:9, plate:"paper", arch:"Activity Card", focal:"Three test questions first.",
+  body:[{dia:"the questions · feed the Field Kit", l:"what must this prototype prove? behaviours, not opinions"}]},
+ {n:10, plate:"paper", arch:"Activity Card", focal:"Build Prototype A. Rough.",
+  body:[{dia:"build (Lovable / PRD Lab) · capped", l:"only enough to test the questions · rough is fine"},{copy:"stop building, start testing"}]},
+ {n:11, plate:"paper", arch:"Activity Card", focal:"Test on peers and strangers. Watch behaviour.",
+  body:[{dia:"the test · 1 peer + 3 strangers", l:"what they DO, never “do you like it” · record behaviour"}]},
+ {n:12, plate:"paper", arch:"Activity Card", focal:"Change one thing → Prototype B.",
+  body:[{dia:"one evidence-driven change", l:"one thing, not a rebuild · driven by what you watched"}]},
+ {n:13, plate:"paper", arch:"Stats · Recap", focal:"Is B rougher and sharper, or just bigger?",
+  body:[{dia:"3-up stats", l:"Prototype A · tested (behaviour recorded) · one change → B · 3 questions in the Field Kit  ·  good vs lazy: rougher-and-sharper vs polished-and-untested"}]},
+ {n:14, plate:"ink", arch:"Handoff", focal:"Real users test it. This afternoon.",
+  body:[{dia:"forward pair", l:"OUT IN MARKET #2 (Wed PM) · real users · behaviour decides  |  feeds the Field Kit + the PRD (regenerated each loop)"}]},
+];
+const deck = document.getElementById("deck");
+frames.forEach((f)=>{
+  const el = document.createElement("section");
+  el.className = "frame "+f.plate;
+  el.style.setProperty("--ax", A(f.plate));
+  const badge = f.badge ? `<span class="badge ${f.badge.k}">${f.badge.t}</span> ` : "";
+  let body = "";
+  for(const b of f.body){
+    if(b.copy){ body += `<div class="copyslot">▢ ${b.copy} — copy (voice pass)</div>`; }
+    else { body += `<div class="diagram"><div class="dtype">${b.dia}</div><div class="dlabels">${b.l}</div></div>`; }
+  }
+  const plateLabel = f.plate==="blue" ? "blue (divider)" : f.plate;
+  el.innerHTML = `
+    <div class="f-top"><span class="f-num">${String(f.n).padStart(2,"0")}</span><span class="f-arch">${f.arch}</span></div>
+    <div class="f-focal">${badge}${f.focal}</div>
+    <div class="f-body">${body}</div>
+    <div class="f-foot">
+      <span><span class="dot" style="background:${A(f.plate)}"></span>plate: ${plateLabel} · accent: purple</span>
+      <span>HLV · ${f.n} / 14</span>
+    </div>`;
+  deck.appendChild(el);
+});
+const body=document.body, modeBtn=document.getElementById("mode"), countEl=document.getElementById("count"), hintEl=document.getElementById("hint"), els=[...document.querySelectorAll(".frame")];
+let stepMode=false, cur=0;
+function setCurrent(i){
+  cur=Math.max(0,Math.min(frames.length-1,i));
+  els.forEach((e,k)=>e.classList.toggle("current",k===cur));
+  if(stepMode){ countEl.textContent=(cur+1)+" / 14"; els[cur].scrollIntoView({block:"center"}); }
+}
+modeBtn.addEventListener("click",()=>{
+  stepMode=!stepMode;
+  body.classList.toggle("step",stepMode); body.classList.toggle("scroll",!stepMode);
+  modeBtn.textContent=stepMode?"step":"scroll"; modeBtn.classList.toggle("on",stepMode);
+  hintEl.textContent=stepMode?"step mode · ← → arrows or swipe · tap “step” to return to scroll":"scroll all 14 · tap “scroll” to step (arrows / swipe)";
+  if(stepMode) setCurrent(cur); else countEl.textContent="14 frames";
+});
+document.addEventListener("keydown",e=>{
+  if(!stepMode) return;
+  if(e.key==="ArrowRight"||e.key==="ArrowDown"){ setCurrent(cur+1); e.preventDefault(); }
+  if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ setCurrent(cur-1); e.preventDefault(); }
+});
+let tsX=0,tsY=0;
+document.addEventListener("touchstart",e=>{tsX=e.changedTouches[0].clientX;tsY=e.changedTouches[0].clientY;},{passive:true});
+document.addEventListener("touchend",e=>{
+  if(!stepMode) return;
+  const dx=e.changedTouches[0].clientX-tsX, dy=e.changedTouches[0].clientY-tsY;
+  if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ setCurrent(cur+(dx<0?1:-1)); }
+},{passive:true});
+</script>
+</body>
+</html>
