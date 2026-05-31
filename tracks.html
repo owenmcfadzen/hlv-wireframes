@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>HLV — How the three specialty tracks run</title>
+<title>HLV — The three specialty tracks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,378 +12,280 @@
     --WHITE:#FFFFFF; --L92:#E4E4E4; --MUTE:#939393; --SEC:#666666; --MUTE2:#565656; --INK:#1E1E1E;
     --GRN:#00D967; --GRNd:#0A8C3D; --BLU:#1E9BFE; --BLUd:#0B5FB0; --PUR:#B884FE; --PURd:#7649C2;
     --YEL:#FFC21A; --RED:#FF6B6B; --REDd:#C2342B;
-    --GRN-soft:#BFF1D6; --BLU-soft:#CFE6FF; --PUR-soft:#E7DBFF;
-    --plate-paper:#FAFAF7; --plate-ink:#11121A; --plate-blue:#0B5FB0;
+    --GRN-soft:#BFF1D6; --BLU-soft:#CFE6FF; --PUR-soft:#E7DBFF; --YEL-soft:#FFE680;
+    --plate-paper:#FAFAF7; --plate-ink:#11121A;
     --disp:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{background:#0a0b0e;color:var(--INK);font-family:var(--disp);-webkit-text-size-adjust:100%}
-  /* chrome */
   .bar{position:fixed;top:0;left:0;right:0;height:34px;z-index:20;background:#0a0b0e;color:#cfcfd4;display:flex;align-items:center;gap:.7rem;padding:0 .8rem;font:600 11px/1 var(--mono)}
   .bar .t{flex:1;letter-spacing:.06em;color:#85868c}
   .bar .ct{color:var(--GRN)}
   .bar button{font:600 10px/1 var(--mono);color:#cfcfd4;background:#1a1c22;border:1px solid #2c2f38;border-radius:5px;padding:.38rem .55rem;cursor:pointer}
   .bar button.on{background:var(--GRNd);border-color:var(--GRNd);color:#fff}
-  /* deck */
   #deck{padding:34px 0 0}
   .slide{
     width:min(100vw, calc((100vh - 34px) * 16 / 9));
     aspect-ratio:16/9;margin:0 auto;position:relative;overflow:hidden;
     background:var(--plate-paper);color:var(--INK);
-    container-type:inline-size;display:flex;flex-direction:column;
-    padding:6.2cqw 6.5cqw 5cqw;
+    container-type:inline-size;display:flex;flex-direction:column;padding:6cqw 6.5cqw 4.6cqw;
   }
   .slide.ink{background:var(--plate-ink);color:#F2F2F0}
-  .slide.blue{background:var(--plate-blue);color:#fff}
-  /* scroll vs step */
   body.scroll .slide{margin-bottom:14px;box-shadow:0 3px 22px rgba(0,0,0,.4)}
   body.step #deck{height:calc(100vh - 34px);display:flex;align-items:center}
   body.step .slide{display:none;box-shadow:0 0 40px rgba(0,0,0,.5)}
   body.step .slide.cur{display:flex}
 
-  /* type */
-  .kick{font:700 2.55cqw/1.2 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--MUTE2)}
-  .ink .kick,.blue .kick{color:#9fa0a8}
-  .blue .kick{color:#bcd6f5}
-  .h1{font:800 6.6cqw/1.04 var(--disp);letter-spacing:-.015em;margin:.7cqw 0 1.4cqw;max-width:21ch}
-  .hero{font:800 9.5cqw/1 var(--disp);letter-spacing:-.02em;margin:1cqw 0}
-  .sub{font:500 3.5cqw/1.4 var(--disp);color:var(--SEC);max-width:34ch}
-  .ink .sub{color:#b9b9c0}.blue .sub{color:#dbe8fb}
-  .body{font:400 3.1cqw/1.5 var(--disp);color:var(--MUTE2);max-width:42ch}
-  .ink .body{color:#a9a9b2}
+  .kick{font:700 2.5cqw/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--MUTE2)}
+  .ink .kick{color:#9fa0a8}
+  .kg{color:var(--GRNd)} .kb{color:var(--BLUd)} .kp{color:var(--PURd)}
+  .h1{font:800 6.2cqw/1.05 var(--disp);letter-spacing:-.015em;margin:.7cqw 0 1.2cqw;max-width:24ch}
+  .hero{font:800 8.6cqw/1.02 var(--disp);letter-spacing:-.02em;margin:1cqw 0}
+  .sub{font:500 3.4cqw/1.42 var(--disp);color:var(--SEC);max-width:36ch}
+  .ink .sub{color:#b9b9c0}
+  .body{font:400 3.05cqw/1.5 var(--disp);color:var(--MUTE2);max-width:50ch}
   .grow{flex:1;display:flex;flex-direction:column;justify-content:center}
-  .foot{display:flex;justify-content:space-between;align-items:flex-end;font:600 2.2cqw/1 var(--mono);color:var(--MUTE);margin-top:auto}
-  .ink .foot,.blue .foot{color:#7a7b84}
-  .cred{letter-spacing:.04em}
+  .foot{display:flex;justify-content:space-between;align-items:flex-end;font:600 2.15cqw/1 var(--mono);color:var(--MUTE);margin-top:auto;padding-top:2cqw}
+  .ink .foot{color:#7a7b84}
 
-  /* track chips */
-  .chips{display:flex;gap:2.4cqw;margin-top:2.4cqw;flex-wrap:wrap}
-  .chip{flex:1;min-width:24cqw;border-radius:.8cqw;padding:2.4cqw 2.6cqw;border:.18cqw solid;background:#fff}
-  .ink .chip{background:#181922}
-  .chip .ti{font:800 3.6cqw/1 var(--disp);margin-bottom:.7cqw}
-  .chip .ds{font:600 2.6cqw/1.3 var(--mono);color:var(--MUTE2)}
-  .ink .chip .ds{color:#9a9ba4}
-  .c-blu{border-color:var(--BLU)} .c-blu .ti{color:var(--BLUd)} .ink .c-blu .ti{color:var(--BLU)}
-  .c-pur{border-color:var(--PUR)} .c-pur .ti{color:var(--PURd)} .ink .c-pur .ti{color:var(--PUR)}
-  .c-grn{border-color:var(--GRN)} .c-grn .ti{color:var(--GRNd)} .ink .c-grn .ti{color:var(--GRN)}
+  .rows{display:flex;flex-direction:column;gap:1.5cqw;margin-top:2cqw}
+  .trk{display:flex;align-items:baseline;gap:1.6cqw;border-left:.5cqw solid;padding-left:1.8cqw}
+  .trk .nm{font:800 4.2cqw/1 var(--disp);min-width:17cqw}
+  .trk .ds{font:500 3.1cqw/1.3 var(--disp);color:var(--SEC)}
+  .t-b{border-color:var(--BLU)} .t-b .nm{color:var(--BLUd)}
+  .t-p{border-color:var(--PUR)} .t-p .nm{color:var(--PURd)}
+  .t-g{border-color:var(--GRN)} .t-g .nm{color:var(--GRNd)}
 
-  /* arc / flow rows */
-  .arc{display:flex;align-items:stretch;gap:1.2cqw;margin-top:1.6cqw}
-  .node{flex:1;border:.2cqw solid;border-radius:.7cqw;padding:1.7cqw 1.8cqw;background:#fff;position:relative}
-  .ink .node{background:#181922}
-  .node .ph{font:700 2.1cqw/1 var(--mono);letter-spacing:.08em;color:var(--MUTE)}
-  .node .mv{font:800 4cqw/1 var(--disp);margin:.7cqw 0 .5cqw}
-  .node .sess{font:600 2.3cqw/1.2 var(--mono);color:var(--MUTE2);margin-bottom:.9cqw}
-  .ink .node .sess{color:#9a9ba4}
-  .node .fa{font:400 2.55cqw/1.32 var(--disp);color:var(--SEC)}
-  .ink .node .fa{color:#aaa}
-  .arrow{display:flex;align-items:center;font:700 4cqw/1 var(--mono);color:var(--MUTE);padding:0 .2cqw}
-  .b .node{border-color:var(--BLU)} .b .mv{color:var(--BLUd)} .ink .b .mv{color:var(--BLU)}
-  .p .node{border-color:var(--PUR)} .p .mv{color:var(--PURd)} .ink .p .mv{color:var(--PUR)}
-  .g .node{border-color:var(--GRN)} .g .mv{color:var(--GRNd)} .ink .g .mv{color:var(--GRN)}
-  .matnote{font:600 2.5cqw/1.3 var(--mono);color:var(--MUTE2);margin-top:1.6cqw}
-  .matnote .hot{color:var(--REDd)} .matnote .deep{color:var(--GRNd)}
+  .cards{display:flex;gap:1.6cqw;margin-top:2cqw}
+  .card{flex:1;border-radius:.8cqw;padding:2.2cqw 2cqw;border:.2cqw solid var(--GRN);background:#fff;display:flex;flex-direction:column}
+  .card .n{font:700 2.2cqw/1 var(--mono);color:var(--MUTE);letter-spacing:.05em;margin-bottom:.7cqw}
+  .card .ti{font:800 3.5cqw/1.08 var(--disp);color:var(--GRNd);margin-bottom:1cqw}
+  .card .ds{font:500 2.65cqw/1.32 var(--disp);color:var(--SEC);flex:1}
+  .card .pr{font:600 2.4cqw/1.25 var(--mono);color:var(--INK);margin-top:1.4cqw;border-top:.15cqw solid var(--L92);padding-top:1cqw}
+  .card .pr small{color:var(--MUTE);font-weight:400}
 
-  /* mini three-row arcs */
-  .arcs3{display:flex;flex-direction:column;gap:1.5cqw;margin-top:1.2cqw}
-  .arow{display:flex;align-items:center;gap:1.1cqw}
-  .alabel{width:15cqw;font:800 3cqw/1 var(--disp)}
-  .alabel small{display:block;font:600 1.95cqw/1.2 var(--mono);color:var(--MUTE);margin-top:.4cqw;letter-spacing:.02em}
-  .acell{flex:1;border-radius:.6cqw;padding:1.3cqw 1.4cqw;border:.18cqw solid;background:#fff}
-  .acell b{font:800 2.9cqw/1 var(--disp);display:block}
-  .acell span{font:600 2.15cqw/1.15 var(--mono);color:var(--MUTE2)}
-  .ar-b .alabel{color:var(--BLUd)} .ar-b .acell{border-color:var(--BLU-soft)} .ar-b .acell b{color:var(--BLUd)}
-  .ar-p .alabel{color:var(--PURd)} .ar-p .acell{border-color:var(--PUR-soft)} .ar-p .acell b{color:var(--PURd)}
-  .ar-g .alabel{color:var(--GRNd)} .ar-g .acell{border-color:var(--GRN-soft)} .ar-g .acell b{color:var(--GRNd)}
-  .amini{font:700 3cqw/1 var(--mono);color:var(--MUTE)}
+  .do-list{margin-top:2cqw;display:flex;flex-direction:column;gap:1.3cqw}
+  .di{display:flex;gap:1.6cqw;align-items:flex-start}
+  .di .ix{font:800 3.4cqw/1 var(--mono);color:var(--GRN);min-width:4cqw}
+  .di .tx{font:500 3.1cqw/1.36 var(--disp);color:var(--INK);max-width:46ch}
+  .di .tx b{font-weight:800}
+  .out{margin-top:auto;background:#f4fdf8;border:.2cqw solid var(--GRN);border-radius:.8cqw;padding:1.8cqw 2cqw;font:600 2.95cqw/1.35 var(--disp);color:var(--GRNd)}
+  .out .lab{font:700 2.2cqw/1 var(--mono);letter-spacing:.06em;color:var(--GRNd);display:block;margin-bottom:.7cqw;opacity:.8}
+  .meta{font:700 2.4cqw/1 var(--mono);color:var(--MUTE2);margin-top:1cqw}
 
-  /* minute-map bar */
-  .mm{display:flex;gap:.5cqw;margin-top:2cqw;height:11cqw}
-  .blk{border-radius:.5cqw;padding:1cqw .8cqw;display:flex;flex-direction:column;justify-content:space-between;font:700 1.9cqw/1.1 var(--mono);color:#fff;overflow:hidden}
-  .blk small{font:600 1.7cqw/1 var(--mono);opacity:.85}
-  .blk.rcv{background:#cfd0d6;color:#33343a}
-  .blk.do{background:var(--BLUd)}
-  .blk.spine{background:var(--BLU);color:#06243f;outline:.35cqw solid var(--BLUd)}
-  .mm.gr .blk.do{background:var(--GRNd)} .mm.gr .blk.spine{background:var(--GRN);color:#06270f;outline-color:var(--GRNd)}
-  .legend{display:flex;gap:2.4cqw;margin-top:1.4cqw;font:600 2.3cqw/1 var(--mono);color:var(--MUTE2)}
+  /* minute bar */
+  .mm{display:flex;gap:.5cqw;margin-top:2.4cqw;height:12cqw}
+  .blk{border-radius:.5cqw;padding:1.1cqw .85cqw;display:flex;flex-direction:column;justify-content:space-between;font:700 2cqw/1.12 var(--mono);overflow:hidden}
+  .blk small{font:600 1.7cqw/1.05 var(--mono);opacity:.82}
+  .blk.rcv{background:#d7d8dd;color:#33343a}
+  .blk.do{background:var(--GRNd);color:#fff}
+  .blk.main{background:var(--GRN);color:#06270f;outline:.35cqw solid var(--GRNd)}
+  .legend{display:flex;gap:2.6cqw;margin-top:1.5cqw;font:600 2.3cqw/1 var(--mono);color:var(--MUTE2)}
   .legend i{display:inline-block;width:2.2cqw;height:1.3cqw;border-radius:.3cqw;vertical-align:-.1cqw;margin-right:.6cqw}
 
-  /* before/after */
-  .ba{display:flex;gap:2cqw;margin-top:1.8cqw}
-  .bx{flex:1;border-radius:.8cqw;padding:2cqw 2.2cqw;border:.2cqw solid}
-  .bx .bl{font:700 2.4cqw/1 var(--mono);letter-spacing:.06em;margin-bottom:1cqw}
-  .bx .q{font:600 3.1cqw/1.25 var(--disp);margin-bottom:1cqw}
-  .bx .r{font:500 2.7cqw/1.3 var(--disp)}
-  .bx.bad{border-color:var(--RED);background:#fff6f6} .bx.bad .bl{color:var(--REDd)}
-  .bx.good{border-color:var(--GRN);background:#f4fdf8} .bx.good .bl{color:var(--GRNd)}
-  .pt{font:600 2.7cqw/1.35 var(--disp);margin-top:1.6cqw;color:var(--INK)}
-  .pt b{color:var(--BLUd)}
+  .two{display:flex;gap:2.2cqw;margin-top:2.2cqw}
+  .pane{flex:1;border-radius:.9cqw;padding:2.2cqw 2.3cqw;border:.2cqw solid}
+  .pane .pl{font:700 2.5cqw/1 var(--mono);letter-spacing:.05em;margin-bottom:1.2cqw}
+  .pane .pt{font:500 2.95cqw/1.36 var(--disp)}
+  .pane.ai{border-color:var(--L92);background:#fff} .pane.ai .pl{color:var(--MUTE2)}
+  .pane.stu{border-color:var(--GRN);background:#f4fdf8} .pane.stu .pl{color:var(--GRNd)}
 
-  /* flow 3-stage */
-  .flow{display:flex;align-items:stretch;gap:1.2cqw;margin-top:2cqw}
-  .fst{flex:1;border-radius:.8cqw;padding:2cqw;border:.2cqw solid var(--L92);background:#fff}
-  .fst .fn{font:700 2.2cqw/1 var(--mono);letter-spacing:.06em;color:var(--MUTE);margin-bottom:.8cqw}
-  .fst .ft{font:800 3.5cqw/1.05 var(--disp);margin-bottom:.8cqw}
-  .fst .fb{font:500 2.5cqw/1.32 var(--disp);color:var(--SEC)}
-  .fst.s1 .ft{color:var(--PURd)} .fst.s2 .ft{color:var(--GRNd)} .fst.s3 .ft{color:var(--BLUd)}
-
-  /* timeline */
-  .tl{margin-top:2.4cqw;border-left:.3cqw solid var(--L92);padding-left:2.2cqw;display:flex;flex-direction:column;gap:1.35cqw}
+  .tl{margin-top:2.4cqw;border-left:.3cqw solid var(--L92);padding-left:2.2cqw;display:flex;flex-direction:column;gap:1.25cqw}
   .ev{position:relative}
-  .ev::before{content:"";position:absolute;left:-2.85cqw;top:.6cqw;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--GRNd)}
-  .ev .d{font:700 2.2cqw/1 var(--mono);color:var(--MUTE);letter-spacing:.04em}
-  .ev .x{font:600 2.85cqw/1.25 var(--disp)}
-  .ev .x b{font-weight:800}
+  .ev::before{content:"";position:absolute;left:-2.83cqw;top:.55cqw;width:1.3cqw;height:1.3cqw;border-radius:50%;background:var(--GRNd)}
+  .ev .d{font:700 2.15cqw/1 var(--mono);color:var(--MUTE);letter-spacing:.04em}
+  .ev .x{font:600 2.9cqw/1.25 var(--disp)} .ev .x b{font-weight:800}
 
-  /* convergence */
-  .conv{display:flex;align-items:center;justify-content:center;gap:1.6cqw;margin-top:2.2cqw}
-  .cn{border-radius:.8cqw;padding:1.8cqw 2cqw;border:.22cqw solid;background:#fff;text-align:center;min-width:20cqw}
-  .cn b{font:800 3.4cqw/1 var(--disp);display:block} .cn span{font:600 2.2cqw/1.15 var(--mono);color:var(--MUTE2)}
+  .conv{display:flex;align-items:center;justify-content:center;gap:1.5cqw;margin-top:2cqw}
+  .cn{border-radius:.8cqw;padding:1.7cqw 1.9cqw;border:.22cqw solid;background:#fff;text-align:center;min-width:21cqw}
+  .cn b{font:800 3.2cqw/1.05 var(--disp);display:block} .cn span{font:600 2.15cqw/1.2 var(--mono);color:var(--MUTE2)}
   .cn.bz{border-color:var(--GRN)} .cn.bz b{color:var(--GRNd)}
   .cn.mz{border-color:var(--BLU)} .cn.mz b{color:var(--BLUd)}
   .cn.join{border-color:var(--INK);background:var(--INK);color:#fff} .cn.join b{color:#fff} .cn.join span{color:#bdbdc4}
-  .plus{font:800 4.5cqw/1 var(--disp);color:var(--MUTE)}
-  .aside{margin-top:1.8cqw;font:600 2.6cqw/1.35 var(--mono);color:var(--PURd)}
+  .op{font:800 4cqw/1 var(--disp);color:var(--MUTE)}
 
-  /* two-col decided/open */
-  .cols{display:flex;gap:2.4cqw;margin-top:1.6cqw}
-  .col{flex:1;border-radius:.8cqw;padding:2.2cqw 2.4cqw;border:.2cqw solid}
+  .cols{display:flex;gap:2.2cqw;margin-top:1.8cqw}
+  .col{flex:1;border-radius:.8cqw;padding:2.1cqw 2.3cqw;border:.2cqw solid}
   .col.dec{border-color:var(--GRN);background:#f4fdf8} .col.opn{border-color:var(--YEL);background:#fffaed}
-  .col .ch{font:700 2.5cqw/1 var(--mono);letter-spacing:.06em;margin-bottom:1.2cqw}
-  .col.dec .ch{color:var(--GRNd)} .col.opn .ch{color:#9a6b00}
-  .col ul{list-style:none} .col li{font:500 2.65cqw/1.3 var(--disp);padding:.55cqw 0 .55cqw 2.4cqw;position:relative;color:var(--SEC)}
-  .col li::before{content:"";position:absolute;left:0;top:1.5cqw;width:1cqw;height:1cqw;border-radius:50%}
+  .col .ch{font:700 2.5cqw/1 var(--mono);letter-spacing:.05em;margin-bottom:1.2cqw}
+  .col.dec .ch{color:var(--GRNd)} .col.opn .ch{color:#8a6000}
+  .col ul{list-style:none} .col li{font:500 2.7cqw/1.3 var(--disp);padding:.6cqw 0 .6cqw 2.4cqw;position:relative;color:var(--SEC)}
+  .col li::before{content:"";position:absolute;left:0;top:1.55cqw;width:1cqw;height:1cqw;border-radius:50%}
   .col.dec li::before{background:var(--GRN)} .col.opn li::before{background:var(--YEL)}
 
-  .tag{display:inline-block;font:700 2.2cqw/1 var(--mono);letter-spacing:.05em;padding:.5cqw .8cqw;border-radius:.4cqw;background:var(--BLU-soft);color:var(--BLUd);margin-bottom:1.2cqw}
-  .tag.g{background:var(--GRN-soft);color:var(--GRNd)}
+  .note3{margin-top:2cqw;display:flex;flex-direction:column;gap:1.1cqw}
+  .n3{display:flex;gap:1.4cqw;align-items:baseline}
+  .n3 .nl{font:800 3cqw/1 var(--disp);min-width:15cqw} .n3 .nt{font:500 2.85cqw/1.3 var(--disp);color:var(--SEC)}
+  .n3.b .nl{color:var(--BLUd)} .n3.p .nl{color:var(--PURd)} .n3.g .nl{color:var(--GRNd)}
 </style>
 </head>
 <body class="step">
-<div class="bar">
-  <span class="t">HLV · THE THREE SPECIALTY TRACKS</span>
-  <span class="ct" id="ct">1 / 16</span>
-  <button id="mode" class="on">step</button>
-</div>
+<div class="bar"><span class="t">HLV · THE THREE SPECIALTY TRACKS</span><span class="ct" id="ct">1 / 15</span><button id="mode" class="on">step</button></div>
 <div id="deck"></div>
 <script>
-const S = [
+const S=[
 // 1 cover
-`<section class="slide ink">
-  <div class="kick">Hudson Lab Ventures · internal</div>
-  <div class="grow"><div class="hero">How the three<br>specialty tracks run.</div>
-  <div class="sub">A walkthrough for Cate and Stacey. How students work as specialists, return to their teams, and get ready to go test.</div></div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>01 / 16</span></div>
-</section>`,
-// 2 one idea
-`<section class="slide">
-  <div class="kick">The one idea</div>
-  <div class="h1">Each track is one posture toward the AI.</div>
-  <div class="body">Every specialty track teaches one move on the AI's output: the Adjust step of ADAPT. The same move matures across the track's three phases.</div>
-  <div class="chips">
-    <div class="chip c-blu"><div class="ti">Market</div><div class="ds">sharpens perception</div></div>
-    <div class="chip c-pur"><div class="ti">Product</div><div class="ds">shapes the artifact</div></div>
-    <div class="chip c-grn"><div class="ti">Business</div><div class="ds">defends</div></div>
-  </div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>02 / 16</span></div>
-</section>`,
-// 3 ADAPT
-`<section class="slide">
-  <div class="kick">Where the move lives</div>
-  <div class="h1">ADAPT, and the step that carries the learning.</div>
-  <div class="arc" style="margin-top:2.4cqw">
-    <div class="node" style="border-color:var(--L92)"><div class="mv" style="color:var(--MUTE2);font-size:3.4cqw">Analog</div><div class="fa">bring your own rough thinking</div></div>
-    <div class="arrow">›</div>
-    <div class="node" style="border-color:var(--L92)"><div class="mv" style="color:var(--MUTE2);font-size:3.4cqw">Dialogue</div><div class="fa">the AI gives you a draft</div></div>
-    <div class="arrow">›</div>
-    <div class="node" style="border-color:var(--GRN);background:#f4fdf8"><div class="mv" style="color:var(--GRNd);font-size:3.4cqw">Adjust</div><div class="fa" style="color:var(--GRNd)">fix what it got wrong. the learning is here.</div></div>
-    <div class="arrow">›</div>
-    <div class="node" style="border-color:var(--L92)"><div class="mv" style="color:var(--MUTE2);font-size:3.4cqw">Produce</div><div class="fa">lock the artifact</div></div>
-    <div class="arrow">›</div>
-    <div class="node" style="border-color:var(--L92)"><div class="mv" style="color:var(--MUTE2);font-size:3.4cqw">Test</div><div class="fa">in the world</div></div>
-  </div>
-  <div class="body" style="margin-top:2.4cqw;max-width:54ch">The AI is confidently wrong in a way specific to each track. A track's posture is simply how that track adjusts it.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>03 / 16</span></div>
-</section>`,
-// 4 three arcs glance
-`<section class="slide">
-  <div class="kick">The three arcs</div>
-  <div class="h1" style="margin-bottom:.6cqw">One posture per track, maturing over three phases.</div>
-  <div class="arcs3">
-    <div class="arow ar-b"><div class="alabel">Market<small>perception</small></div><div class="acell"><b>Widen</b><span>M1 Landscape</span></div><div class="amini">›</div><div class="acell"><b>Disconfirm</b><span>M2 Validation</span></div><div class="amini">›</div><div class="acell"><b>Commit moves</b><span>M3 First Moves</span></div></div>
-    <div class="arow ar-p"><div class="alabel">Product<small>the artifact</small></div><div class="acell"><b>Cut</b><span>P1 Blueprint</span></div><div class="amini">›</div><div class="acell"><b>Commit scope</b><span>P2 Definition</span></div><div class="amini">›</div><div class="acell"><b>Iterate</b><span>P3 Prototype</span></div></div>
-    <div class="arow ar-g"><div class="alabel">Business<small>defensibility</small></div><div class="acell"><b>Stress-test logic</b><span>B1 Canvas</span></div><div class="amini">›</div><div class="acell"><b>Stress-test math</b><span>B2 Economics</span></div><div class="amini">›</div><div class="acell"><b>Sequence</b><span>B3 100-Day</span></div></div>
-  </div>
-  <div class="body" style="margin-top:2cqw;max-width:60ch">No two rows share a move. Market acts on what you can see and test, product on what you build, business on what survives a probe.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>04 / 16</span></div>
-</section>`,
-// 5 market arc
-`<section class="slide">
-  <div class="kick" style="color:var(--BLUd)">Market · sharpen perception</div>
-  <div class="h1">Widen, then disconfirm, then commit to first moves.</div>
-  <div class="arc b">
-    <div class="node"><div class="ph">M1 · PHASE 1</div><div class="mv">Widen</div><div class="sess">Landscape Map</div><div class="fa">The AI misses players. Widen the field against your blind spot.</div></div><div class="arrow">›</div>
-    <div class="node"><div class="ph">M2 · PHASE 2</div><div class="mv">Disconfirm</div><div class="sess">Validation Design</div><div class="fa">The AI's plan confirms. Redesign it so it can come back no.</div></div><div class="arrow">›</div>
-    <div class="node"><div class="ph">M3 · PHASE 3</div><div class="mv">Commit moves</div><div class="sess">First Moves</div><div class="fa">The AI lists channels. Commit to the first concrete moves and signals.</div></div>
-  </div>
-  <div class="matnote">Maturation: <span class="hot">a new verb each phase</span>, because the artifact changes kind.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>05 / 16</span></div>
-</section>`,
-// 6 product arc
-`<section class="slide">
-  <div class="kick" style="color:var(--PURd)">Product · shape the artifact</div>
-  <div class="h1">Cut, then commit to scope, then iterate.</div>
-  <div class="arc p">
-    <div class="node"><div class="ph">P1 · PHASE 1</div><div class="mv">Cut</div><div class="sess">Solution Blueprint</div><div class="fa">The AI over-builds. Trim the features to the one friction.</div></div><div class="arrow">›</div>
-    <div class="node"><div class="ph">P2 · PHASE 2</div><div class="mv">Commit scope</div><div class="sess">Product Definition</div><div class="fa">The AI defines everything. Commit to one buildable V1 and the party feature.</div></div><div class="arrow">›</div>
-    <div class="node"><div class="ph">P3 · PHASE 3</div><div class="mv">Iterate</div><div class="sess">Prototype Build</div><div class="fa">The AI builds polished. Keep it rough, change one thing on evidence.</div></div>
-  </div>
-  <div class="matnote">Maturation: <span class="hot">a new verb each phase</span>. Relevant, then shippable, then tested.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>06 / 16</span></div>
-</section>`,
-// 7 business arc
-`<section class="slide">
-  <div class="kick" style="color:var(--GRNd)">Business · defend</div>
-  <div class="h1">Stress-test the logic, then the math, then sequence it.</div>
-  <div class="arc g">
-    <div class="node"><div class="ph">B1 · PHASE 1</div><div class="mv">Stress-test</div><div class="sess">Canvas Lite · logic</div><div class="fa">The AI's model is confident. Break it: who pays, defend the price, name the trap.</div></div><div class="arrow">›</div>
-    <div class="node"><div class="ph">B2 · PHASE 2</div><div class="mv">Stress-test</div><div class="sess">Napkin Economics · math</div><div class="fa">The AI's numbers look like proof. Break them: every cost in, find the killer.</div></div><div class="arrow">›</div>
-    <div class="node"><div class="ph">B3 · PHASE 3</div><div class="mv">Sequence</div><div class="sess">100-Day Plan</div><div class="fa">Commit the defended model to 100 startable days, reconciled with market.</div></div>
-  </div>
-  <div class="matnote">Maturation: <span class="deep">same verb, deeper object</span>. The logic, then the numbers. The trap becomes the killer number.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>07 / 16</span></div>
-</section>`,
-// 8 how a session runs (divider)
-`<section class="slide ink">
-  <div class="kick">How a session runs</div>
-  <div class="grow"><div class="hero" style="font-size:8cqw">Two of the three,<br>end to end.</div>
-  <div class="sub">Every session has the same shape. A short teach, then a long protected block where students fight the AI in the room. Here is a market session and a business one, so you can see the shape and how the posture changes.</div></div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>08 / 16</span></div>
-</section>`,
-// 9 M2 shape
-`<section class="slide">
-  <span class="tag">Market · M2 Validation Design · 135 min</span>
-  <div class="h1" style="margin-top:0">A short teach, then a long protected fight.</div>
-  <div class="mm">
-    <div class="blk rcv" style="flex:8">frame<small>teach</small></div>
-    <div class="blk rcv" style="flex:6">worked ex<small>+ predict (do)</small></div>
-    <div class="blk do" style="flex:12">falsify<small>do · first</small></div>
-    <div class="blk do" style="flex:20">draft<small>do · AI</small></div>
-    <div class="blk spine" style="flex:30">DEBIAS<small>the spine · 30 min</small></div>
-    <div class="blk do" style="flex:10">tier<small>do</small></div>
-    <div class="blk do" style="flex:12">dry-run<small>do</small></div>
-    <div class="blk rcv" style="flex:5">recap</div>
-  </div>
-  <div class="legend"><span><i style="background:#cfd0d6"></i>receive (teach)</span><span><i style="background:var(--BLUd)"></i>do (students work)</span><span><i style="background:var(--BLU)"></i>the protected block</span></div>
-  <div class="body" style="margin-top:1.8cqw;max-width:62ch">Students are doing within about fifteen minutes. The learning is the debias, so it gets the biggest block and a hard stop on the AI draft. Falsify runs before the draft, so they hold the disconfirming signal before the AI tempts them with confident questions.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>09 / 16</span></div>
-</section>`,
-// 10 M2 fight
-`<section class="slide">
-  <div class="kick" style="color:var(--BLUd)">The in-room AI-fight · M2</div>
-  <div class="h1">The AI writes you a yes. Students design one that can come back no.</div>
-  <div class="ba">
-    <div class="bx bad"><div class="bl">The AI's instinct · leading</div><div class="q">"Would a tool that silences the feed help you sleep?"</div><div class="r">"Yeah, definitely." A hollow yes. Worthless signal.</div></div>
-    <div class="bx good"><div class="bl">The fix · behaviour</div><div class="q">"Walk me through last night. When did you last pick up your phone?"</div><div class="r">"Kitchen at ten, back for it at 11:40." Real, usable, possibly disconfirming.</div></div>
-  </div>
-  <div class="pt">Same person, only the question changed. Anya says yes to anything and changes nothing, so the rule is <b>watch what people did, never what they say they want.</b></div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>10 / 16</span></div>
-</section>`,
-// 11 B2 same shape
-`<section class="slide">
-  <span class="tag g">Business · B2 Napkin Economics · 135 min</span>
-  <div class="h1" style="margin-top:0">Same shape, a different fight: defend the numbers.</div>
-  <div class="mm gr">
-    <div class="blk rcv" style="flex:8">frame<small>teach</small></div>
-    <div class="blk rcv" style="flex:6">worked ex<small>+ predict (do)</small></div>
-    <div class="blk do" style="flex:12">honest unit<small>do · first</small></div>
-    <div class="blk do" style="flex:18">draft<small>do · AI</small></div>
-    <div class="blk spine" style="flex:30">STRESS-TEST<small>the spine · 30 min</small></div>
-    <div class="blk do" style="flex:12">project<small>do</small></div>
-    <div class="blk do" style="flex:8">killer<small>do</small></div>
-    <div class="blk rcv" style="flex:5">recap</div>
-  </div>
-  <div class="body" style="margin-top:1.8cqw;max-width:64ch">The AI hands you confident, optimistic numbers. Students put every cost in, including the acquisition cost it left out, and find the economics killer. For Anya's product the killer is churn: she uses it three weeks then stops, so the model dies above a churn rate. A sponsor probes the math on Wednesday, so the fight has to happen in the room first.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>11 / 16</span></div>
-</section>`,
-// 12 the flow
-`<section class="slide">
-  <div class="kick">Specialists, then teams, then the market</div>
-  <div class="h1">Diverge to specialists, converge back to the team, go test.</div>
-  <div class="flow">
-    <div class="fst s1"><div class="fn">01 · DIVERGE</div><div class="ft">Split into specialists</div><div class="fb">The team splits into a product, a business, and a market specialist. Each runs their own track session.</div></div>
-    <div class="arrow">›</div>
-    <div class="fst s2"><div class="fn">02 · CONVERGE</div><div class="ft">Teach back to the team</div><div class="fb">At Team Synthesis, each specialist teaches what they built in five minutes. Contradictions surface. The team can only scope what it understands.</div></div>
-    <div class="arrow">›</div>
-    <div class="fst s3"><div class="fn">03 · TEST</div><div class="ft">Out in market</div><div class="fb">Teams leave to validate with real users. The market specialist owns the field brief. Five real conversations, and contradicting evidence beats confirming feedback.</div></div>
-  </div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>12 / 16</span></div>
-</section>`,
-// 13 week timeline
-`<section class="slide">
-  <div class="kick">The week, in order</div>
-  <div class="h1" style="margin-bottom:.4cqw">Week 2: split, synthesise, test, build, test again.</div>
-  <div class="tl">
-    <div class="ev"><div class="d">MON AM</div><div class="x">Split into tracks. PRD Lab access confirmed.</div></div>
-    <div class="ev"><div class="d">MON PM</div><div class="x"><b>Phase 1</b> specialty round (P1 · B1 · M1), then Team Synthesis.</div></div>
-    <div class="ev"><div class="d">TUE AM</div><div class="x"><b>Phase 2</b> specialty round (P2 · B2 · M2), then Team Synthesis.</div></div>
-    <div class="ev"><div class="d">TUE 2PM</div><div class="x">The synthesis hinge. Reconnaissance becomes build.</div></div>
-    <div class="ev"><div class="d">TUE PM</div><div class="x"><b>Out in Market #1.</b> Run the experiment M2 designed.</div></div>
-    <div class="ev"><div class="d">WED AM</div><div class="x">Sponsor probes the math. <b>Phase 3</b>: prototype build alongside the joint 100-day plan.</div></div>
-    <div class="ev"><div class="d">WED PM</div><div class="x"><b>Out in Market #2.</b> Test the prototype on real users.</div></div>
-  </div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>13 / 16</span></div>
-</section>`,
-// 14 phase 3 convergence
-`<section class="slide">
-  <div class="kick">Phase 3 · the convergence</div>
-  <div class="h1">Business and market reconcile into one plan.</div>
-  <div class="conv">
-    <div class="cn bz"><b>Business</b><span>can afford €4 / user</span></div>
-    <div class="plus">+</div>
-    <div class="cn mz"><b>Market</b><span>this channel costs €10</span></div>
-    <div class="plus">=</div>
-    <div class="cn join"><b>Joint 100-Day Plan</b><span>reconcile, or it dies</span></div>
-  </div>
-  <div class="body" style="margin-top:2cqw;max-width:64ch">For the first time all week, the team's business and market specialists come back together. Market's channels have to acquire users at the cost business's economics can afford, or B2's killer fires. They reconcile that one number first, then sequence the hundred days.</div>
-  <div class="aside">▸ Product builds its prototype in the same room, on its own track. Three groups, one room.</div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>14 / 16</span></div>
-</section>`,
+`<section class="slide ink"><div class="kick">Hudson Lab Ventures · internal</div>
+ <div class="grow"><div class="hero">The three<br>specialty tracks.</div>
+ <div class="sub">What they are, and how they run. A walkthrough for Cate and Stacey.</div></div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>01 / 15</span></div></section>`,
+// 2 split into three
+`<section class="slide"><div class="kick">Week 2</div>
+ <div class="h1">Each team splits into three specialists.</div>
+ <div class="rows">
+   <div class="trk t-b"><span class="nm">Market</span><span class="ds">Figures out who the customer is, and whether the need is real.</span></div>
+   <div class="trk t-p"><span class="nm">Product</span><span class="ds">Defines the thing and builds it.</span></div>
+   <div class="trk t-g"><span class="nm">Business</span><span class="ds">Works out whether it can make money.</span></div>
+ </div>
+ <div class="body" style="margin-top:2.4cqw">One person on each team takes each job. They work apart, then bring it back together. Each track runs three sessions across the week.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>02 / 15</span></div></section>`,
+// 3 business track overview
+`<section class="slide"><div class="kick kg">The Business track</div>
+ <div class="h1">The Business track runs in three sessions.</div>
+ <div class="cards">
+   <div class="card"><div class="n">SESSION 1 · 105 MIN</div><div class="ti">Canvas Lite</div><div class="ds">Who pays, what for, how much, and whether the price holds up.</div><div class="pr">Produces: a one-line revenue statement</div></div>
+   <div class="card"><div class="n">SESSION 2 · 135 MIN</div><div class="ti">Napkin Economics</div><div class="ds">Whether a single customer actually makes money once every cost is in.</div><div class="pr">Produces: the unit economics + the one risk</div></div>
+   <div class="card"><div class="n">SESSION 3 · 105 MIN</div><div class="ti">The 100-Day Plan</div><div class="ds">What the first hundred days would actually look like.</div><div class="pr">Produces: a sequenced plan + budget</div></div>
+ </div>
+ <div class="body" style="margin-top:2.2cqw">We will walk these three in detail, then show the other two tracks briefly.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>03 / 15</span></div></section>`,
+// 4 B1
+`<section class="slide"><div class="kick kg">Business · Session 1 · Canvas Lite · 105 min</div>
+ <div class="h1">Who pays, and can you defend the price?</div>
+ <div class="do-list">
+   <div class="di"><span class="ix">01</span><span class="tx">Fill a simple canvas: <b>who pays, what for, how much, how often.</b> The AI suggests a pricing pattern to start from.</span></div>
+   <div class="di"><span class="ix">02</span><span class="tx">Check the three things teams get wrong: is the payer actually the user (often it is a parent or an employer), can you <b>defend the price against one real number,</b> and what is the <b>trap</b> this kind of model always has.</span></div>
+ </div>
+ <div class="out"><span class="lab">What they leave with</span>A one-line revenue statement (who pays, how much, how often, for what), with the price defended and the trap named.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>04 / 15</span></div></section>`,
+// 5 B2
+`<section class="slide"><div class="kick kg">Business · Session 2 · Napkin Economics · 135 min</div>
+ <div class="h1">Does one customer actually make money?</div>
+ <div class="do-list">
+   <div class="di"><span class="ix">01</span><span class="tx">Work out the money for <b>one customer in one month.</b> The AI gives quick, optimistic numbers.</span></div>
+   <div class="di"><span class="ix">02</span><span class="tx">Put <b>every cost back in,</b> including the cost of getting that customer, which the AI tends to leave out. Then find <b>the one number that, if wrong, breaks the whole model.</b></span></div>
+ </div>
+ <div class="out"><span class="lab">What they leave with</span>The unit economics, the break-even point, and the named risk. For a sleep tool aimed at teens, the risk is whether they keep using it. A sponsor reviews the math on Wednesday.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>05 / 15</span></div></section>`,
+// 6 B3
+`<section class="slide"><div class="kick kg">Business · Session 3 · The 100-Day Plan · 105 min</div>
+ <div class="h1">What would the first 100 days look like?</div>
+ <div class="do-list">
+   <div class="di"><span class="ix">01</span><span class="tx">The business and market specialists <b>come back together</b> and turn the week's work into a plan, split into <b>validate, build, and grow.</b></span></div>
+   <div class="di"><span class="ix">02</span><span class="tx">Each part gets a goal, a few <b>concrete actions they could start on Monday,</b> and one number to watch. Anything they could not credibly start is cut.</span></div>
+ </div>
+ <div class="out"><span class="lab">What they leave with</span>A sequenced 100-day plan with a budget and a day-100 scorecard.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>06 / 15</span></div></section>`,
+// 7 minute map (B1)
+`<section class="slide"><div class="kick kg">Inside Session 1 · Canvas Lite · 105 min</div>
+ <div class="h1">Inside one session, minute by minute.</div>
+ <div class="mm">
+   <div class="blk rcv" style="flex:19">Short teach<small>why this matters, with a worked example</small></div>
+   <div class="blk do" style="flex:12">Compare notes<small>with other teams' business specialists</small></div>
+   <div class="blk do" style="flex:12">Fill the canvas<small>with your team</small></div>
+   <div class="blk main" style="flex:20">Pull it apart<small>payer · price · trap</small></div>
+   <div class="blk do" style="flex:8">Write the statement<small></small></div>
+   <div class="blk rcv" style="flex:5">Recap</div>
+ </div>
+ <div class="legend"><span><i style="background:#d7d8dd"></i>teacher talking</span><span><i style="background:var(--GRNd)"></i>students working</span><span><i style="background:var(--GRN)"></i>the main block</span></div>
+ <div class="body" style="margin-top:1.8cqw;max-width:64ch">Most of the time is students doing, not listening. The teach is short and up front; the longest block is the team pulling its own model apart.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>07 / 15</span></div></section>`,
+// 8 AI helps / student takes over
+`<section class="slide"><div class="kick kg">In every session</div>
+ <div class="h1">Where the AI helps, and where the student takes over.</div>
+ <div class="two">
+   <div class="pane ai"><div class="pl">The AI</div><div class="pt">Drafts the numbers fast, suggests a pattern, fills gaps. But it is optimistic and leaves things out.</div></div>
+   <div class="pane stu"><div class="pl">The student</div><div class="pt">Puts every cost back in, checks who really pays, and decides what would break the model. The judgment stays with them.</div></div>
+ </div>
+ <div class="body" style="margin-top:2.2cqw;max-width:58ch">The AI speeds up the draft. The student does the part that matters, which is deciding what to trust. This happens live, in the room, with a facilitator watching.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>08 / 15</span></div></section>`,
+// 9 teach back
+`<section class="slide"><div class="kick">After each round</div>
+ <div class="h1">Specialists rejoin their team and teach what they found.</div>
+ <div class="do-list">
+   <div class="di"><span class="ix" style="color:var(--MUTE)">·</span><span class="tx">Each specialist gets <b>five minutes</b> to teach the rest of the team what they built and where it is shaky.</span></div>
+   <div class="di"><span class="ix" style="color:var(--MUTE)">·</span><span class="tx">The team listens, then the <b>contradictions between the three come out.</b> The market read, the product scope, and the money do not always agree.</span></div>
+ </div>
+ <div class="body" style="margin-top:1.6cqw;max-width:54ch">A team can only plan around what it understands. This teach-back is where the three specialties become one team again.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>09 / 15</span></div></section>`,
+// 10 week timeline
+`<section class="slide"><div class="kick">The week</div>
+ <div class="h1">The week, day by day.</div>
+ <div class="tl">
+   <div class="ev"><div class="d">MON AM</div><div class="x">Teams split into the three tracks.</div></div>
+   <div class="ev"><div class="d">MON PM</div><div class="x">First round of track sessions, then teach back to the team.</div></div>
+   <div class="ev"><div class="d">TUE AM</div><div class="x">Second round of track sessions, then teach back to the team.</div></div>
+   <div class="ev"><div class="d">TUE PM</div><div class="x"><b>Teams go out and interview real people</b> for the first time.</div></div>
+   <div class="ev"><div class="d">WED AM</div><div class="x">A sponsor reviews the work. Teams build a prototype and write the 100-day plan.</div></div>
+   <div class="ev"><div class="d">WED PM</div><div class="x"><b>Teams test the prototype</b> with real users.</div></div>
+ </div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>10 / 15</span></div></section>`,
+// 11 wednesday convergence
+`<section class="slide"><div class="kick">Wednesday</div>
+ <div class="h1">Business and market combine their plans, then everyone goes out to test.</div>
+ <div class="conv">
+   <div class="cn bz"><b>Business</b><span>can afford €4 to get a customer</span></div>
+   <div class="op">+</div>
+   <div class="cn mz"><b>Market</b><span>this channel costs €10</span></div>
+   <div class="op">=</div>
+   <div class="cn join"><b>One plan</b><span>make the numbers meet</span></div>
+ </div>
+ <div class="body" style="margin-top:2cqw;max-width:66ch">The first test of the joint plan is simple: can the ways they plan to reach customers cost no more than the business can afford. They settle that one number, then plan the hundred days. Market runs the real-user interviews; product builds and tests the prototype in the same room.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>11 / 15</span></div></section>`,
+// 12 market track
+`<section class="slide"><div class="kick kb">The Market track</div>
+ <div class="h1">The Market track, in three sessions.</div>
+ <div class="note3">
+   <div class="n3 b"><span class="nl">Landscape</span><span class="nt">Map how the problem is solved today, and find the gap nobody fills.</span></div>
+   <div class="n3 b"><span class="nl">Validation</span><span class="nt">Design honest interviews. Ask what people actually did, not what they say they would do.</span></div>
+   <div class="n3 b"><span class="nl">First Moves</span><span class="nt">Choose the first few ways to reach customers, and the first hundred users.</span></div>
+ </div>
+ <div class="body" style="margin-top:2.2cqw;max-width:56ch">The market specialist owns the team's interviews when they go out to test on Tuesday afternoon.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>12 / 15</span></div></section>`,
+// 13 product track
+`<section class="slide"><div class="kick kp">The Product track</div>
+ <div class="h1">The Product track, in three sessions.</div>
+ <div class="note3">
+   <div class="n3 p"><span class="nl">Blueprint</span><span class="nt">Sketch the user's experience and find the one moment the product has to get right.</span></div>
+   <div class="n3 p"><span class="nl">Definition</span><span class="nt">Define the product, pick the one feature worth telling a friend about, and decide what is in the first version.</span></div>
+   <div class="n3 p"><span class="nl">Prototype</span><span class="nt">Build a rough version and test it on real people, changing one thing at a time.</span></div>
+ </div>
+ <div class="body" style="margin-top:2.2cqw;max-width:56ch">Product uses a build tool to go from the definition to a working prototype by Wednesday.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>13 / 15</span></div></section>`,
+// 14 the noticing
+`<section class="slide"><div class="kick">One thing we noticed</div>
+ <div class="h1">Each track uses the AI in its own way.</div>
+ <div class="note3">
+   <div class="n3 b"><span class="nl">Market</span><span class="nt">uses it to widen the search, then to design tests that can prove the idea wrong.</span></div>
+   <div class="n3 p"><span class="nl">Product</span><span class="nt">uses it to draft quickly, then cuts back to the one thing that matters.</span></div>
+   <div class="n3 g"><span class="nl">Business</span><span class="nt">uses it to draft the numbers, then breaks them to see what holds.</span></div>
+ </div>
+ <div class="body" style="margin-top:2.2cqw;max-width:60ch">All three lean on the AI for the draft and keep the judgment for themselves. And each gets sharper at it across the two weeks. We did not design this as a rule; it is a pattern we saw once the sessions were built.</div>
+ <div class="foot"><span>Hudson Lab Ventures</span><span>14 / 15</span></div></section>`,
 // 15 decided / open
-`<section class="slide">
-  <div class="kick">Where it's going</div>
-  <div class="h1">What is decided, and what is open.</div>
-  <div class="cols">
-    <div class="col dec"><div class="ch">Decided · Owen's calls</div><ul>
-      <li>One posture per track, maturing across three phases.</li>
-      <li>Three coordination shapes: gather-and-return, converge-in-team, room co-tenancy.</li>
-      <li>The AI-fight happens in the room, by default.</li>
-      <li>The Canvas is the pricing-rigor version.</li>
-      <li>Product uses PRD Lab, verified.</li>
-    </ul></div>
-    <div class="col opn"><div class="ch">Open · Stacey's eye on the built result</div><ul>
-      <li>The Solution Alignment chain scope: four SA sessions plus a reanchor, only SA1 is queued.</li>
-      <li>The joint 100-day worksheet: one merged sheet, or two reconciled.</li>
-      <li>The Intros, briefed next using this reflection.</li>
-    </ul></div>
-  </div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures</span><span>15 / 16</span></div>
-</section>`,
-// 16 close
-`<section class="slide ink">
-  <div class="kick">Hudson Lab Ventures</div>
-  <div class="grow"><div class="hero" style="font-size:7.5cqw">Built session by session,<br>traceable to the curriculum.</div>
-  <div class="sub">Each track is one honest relationship with the AI, maturing across the week, converging into one team going out to test. Stacey's eye on the built results next.</div></div>
-  <div class="foot"><span class="cred">Hudson Lab Ventures · 2026</span><span>16 / 16</span></div>
-</section>`,
+`<section class="slide"><div class="kick">Where it stands</div>
+ <div class="h1">What is settled, and what still needs your eye.</div>
+ <div class="cols">
+   <div class="col dec"><div class="ch">Settled</div><ul>
+     <li>The three tracks and the sessions in each.</li>
+     <li>The AI step happens live in the room.</li>
+     <li>The business canvas focuses on pricing.</li>
+     <li>Product uses the build tool to make the prototype.</li>
+   </ul></div>
+   <div class="col opn"><div class="ch">Still open · your call, with Stacey's eye</div><ul>
+     <li>The solution-alignment sessions: how many, and how they sequence.</li>
+     <li>The joint 100-day plan: one worksheet, or two that reconcile.</li>
+     <li>The three track introductions, still to design.</li>
+   </ul></div>
+ </div>
+ <div class="foot"><span>Hudson Lab Ventures · 2026</span><span>15 / 15</span></div></section>`,
 ];
-
-const deck=document.getElementById("deck"); deck.innerHTML=S.join("");
-const slides=[...document.querySelectorAll(".slide")], ctEl=document.getElementById("ct"), modeBtn=document.getElementById("mode"), bodyEl=document.body;
-let step=true, cur=0;
-function show(i){cur=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,k)=>s.classList.toggle("cur",k===cur));ctEl.textContent=(cur+1)+" / 16";if(step)slides[cur].scrollIntoView({block:"center"});}
-modeBtn.addEventListener("click",()=>{step=!step;bodyEl.classList.toggle("step",step);bodyEl.classList.toggle("scroll",!step);modeBtn.textContent=step?"step":"scroll";modeBtn.classList.toggle("on",step);if(step)show(cur);else ctEl.textContent="16 slides";});
+const deck=document.getElementById("deck");deck.innerHTML=S.join("");
+const slides=[...document.querySelectorAll(".slide")],ctEl=document.getElementById("ct"),modeBtn=document.getElementById("mode"),bodyEl=document.body;
+let step=true,cur=0;
+function show(i){cur=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,k)=>s.classList.toggle("cur",k===cur));ctEl.textContent=(cur+1)+" / 15";if(step)slides[cur].scrollIntoView({block:"center"});}
+modeBtn.addEventListener("click",()=>{step=!step;bodyEl.classList.toggle("step",step);bodyEl.classList.toggle("scroll",!step);modeBtn.textContent=step?"step":"scroll";modeBtn.classList.toggle("on",step);if(step)show(cur);else ctEl.textContent="15 slides";});
 document.addEventListener("keydown",e=>{if(!step)return;if(["ArrowRight","ArrowDown"," "].includes(e.key)){show(cur+1);e.preventDefault();}if(["ArrowLeft","ArrowUp"].includes(e.key)){show(cur-1);e.preventDefault();}});
 let x0=0;document.addEventListener("touchstart",e=>x0=e.changedTouches[0].clientX,{passive:true});
 document.addEventListener("touchend",e=>{if(!step)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>45)show(cur+(dx<0?1:-1));},{passive:true});
