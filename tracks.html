@@ -72,6 +72,7 @@
   .blk.rcv{background:#d7d8dd;color:#33343a}
   .blk.do{background:var(--accd);color:#fff}
   .blk.main{background:var(--acc);color:#06270f;outline:.35cqw solid var(--accd)}
+  .blk.aistep{background:#fff;color:var(--accd);border:.22cqw solid var(--acc)}
   .legend{display:flex;gap:2.6cqw;margin-top:1.5cqw;font:600 2.3cqw/1 var(--mono);color:var(--MUTE2)}
   .legend i{display:inline-block;width:2.2cqw;height:1.3cqw;border-radius:.3cqw;vertical-align:-.1cqw;margin-right:.6cqw}
 
@@ -172,14 +173,14 @@ const S=[
 `<section class="slide"><div class="kick">Inside Session 2 · Napkin Economics · 135 min</div><div class="h1">Inside one session, minute by minute.</div>
  <div class="mm">
    <div class="blk rcv" style="flex:22">Short teach<small>why it matters, with a worked example</small></div>
-   <div class="blk do" style="flex:12">One honest customer<small>every cost in</small></div>
-   <div class="blk do" style="flex:18">AI drafts the numbers<small>fast, optimistic</small></div>
+   <div class="blk do" style="flex:14">Work out the numbers<small>one customer, by hand</small></div>
+   <div class="blk aistep" style="flex:16">Run it through AI<small>it fills it out, fast but optimistic</small></div>
    <div class="blk main" style="flex:30">Pull it apart<small>find the number that breaks it</small></div>
-   <div class="blk do" style="flex:20">Map it out<small>break-even, the months ahead</small></div>
+   <div class="blk do" style="flex:18">Map it out<small>break-even, the months ahead</small></div>
    <div class="blk rcv" style="flex:5">Recap</div>
  </div>
- <div class="legend"><span><i style="background:#d7d8dd"></i>teacher talking</span><span><i style="background:var(--GRNd)"></i>students working</span><span><i style="background:var(--GRN)"></i>the main block</span></div>
- <div class="body" style="margin-top:1.8cqw;max-width:64ch">Most of the time is students doing, not listening. The teach is short and up front; the longest block is the team pulling its own numbers apart. Every session across the three tracks follows this shape.</div>
+ <div class="legend"><span><i style="background:#d7d8dd"></i>teacher talking</span><span><i style="background:var(--GRNd)"></i>students working</span><span><i style="background:#fff;border:.15cqw solid var(--GRN)"></i>the AI step</span></div>
+ <div class="body" style="margin-top:1.8cqw;max-width:66ch">Students work the numbers out themselves first, then run them through the AI, then pull that apart. The teach is short and up front; the longest blocks are the team's own thinking, on either side of the AI. Every session follows this shape: analog first, AI second.</div>
  <div class="foot"><span>Hudson Lab Ventures</span><span>07 / 22</span></div></section>`,
 // 8 market overview
 `<section class="slide acc-b"><div class="kick">The Market track · finds the customer</div><div class="h1">The Market track runs in three sessions.</div>
@@ -274,21 +275,22 @@ const S=[
  <div class="body" style="margin-top:2cqw;max-width:66ch">The first test of the joint plan is simple: can the ways they plan to reach customers cost no more than the business can afford. They settle that one number, then plan the hundred days. Market runs the real-user interviews; product builds and tests the prototype in the same room.</div>
  <div class="foot"><span>Hudson Lab Ventures</span><span>18 / 22</span></div></section>`,
 // 19 AI helps / takes over
-`<section class="slide"><div class="kick neutral">The same in every session</div><div class="h1">Where the AI helps, and where the student takes over.</div>
+`<section class="slide"><div class="kick neutral">The same in every session</div><div class="h1">The student does the work. The AI structures it.</div>
  <div class="two">
-   <div class="pane ai"><div class="pl">The AI</div><div class="pt">Drafts the numbers, suggests a pattern, fills gaps. Fast, but optimistic, and it leaves things out.</div></div>
-   <div class="pane stu"><div class="pl">The student</div><div class="pt">Puts every cost back in, checks who really pays, and decides what would break the model. The judgment stays with them.</div></div>
+   <div class="pane stu"><div class="pl">1 · The student, first</div><div class="pt">Works it out by hand: the numbers, the sketch, the plan.</div></div>
+   <div class="pane ai"><div class="pl">2 · Then the AI</div><div class="pt">Structures it and fills it out, faster. But optimistic, and it leaves things out.</div></div>
+   <div class="pane stu"><div class="pl">3 · The student again</div><div class="pt">Checks it, puts back what is missing, decides what to trust.</div></div>
  </div>
- <div class="body" style="margin-top:2.2cqw;max-width:60ch">This is the Adjust step of the ADAPT loop students use all program. The AI speeds up the draft; the student does the part that matters, deciding what to trust. It happens live, in the room, with a facilitator watching.</div>
+ <div class="body" style="margin-top:2.2cqw;max-width:62ch">The thinking is the student's, on both sides. The AI speeds up the middle; it does not replace the judgment. This happens live, in the room, with a facilitator watching.</div>
  <div class="foot"><span>Hudson Lab Ventures</span><span>19 / 22</span></div></section>`,
 // 20 each track its own way
 `<section class="slide"><div class="kick neutral">One thing we noticed</div><div class="h1">Each track works with the AI in its own way.</div>
  <div class="note3">
-   <div class="n3 b"><span class="nl">Market</span><span class="nt">uses it to widen the search, then to design tests that can prove the idea wrong.</span></div>
-   <div class="n3 p"><span class="nl">Product</span><span class="nt">uses it to draft quickly, then cuts back to the one thing that matters.</span></div>
-   <div class="n3 g"><span class="nl">Business</span><span class="nt">uses it to draft the numbers, then breaks them to see what holds.</span></div>
+   <div class="n3 b"><span class="nl">Market</span><span class="nt">does its own research first, then uses the AI to design sharper tests.</span></div>
+   <div class="n3 p"><span class="nl">Product</span><span class="nt">sketches its own design first, then uses the AI to turn it into something to build.</span></div>
+   <div class="n3 g"><span class="nl">Business</span><span class="nt">works out its own numbers first, then uses the AI to structure and pressure-test them.</span></div>
  </div>
- <div class="body" style="margin-top:2.2cqw;max-width:62ch">All three lean on the AI for the draft and keep the judgment for themselves. We did not design this as a rule; it is a pattern we saw once the sessions were built.</div>
+ <div class="body" style="margin-top:2.2cqw;max-width:62ch">All three do the thinking themselves and use the AI to speed up the middle. We did not design this as a rule; it is a pattern we saw once the sessions were built.</div>
  <div class="foot"><span>Hudson Lab Ventures</span><span>20 / 22</span></div></section>`,
 // 21 arcs across two weeks
 `<section class="slide"><div class="kick neutral">Across the two weeks</div><div class="h1">Each track does the same kind of thinking, deeper each time.</div>
