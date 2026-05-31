@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>P1 Solution Blueprint — wireframe flip-through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11121A; --paper:#FAFAF7; --blue:#0B5FB0;
+    --pur:#B884FE; --purd:#7649C2; --red:#C2342B; --red-bright:#FF6B6B; --mute:#8A8A90; --mute2:#5C5C62;
+    --sans:"Plus Jakarta Sans", system-ui, sans-serif; --mono:"Menlo", ui-monospace, "SF Mono", monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#2a2b30;color:#111;font-family:var(--sans);-webkit-text-size-adjust:100%}
+  header.bar{position:sticky;top:0;z-index:10;background:#1b1c20;color:#e7e7ea;display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;font:600 13px/1 var(--mono);border-bottom:1px solid #000}
+  header.bar .title{flex:1;letter-spacing:.04em}
+  header.bar .count{color:var(--pur)}
+  header.bar button{font:600 12px/1 var(--mono);color:#e7e7ea;background:#34353b;border:1px solid #4a4b52;border-radius:6px;padding:.42rem .6rem;cursor:pointer}
+  header.bar button.on{background:var(--purd);border-color:var(--purd);color:#fff}
+  .hint{color:#9a9aa2;font:400 11px/1.4 var(--mono);padding:.5rem .8rem;text-align:center}
+  main{padding:.7rem clamp(.4rem,2vw,1rem) 3rem}
+  .frame{width:100%;max-width:760px;margin:0 auto 1rem;aspect-ratio:16/9;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 2px 14px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:clamp(.6rem,2.4vw,1.15rem);container-type:inline-size}
+  .frame.ink{background:var(--ink);color:var(--paper)}
+  .frame.paper{background:var(--paper);color:var(--ink)}
+  .frame.blue{background:var(--blue);color:var(--paper)}
+  .f-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .f-num{font:800 clamp(13px,3.4cqw,20px)/1 var(--mono);opacity:.85}
+  .f-arch{font:600 clamp(9px,2.5cqw,13px)/1.2 var(--mono);text-align:right;opacity:.55;max-width:55%}
+  .badge{display:inline-block;font:800 clamp(8px,2.2cqw,11px)/1 var(--mono);padding:.32em .5em;border-radius:5px;letter-spacing:.05em;vertical-align:middle}
+  .badge.do{background:var(--pur);color:#23104a}
+  .frame.paper .badge.do{background:var(--purd);color:#fff}
+  .f-focal{margin:.5cqw 0 .2rem;font:800 clamp(15px,4.6cqw,30px)/1.12 var(--sans);letter-spacing:-.01em;max-width:24ch}
+  .f-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5cqw}
+  .copyslot{border:1.5px dashed currentColor;opacity:.5;border-radius:6px;padding:.5em .7em;font:600 clamp(9px,2.4cqw,12px)/1 var(--mono);letter-spacing:.04em}
+  .diagram{border:2px solid var(--ax);border-radius:7px;padding:.6em .75em;color:inherit}
+  .diagram .dtype{font:800 clamp(9px,2.5cqw,12px)/1.1 var(--mono);color:var(--ax);letter-spacing:.05em;text-transform:uppercase}
+  .diagram .dlabels{margin-top:.3em;font:400 clamp(10px,2.7cqw,13px)/1.3 var(--sans);opacity:.92}
+  .f-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font:600 clamp(8px,2.1cqw,11px)/1 var(--mono);opacity:.6;margin-top:.4rem}
+  .dot{display:inline-block;width:.7em;height:.7em;border-radius:50%;vertical-align:-1px;margin-right:.3em}
+  body.step main{padding-top:1.2rem;min-height:70vh}
+  body.step .frame{display:none}
+  body.step .frame.current{display:flex}
+  @media (max-width:520px){ .f-focal{max-width:20ch} }
+</style>
+</head>
+<body class="scroll">
+<header class="bar">
+  <span class="title">P1 · SOLUTION BLUEPRINT</span>
+  <span class="count" id="count">14 frames</span>
+  <button id="mode">scroll</button>
+</header>
+<div class="hint" id="hint">scroll all 14 · tap “scroll” to step (arrows / swipe)</div>
+<main id="deck"></main>
+<script>
+// product accent PURPLE: deep on paper, bright on ink; white on the blue plate (cover + divider)
+const A = p => (p==="paper" ? "var(--purd)" : p==="blue" ? "var(--paper)" : "var(--pur)");
+const frames = [
+ {n:1, plate:"blue", arch:"Cover", focal:"Find the moment. Cut to it.",
+  body:[{copy:"kicker · P1 / SOLUTION BLUEPRINT"},{copy:"hero"},{copy:"sub"},{dia:"motif", l:"storyboard motif · small, corner"}]},
+ {n:2, plate:"paper", arch:"Statement · Tell", focal:"A product is what happens at one moment. Not everything.",
+  body:[{copy:"kicker · WHY BOTHER"},{copy:"the tell (one line)"}]},
+ {n:3, plate:"ink", arch:"Diagram · storyboard", focal:"A user's experience is a sequence of moments.",
+  body:[{dia:"frame strip (the model)", l:"BEFORE · DURING · AFTER · three frames to start"}]},
+ {n:4, plate:"ink", arch:"Worked-Frame", focal:"Anya's bedtime, sketched.",
+  body:[{dia:"3-frame storyboard", l:"01 phone down, means to sleep · 02 11pm, the notification, she reaches · 03 next morning: “I'll try again tonight”"}]},
+ {n:5, plate:"ink", arch:"Prompt", focal:"Which moment does the product live or die on?", badge:{k:"do",t:"DO · 90s predict"},
+  body:[{copy:"the bet"},{dia:"empty-frame reveal", l:"the middle frame is empty · 11pm, the reach · the moment of truth (a BEHAVIOUR, not a missing feature)"}]},
+ {n:6, plate:"paper", arch:"Section · 2 traps", focal:"Everything that is not the moment defends itself.",
+  body:[{dia:"2-up traps", l:"KITCHEN SINK · everything is a must, so nothing is  |  VERSION 2 · the nice-to-have that never ships"}]},
+ {n:7, plate:"paper", arch:"Formula", focal:"The product in one sentence.",
+  body:[{dia:"product sentence", l:"At {moment}, when {trigger}, our product {verb}, so {outcome} · riskiest word = the VERB (what it does at the moment)"}]},
+ {n:8, plate:"blue", arch:"Divider · Your turn", focal:"Your turn: map, mark, cut.",
+  body:[{dia:"3-node stage flow", l:"MAP (15m · your journey, analog) → MARK (8m · star the moment) → [AI drafts] → CUT (15m · largest) · map + mark first, then the AI builds, then you cut"}]},
+ {n:9, plate:"paper", arch:"Activity Card", focal:"Map the moments.",
+  body:[{dia:"mini storyboard", l:"sketch your user's journey, building on the SA2 storyboard"}]},
+ {n:10, plate:"paper", arch:"Activity Card", focal:"Mark the moment of truth.",
+  body:[{dia:"starred frame", l:"star the one moment the product lives or dies on"}]},
+ {n:11, plate:"paper", arch:"Before / After", focal:"The AI drafts the product, and it over-builds.",
+  body:[{dia:"what the AI builds vs what the moment needs", l:"AI BUILDS: a whole app (tracking, alarms, coaching, streaks, social, the lock)  |  THE MOMENT NEEDS: just the thing that acts at 11pm (the lock) · THE POINT: one move at the moment, not a feature list · provisional, to be cut"}]},
+ {n:12, plate:"paper", arch:"Activity Card · Formula", focal:"Cut to the moment. Write the sentence.",
+  body:[{dia:"the cut + product sentence", l:"trim the draft to what serves the moment · checkpoint: what is left is one move at one moment"}]},
+ {n:13, plate:"paper", arch:"Stats · Recap", focal:"A storyboard, a starred moment, a product sentence.",
+  body:[{dia:"3-up stats", l:"storyboard · starred moment of truth · product sentence  ·  good vs lazy: one move at one moment vs a feature list"}]},
+ {n:14, plate:"ink", arch:"Handoff", focal:"The moment carries forward.",
+  body:[{dia:"forward pair", l:"P2 defines + scopes around the moment (party feature, V1 line) → P3 builds it → OUT IN MARKET #2"}]},
+];
+const accentName = "purple";
+const deck = document.getElementById("deck");
+frames.forEach((f)=>{
+  const el = document.createElement("section");
+  el.className = "frame "+f.plate;
+  el.style.setProperty("--ax", A(f.plate));
+  const badge = f.badge ? `<span class="badge ${f.badge.k}">${f.badge.t}</span> ` : "";
+  let body = "";
+  for(const b of f.body){
+    if(b.copy){ body += `<div class="copyslot">▢ ${b.copy} — copy (voice pass)</div>`; }
+    else { body += `<div class="diagram"><div class="dtype">${b.dia}</div><div class="dlabels">${b.l}</div></div>`; }
+  }
+  const plateLabel = f.plate==="blue" ? "blue" : f.plate;
+  el.innerHTML = `
+    <div class="f-top"><span class="f-num">${String(f.n).padStart(2,"0")}</span><span class="f-arch">${f.arch}</span></div>
+    <div class="f-focal">${badge}${f.focal}</div>
+    <div class="f-body">${body}</div>
+    <div class="f-foot">
+      <span><span class="dot" style="background:${A(f.plate)}"></span>plate: ${plateLabel} · accent: ${accentName}</span>
+      <span>HLV · ${f.n} / 14</span>
+    </div>`;
+  deck.appendChild(el);
+});
+const body=document.body, modeBtn=document.getElementById("mode"), countEl=document.getElementById("count"), hintEl=document.getElementById("hint"), els=[...document.querySelectorAll(".frame")];
+let stepMode=false, cur=0;
+function setCurrent(i){
+  cur=Math.max(0,Math.min(frames.length-1,i));
+  els.forEach((e,k)=>e.classList.toggle("current",k===cur));
+  if(stepMode){ countEl.textContent=(cur+1)+" / 14"; els[cur].scrollIntoView({block:"center"}); }
+}
+modeBtn.addEventListener("click",()=>{
+  stepMode=!stepMode;
+  body.classList.toggle("step",stepMode); body.classList.toggle("scroll",!stepMode);
+  modeBtn.textContent=stepMode?"step":"scroll"; modeBtn.classList.toggle("on",stepMode);
+  hintEl.textContent=stepMode?"step mode · ← → arrows or swipe · tap “step” to return to scroll":"scroll all 14 · tap “scroll” to step (arrows / swipe)";
+  if(stepMode) setCurrent(cur); else countEl.textContent="14 frames";
+});
+document.addEventListener("keydown",e=>{
+  if(!stepMode) return;
+  if(e.key==="ArrowRight"||e.key==="ArrowDown"){ setCurrent(cur+1); e.preventDefault(); }
+  if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ setCurrent(cur-1); e.preventDefault(); }
+});
+let tsX=0,tsY=0;
+document.addEventListener("touchstart",e=>{tsX=e.changedTouches[0].clientX;tsY=e.changedTouches[0].clientY;},{passive:true});
+document.addEventListener("touchend",e=>{
+  if(!stepMode) return;
+  const dx=e.changedTouches[0].clientX-tsX, dy=e.changedTouches[0].clientY-tsY;
+  if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ setCurrent(cur+(dx<0?1:-1)); }
+},{passive:true});
+</script>
+</body>
+</html>

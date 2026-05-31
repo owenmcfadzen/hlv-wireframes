@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>M1 Landscape Map — wireframe flip-through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11121A; --paper:#FAFAF7; --blue:#0B5FB0;
+    --blu:#0B5FB0; --blu-bright:#1E9BFE; --red:#C2342B; --red-bright:#FF6B6B; --mute:#8A8A90; --mute2:#5C5C62;
+    --sans:"Plus Jakarta Sans", system-ui, sans-serif; --mono:"Menlo", ui-monospace, "SF Mono", monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#2a2b30;color:#111;font-family:var(--sans);-webkit-text-size-adjust:100%}
+  header.bar{position:sticky;top:0;z-index:10;background:#1b1c20;color:#e7e7ea;display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;font:600 13px/1 var(--mono);border-bottom:1px solid #000}
+  header.bar .title{flex:1;letter-spacing:.04em}
+  header.bar .count{color:var(--blu-bright)}
+  header.bar button{font:600 12px/1 var(--mono);color:#e7e7ea;background:#34353b;border:1px solid #4a4b52;border-radius:6px;padding:.42rem .6rem;cursor:pointer}
+  header.bar button.on{background:var(--blu);border-color:var(--blu);color:#fff}
+  .hint{color:#9a9aa2;font:400 11px/1.4 var(--mono);padding:.5rem .8rem;text-align:center}
+  main{padding:.7rem clamp(.4rem,2vw,1rem) 3rem}
+  .frame{width:100%;max-width:760px;margin:0 auto 1rem;aspect-ratio:16/9;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 2px 14px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:clamp(.6rem,2.4vw,1.15rem);container-type:inline-size}
+  .frame.ink{background:var(--ink);color:var(--paper)}
+  .frame.paper{background:var(--paper);color:var(--ink)}
+  .frame.blue{background:var(--blue);color:var(--paper)}
+  .f-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .f-num{font:800 clamp(13px,3.4cqw,20px)/1 var(--mono);opacity:.85}
+  .f-arch{font:600 clamp(9px,2.5cqw,13px)/1.2 var(--mono);text-align:right;opacity:.55;max-width:55%}
+  .badge{display:inline-block;font:800 clamp(8px,2.2cqw,11px)/1 var(--mono);padding:.32em .5em;border-radius:5px;letter-spacing:.05em;vertical-align:middle}
+  .badge.do{background:var(--blu-bright);color:#03243f}
+  .frame.paper .badge.do{background:var(--blu);color:#fff}
+  .f-focal{margin:.5cqw 0 .2rem;font:800 clamp(15px,4.6cqw,30px)/1.12 var(--sans);letter-spacing:-.01em;max-width:24ch}
+  .f-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5cqw}
+  .copyslot{border:1.5px dashed currentColor;opacity:.5;border-radius:6px;padding:.5em .7em;font:600 clamp(9px,2.4cqw,12px)/1 var(--mono);letter-spacing:.04em}
+  .diagram{border:2px solid var(--ax);border-radius:7px;padding:.6em .75em;color:inherit}
+  .diagram .dtype{font:800 clamp(9px,2.5cqw,12px)/1.1 var(--mono);color:var(--ax);letter-spacing:.05em;text-transform:uppercase}
+  .diagram .dlabels{margin-top:.3em;font:400 clamp(10px,2.7cqw,13px)/1.3 var(--sans);opacity:.92}
+  .f-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font:600 clamp(8px,2.1cqw,11px)/1 var(--mono);opacity:.6;margin-top:.4rem}
+  .dot{display:inline-block;width:.7em;height:.7em;border-radius:50%;vertical-align:-1px;margin-right:.3em}
+  body.step main{padding-top:1.2rem;min-height:70vh}
+  body.step .frame{display:none}
+  body.step .frame.current{display:flex}
+  @media (max-width:520px){ .f-focal{max-width:20ch} }
+</style>
+</head>
+<body class="scroll">
+<header class="bar">
+  <span class="title">M1 · LANDSCAPE MAP</span>
+  <span class="count" id="count">15 frames</span>
+  <button id="mode">scroll</button>
+</header>
+<div class="hint" id="hint">scroll all 15 · tap “scroll” to step (arrows / swipe)</div>
+<main id="deck"></main>
+<script>
+// market accent BLUE: deep on paper, bright on ink; white on the blue plate (cover + divider)
+const A = p => (p==="paper" ? "var(--blu)" : p==="blue" ? "var(--paper)" : "var(--blu-bright)");
+const frames = [
+ {n:1, plate:"blue", arch:"Cover", focal:"Map the field. Find the bet worth testing.",
+  body:[{copy:"kicker · M1 / LANDSCAPE MAP"},{copy:"hero"},{copy:"sub"},{dia:"motif", l:"landscape motif · small, corner"}]},
+ {n:2, plate:"paper", arch:"Section · 2 cards", focal:"Two reasons to map: where to differ, what to test first.",
+  body:[{dia:"2-up cards", l:"DIRECTION · where you need to be different  |  DOUBT · the one assumption worth testing first"}]},
+ {n:3, plate:"ink", arch:"Diagram + Legend", focal:"The field has three layers around the user.",
+  body:[{dia:"nested rings", l:"DIRECT (outer) · INDIRECT · DIY (inner) · YOU (core) · the DIY ring is where behaviour lives"}]},
+ {n:4, plate:"ink", arch:"Worked-Frame", focal:"Anya's field: each layer, each “but.”",
+  body:[{dia:"3-row table · same person", l:"DIRECT Sleep Cycle/Calm but “you still have to do it” | INDIRECT melatonin/curtains but “not the 11pm scroll” | DIY phone-in-kitchen/airplane-mode but “she goes and gets it” → all buts share the 11pm reach"}]},
+ {n:5, plate:"ink", arch:"Prompt", focal:"So where's the gap?", badge:{k:"do",t:"DO · 90s predict"},
+  body:[{copy:"the question"},{dia:"team bet", l:"bet the gap + the axes, 90s, then check on the plot"}]},
+ {n:6, plate:"ink", arch:"Big-Diagram-Reading 2x2", focal:"Every fix sits somewhere. The empty corner is the bet.",
+  body:[{dia:"2x2 scatter", l:"axes COST × EASE · the fixes plotted · GAP = empty corner · ★ hypothesis · check the S5 bet"}]},
+ {n:7, plate:"paper", arch:"Section · 2 traps", focal:"The axes do the teaching.",
+  body:[{dia:"2-up traps", l:"pick axes that match the customer's decision · an empty corner is not always a gap"}]},
+ {n:8, plate:"paper", arch:"Formula", focal:"Write the gap in one sentence.",
+  body:[{dia:"gap formula", l:"{customer} wants {outcome} but {what blocks them}, so nothing today fills the need · riskiest word = a BEHAVIOUR (the 11pm scroll)"}]},
+ {n:9, plate:"blue", arch:"Divider · Your turn", focal:"Your turn: fill, widen, plot, name.",
+  body:[{dia:"4-node stage flow", l:"FILL (14m · your own heads) → WIDEN (7m · the AI) → PLOT (15m · largest) → NAME (10m) · brainstorm first, then the AI widens"}]},
+ {n:10, plate:"paper", arch:"Instruction-with-Counts", focal:"Fill the field. Honest first pass.",
+  body:[{dia:"three layers · provisional", l:"brainstorm direct / indirect / DIY, each with a “but” · a first pass, to be widened"}]},
+ {n:11, plate:"paper", arch:"Before / After", focal:"The AI widens you to behaviour. Not more apps.",
+  body:[{dia:"what you listed vs what the AI surfaces", l:"YOU LISTED: mostly apps (Sleep Cycle, Calm)  |  AI SURFACES: BEHAVIOUR you skipped — workarounds (phone in kitchen, airplane mode) + do-nothing (just stay tired, scroll anyway) · THE POINT: the gap is behavioural, not a missing app"}]},
+ {n:12, plate:"paper", arch:"Activity Card", focal:"Plot the wider field. Star the corner.",
+  body:[{dia:"reference 2x2", l:"place the now-wider field on cost × ease · find the empty corner · star your bet"}]},
+ {n:13, plate:"paper", arch:"Formula", focal:"Name the gap. Circle the riskiest word.",
+  body:[{dia:"gap sentence (team fill)", l:"the one assumption you most need to test · the riskiest word is the behaviour you cannot yet observe"}]},
+ {n:14, plate:"paper", arch:"Stats · Recap", focal:"A named field, a plotted 2x2, a gap sentence.",
+  body:[{dia:"3-up stats", l:"named field · plotted 2x2 + star · gap sentence + riskiest word  ·  good vs lazy: a behavioural gap vs a product nobody built"}]},
+ {n:15, plate:"ink", arch:"Handoff", focal:"Take the riskiest word to the field.",
+  body:[{dia:"forward pair", l:"M2 VALIDATION designs the test for it  |  OUT IN MARKET #1 runs it · real behaviour decides"}]},
+];
+const accentName = "blue";
+const deck = document.getElementById("deck");
+frames.forEach((f)=>{
+  const el = document.createElement("section");
+  el.className = "frame "+f.plate;
+  el.style.setProperty("--ax", A(f.plate));
+  const badge = f.badge ? `<span class="badge ${f.badge.k}">${f.badge.t}</span> ` : "";
+  let body = "";
+  for(const b of f.body){
+    if(b.copy){ body += `<div class="copyslot">▢ ${b.copy} — copy (voice pass)</div>`; }
+    else { body += `<div class="diagram"><div class="dtype">${b.dia}</div><div class="dlabels">${b.l}</div></div>`; }
+  }
+  const plateLabel = f.plate==="blue" ? "blue" : f.plate;
+  el.innerHTML = `
+    <div class="f-top"><span class="f-num">${String(f.n).padStart(2,"0")}</span><span class="f-arch">${f.arch}</span></div>
+    <div class="f-focal">${badge}${f.focal}</div>
+    <div class="f-body">${body}</div>
+    <div class="f-foot">
+      <span><span class="dot" style="background:${A(f.plate)}"></span>plate: ${plateLabel} · accent: ${accentName}</span>
+      <span>HLV · ${f.n} / 15</span>
+    </div>`;
+  deck.appendChild(el);
+});
+const body=document.body, modeBtn=document.getElementById("mode"), countEl=document.getElementById("count"), hintEl=document.getElementById("hint"), els=[...document.querySelectorAll(".frame")];
+let stepMode=false, cur=0;
+function setCurrent(i){
+  cur=Math.max(0,Math.min(frames.length-1,i));
+  els.forEach((e,k)=>e.classList.toggle("current",k===cur));
+  if(stepMode){ countEl.textContent=(cur+1)+" / 15"; els[cur].scrollIntoView({block:"center"}); }
+}
+modeBtn.addEventListener("click",()=>{
+  stepMode=!stepMode;
+  body.classList.toggle("step",stepMode); body.classList.toggle("scroll",!stepMode);
+  modeBtn.textContent=stepMode?"step":"scroll"; modeBtn.classList.toggle("on",stepMode);
+  hintEl.textContent=stepMode?"step mode · ← → arrows or swipe · tap “step” to return to scroll":"scroll all 15 · tap “scroll” to step (arrows / swipe)";
+  if(stepMode) setCurrent(cur); else countEl.textContent="15 frames";
+});
+document.addEventListener("keydown",e=>{
+  if(!stepMode) return;
+  if(e.key==="ArrowRight"||e.key==="ArrowDown"){ setCurrent(cur+1); e.preventDefault(); }
+  if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ setCurrent(cur-1); e.preventDefault(); }
+});
+let tsX=0,tsY=0;
+document.addEventListener("touchstart",e=>{tsX=e.changedTouches[0].clientX;tsY=e.changedTouches[0].clientY;},{passive:true});
+document.addEventListener("touchend",e=>{
+  if(!stepMode) return;
+  const dx=e.changedTouches[0].clientX-tsX, dy=e.changedTouches[0].clientY-tsY;
+  if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ setCurrent(cur+(dx<0?1:-1)); }
+},{passive:true});
+</script>
+</body>
+</html>
