@@ -1,0 +1,166 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   motif.css · HLV Slide System — THE SQUARE MOSAIC
+   ───────────────────────────────────────────────────────────────────────
+   The brand's one visual signature: a GRID OF SQUARE TILES at stepped
+   opacities that dissolves like a halftone. Pulled straight from
+   co-created.com (pattern.svg / bg.svg). It is the ONLY decorative language
+   in the system — there are no illustrations, no photography clichés, no
+   gradients. Everything pictorial is built from the tile.
+
+   THREE USES, one grammar:
+     1. FIELD  — a dithered mosaic flooding a plate (covers, dividers, rails,
+        corner accents). Lives in a `.motif` layer, the FIRST child of the
+        slide so every later .el paints on top of it. Plate-aware + subtle.
+     2. ICON   — a small NxN grid of filled/empty tiles → a glyph. The reusable
+        icon vocabulary. Built from <i> cells; `.on` = filled, `.gr` = green
+        accent tile (the brand's green-diamond move).
+     3. FIGURE — the same grid at scale → an illustration block.
+
+   LAWS (inherited): square tiles only (no radius, ever); colour is brand-only
+   (ink / white / green / yellow); FIELD images are EXTERNAL svgs with baked
+   hex fills (export-safe); ICON/FIGURE tiles use currentColor on the WEB and
+   must be given an explicit hex when a deck is Keynote-bound (see note ▼).
+
+   KEYNOTE NOTE: icon/figure tiles paint with `background:currentColor`, which
+   the browser resolves but the export pipeline cannot. For Keynote-bound
+   decks, add an explicit `.b-INK / .b-GRN / .b-WHITE` to each `.on` cell, or
+   render the icon as one of the baked motif/icon svgs. On the WEB reference
+   currentColor is correct and keeps icons plate-aware for free.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════ 1 · FIELD — the mosaic background layer ═══════════
+   Drop as the FIRST child of section.s:
+     <div class="el motif mz-flood"></div>
+   Placement + image + default opacity come from the modifier. Plate-aware:
+   ink/green plates get WHITE tiles, paper/quiet plates get INK tiles, and a
+   `.accent` forces GREEN tiles on any plate. */
+.el.motif{
+  left:0; top:0; width:var(--canvas-w); height:var(--canvas-h);
+  background-repeat:no-repeat; background-position:center; background-size:cover;
+  pointer-events:none; opacity:var(--mz-op,1);
+}
+
+/* ── full-bleed cover flood (dissolves bottom-left → up-right) ──────────── */
+/* Opacity is deliberately LOW: the mosaic is a texture behind type, never a
+   competing layer. Tiles already carry per-tile opacity in the svg, so the
+   layer opacity stacks on top — keep it faint enough that white/ink type over
+   the densest tiles still clears a comfortable contrast. */
+.motif.mz-flood{ opacity:var(--mz-op,0.30); }
+.pl-ink   .motif.mz-flood,
+.pl-green .motif.mz-flood{ background-image:url("../assets/motif/mosaic-flood-white.svg"); }
+.pl-paper .motif.mz-flood,
+.pl-quiet .motif.mz-flood{ background-image:url("../assets/motif/mosaic-flood-ink.svg"); opacity:var(--mz-op,0.10); }
+.motif.mz-flood.accent{ background-image:url("../assets/motif/mosaic-flood-green.svg")!important; opacity:var(--mz-op,0.28); }
+/* `.reg` snaps the flood lattice so a tile edge lands on the live margins
+   (x=120 / x=1800), letting registration dots sit exactly on tile corners. */
+.motif.mz-flood.reg{ background-position-x:24px; }
+
+/* ── corner accent (subtle, for ordinary content slides) — one TL-dense
+   tile, flipped per corner. Default opacity is deliberately faint. ─────── */
+.motif.mz-corner{ width:672px; height:672px; background-size:672px 672px; opacity:var(--mz-op,0.32); }
+.pl-ink .motif.mz-corner, .pl-green .motif.mz-corner{ background-image:url("../assets/motif/mosaic-corner-white.svg"); }
+.pl-paper .motif.mz-corner, .pl-quiet .motif.mz-corner{ background-image:url("../assets/motif/mosaic-corner-ink.svg"); opacity:var(--mz-op,0.14); }
+.motif.mz-corner.accent{ background-image:url("../assets/motif/mosaic-corner-green.svg")!important; opacity:var(--mz-op,0.38); }
+.motif.mz-corner.tl{ left:0;   top:0;    right:auto; bottom:auto; transform:none; }
+.motif.mz-corner.tr{ left:auto; top:0;   right:0;    bottom:auto; transform:scaleX(-1); }
+.motif.mz-corner.bl{ left:0;   top:auto; right:auto; bottom:0;    transform:scaleY(-1); }
+.motif.mz-corner.br{ left:auto; top:auto; right:0;   bottom:0;    transform:scale(-1,-1); }
+
+/* ── edge rail (left-dense, fades right) — vertical band on one side ───── */
+.motif.mz-edge{ width:432px; height:var(--canvas-h); top:0; background-size:432px 1080px; background-position:left top; opacity:var(--mz-op,0.32); }
+.pl-ink .motif.mz-edge, .pl-green .motif.mz-edge{ background-image:url("../assets/motif/mosaic-edge-white.svg"); }
+.pl-paper .motif.mz-edge, .pl-quiet .motif.mz-edge{ background-image:url("../assets/motif/mosaic-edge-ink.svg"); opacity:var(--mz-op,0.13); }
+.motif.mz-edge.accent{ background-image:url("../assets/motif/mosaic-edge-green.svg")!important; opacity:var(--mz-op,0.38); }
+.motif.mz-edge.l{ left:0;    right:auto; transform:none; }
+.motif.mz-edge.r{ left:auto; right:0;    transform:scaleX(-1); }
+
+/* ── divider band (dense at both ends, sparse centre) — section headers ── */
+.motif.mz-band{ left:0; width:var(--canvas-w); height:288px; top:var(--mz-band-y,720px); background-size:1920px 288px; opacity:var(--mz-op,0.30); }
+.pl-ink .motif.mz-band, .pl-green .motif.mz-band{ background-image:url("../assets/motif/mosaic-band-white.svg"); }
+.pl-paper .motif.mz-band, .pl-quiet .motif.mz-band{ background-image:url("../assets/motif/mosaic-band-ink.svg"); opacity:var(--mz-op,0.12); }
+
+/* ═══════════ 2 · ICON — the square-grid glyph ═══════════
+   <span class="sqicon" style="--n:5">
+     <i></i><i class="on"></i> … 25 cells …
+   </span>
+   `.on` fills with currentColor (set `color:` on the icon or a parent), `.gr`
+   paints the brand green, `.yl` the deep yellow. Default 5×5, 120px. */
+.sqicon{
+  display:grid; grid-template-columns:repeat(var(--n,5),1fr); grid-template-rows:repeat(var(--n,5),1fr);
+  gap:var(--sq-gap,4px); width:var(--sq,120px); height:var(--sq,120px); flex-shrink:0; color:inherit;
+}
+.sqicon i{ display:block; background:transparent; }
+.sqicon i.on{ background:currentColor; }
+.sqicon i.gr{ background:var(--GRN); }
+.pl-paper .sqicon i.gr, .pl-quiet .sqicon i.gr{ background:var(--GRNd); }
+.sqicon i.yl{ background:var(--YEL); }
+.pl-paper .sqicon i.yl, .pl-quiet .sqicon i.yl{ background:var(--YEL); }
+.sqicon i.dim{ background:currentColor; opacity:0.35; }
+.sqicon i.faint{ background:currentColor; opacity:0.16; }
+/* tile-framed icon container — a hairline square behind the glyph */
+.sqicon-box{ display:inline-grid; place-items:center; width:var(--box,168px); height:var(--box,168px); border:1.5px solid var(--rule-c); box-sizing:border-box; }
+.sqicon-box.fill{ background:var(--paper-quiet); border-color:transparent; } .pl-ink .sqicon-box.fill{ background:var(--ink-raise); }
+.sqicon-box.ink{ background:var(--INK); border-color:var(--INK); color:var(--WHITE); }
+.sqicon-box.grn{ background:var(--GRN); border-color:var(--GRN); color:var(--INK); }
+/* Inside a GREEN box the glyph must read as INK \u2014 a green (.gr) tile on a green
+   plate would vanish. Force both lit and accent tiles to ink for contrast. */
+.sqicon-box.grn .sqicon i.gr, .sqicon-box.grn .sqicon i.on{ background:var(--INK); }
+/* ON A COLOUR PLATE (green / blue) a toned or accent icon flips to MONO so it
+   keeps contrast \u2014 a green glyph on a green plate would vanish. The accent tiles
+   go ink, and a toned / green-filled box becomes the ink figure with white glyph. */
+.pl-green .sqicon i.gr, .pl-blue .sqicon i.gr,
+.pl-green .sqicon i.yl, .pl-blue .sqicon i.yl,
+.pl-green .sqfig i.gr,  .pl-blue .sqfig i.gr,
+.pl-green .sqfig i.yl,  .pl-blue .sqfig i.yl{ background:var(--INK); }
+.pl-green .sqicon-box.grn,  .pl-blue .sqicon-box.grn,
+.pl-green .sqicon-box.fill, .pl-blue .sqicon-box.fill{ background:var(--INK); border-color:var(--INK); color:var(--WHITE); }
+
+/* ═══════════ 3 · FIGURE — the mosaic as illustration ═══════════
+   Same mechanism, larger grid + size. Use for hero illustration blocks.
+   <span class="sqfig" style="--n:8;--sq:480px"> … cells … </span> */
+.sqfig{
+  display:grid; grid-template-columns:repeat(var(--n,8),1fr); grid-template-rows:repeat(var(--nr,var(--n,8)),1fr);
+  gap:var(--sq-gap,6px); width:var(--sq,480px); height:var(--sqh,var(--sq,480px)); flex-shrink:0; color:inherit;
+}
+.sqfig i{ display:block; background:transparent; }
+.sqfig i.on{ background:currentColor; }
+.sqfig i.o9{ background:currentColor; } .sqfig i.o7{ background:currentColor; opacity:0.7; }
+.sqfig i.o5{ background:currentColor; opacity:0.5; } .sqfig i.o3{ background:currentColor; opacity:0.3; }
+.sqfig i.o15{ background:currentColor; opacity:0.15; }
+.sqfig i.gr{ background:var(--GRN); } .pl-paper .sqfig i.gr{ background:var(--GRNd); }
+.sqfig i.yl{ background:var(--YEL); } .pl-paper .sqfig i.yl{ background:var(--YEL); }
+
+/* ═══════════ 4 · STEP STRIP — a 1×N tonal ramp of tiles ═══════════
+   The brand "loading"/progress motif: a row of square tiles, the leading run
+   filled solid, the rest faint. Pure decoration / progress marker. */
+.steps{ display:flex; gap:var(--sq-gap,8px); }
+.steps i{ width:var(--st,28px); height:var(--st,28px); background:currentColor; opacity:0.16; flex-shrink:0; }
+.steps i.on{ opacity:1; } .steps i.gr{ background:var(--GRN); opacity:1; } .pl-paper .steps i.gr{ background:var(--GRNd); }
+
+/* ═══════════ 5 · GRID REGISTRATION — make the grid FELT ═══════════
+   Small square "dots" placed exactly at grid intersections (the co-created.com
+   move). On a cover, position them on the SAME snap coordinates as the type so
+   the underlying grid is visibly honoured. Pair with `.gline` hairlines. */
+.gdot{position:absolute;width:var(--gd,14px);height:var(--gd,14px);background:var(--GRN);transform:translate(-50%,-50%)}
+.pl-paper .gdot,.pl-quiet .gdot{background:var(--GRNd)}
+.gdot.ink{background:var(--INK)} .pl-ink .gdot.ink{background:var(--WHITE)}
+.gdot.dim{opacity:0.4}
+.gline{position:absolute;background:var(--WHITE);opacity:0.12} .pl-paper .gline,.pl-quiet .gline{background:var(--INK);opacity:0.08}
+.gline.h{height:1px} .gline.v{width:1px}
+
+/* ═══════════ 6 · THE BRAND MARK — interlocking diamond (square corners) ═══
+   Two overlapping squares rotated 45°, the HLV glyph. Colour via --c
+   follows the hierarchy (green / blue / purple / mute). */
+.hlv-mark{position:relative;width:var(--cm,96px);height:var(--cm,96px);flex-shrink:0}
+.hlv-mark span{position:absolute;width:58%;height:58%;border:var(--cmw,9px) solid var(--c,var(--GRN));box-sizing:border-box;transform:rotate(45deg);top:21%}
+.hlv-mark span.l{left:4%} .hlv-mark span.r{right:4%}
+
+/* ═══════════ 7 · VENTURE / LOGO GRID — tinted mosaic cells at layout scale ═
+   The mosaic as a CONTENT grid (logos in cells), tints stepping like the
+   dither, blue square dots at the intersections. Cells get a `.t1..t4` tint. */
+.vgrid{display:grid;position:relative;background:transparent}
+.vgrid>.vc{display:grid;place-items:center;box-sizing:border-box;padding:var(--sp-3);min-height:0;font:var(--t-card-head);font-size:40px;color:var(--INK);text-align:center}
+.vgrid>.vc.t0{background:transparent} .vgrid>.vc.t1{background:#EAF3FE} .vgrid>.vc.t2{background:#D7E9FD} .vgrid>.vc.t3{background:#C2DDFB} .vgrid>.vc.t4{background:#A9CFF9}
+.vgrid .vdot{position:absolute;width:12px;height:12px;background:var(--BLU);transform:translate(-50%,-50%);z-index:2}
+
+/* ─────────── end motif.css ─────────── */

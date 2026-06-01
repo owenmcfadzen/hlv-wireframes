@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · B2 Napkin Economics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  /* deck-local helpers — hex only (export-safe). Reference the kit before adding here. */
+  .pl-blue .el.k, .pl-blue .el.foot, .pl-blue .el.cred, .pl-blue .el.pc{color:#1E1E1E}
+  .pl-blue .el.sub{color:#0B2A4A}
+  /* a small inline DRAFT chip used in the .foot to flag voice-pass lines */
+  .voice-chip{display:inline-block;padding:2px 10px;margin-left:10px;border:1.5px solid currentColor;font-weight:700}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ═══════════════════════ 01 · COVER (blue plate, per 2026-05-31) ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="01 Cover">
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot ink" style="left:120px;top:96px"></span>
+  <span class="gdot ink" style="left:1800px;top:96px"></span>
+  <span class="gdot ink" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m INK"></span><span>BUSINESS &middot; SESSION 2 &middot; NAPKIN ECONOMICS &middot; 135 MIN</span></div>
+  <div class="el hero" style="top:312px">Numbers that survive<br>a sponsor's probe.</div>
+  <div class="el sub" style="top:660px;width:1320px">Break the math before someone else does.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>01 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 02 · STATEMENT (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="02 Statement">
+  <div class="el k"><span class="m GRNd"></span><span>WHY BOTHER</span></div>
+  <div class="el state">A confident projection<br>is a stack of assumptions.</div>
+  <div class="el" style="left:120px;top:540px;width:1560px">
+    <div class="t-body c-MUTE2">The numbers look objective. They are decisions you can still get wrong.</div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>02 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 03 · OPTIMISTIC vs HONEST (ink, pair) — worked example opens ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="03 Optimistic vs honest">
+  <div class="el k"><span class="m GRN"></span><span>MEET ANYA &middot; A WORKED EXAMPLE</span></div>
+  <div class="el h1">The optimistic model, and the honest unit.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">OPTIMISTIC</div>
+          <div class="ps-rows">
+            <div class="pr-row"><span>Revenue per month</span><span class="pr-v">&euro;8</span></div>
+            <div class="pr-row"><span>Product cost</span><span class="pr-v">&minus;&euro;1</span></div>
+            <div class="pr-row"><span>Margin</span><span class="pr-v">&euro;7</span></div>
+          </div>
+          <div class="ps-note">Looks great.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">THE DELTA</div>
+          <div class="h-delta">Add the costs that decide it.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">HONEST</div>
+          <div class="ps-rows">
+            <div class="pr-row"><span>Revenue per month</span><span class="pr-v">&euro;8</span></div>
+            <div class="pr-row"><span>Product cost</span><span class="pr-v">&minus;&euro;1</span></div>
+            <div class="pr-row"><span>Acquisition cost</span><span class="pr-v">&minus;&euro;4</span></div>
+            <div class="pr-row"><span>Support cost</span><span class="pr-v">&minus;&euro;1</span></div>
+            <div class="pr-row"><span>Margin</span><span class="pr-v">&euro;2</span></div>
+          </div>
+          <div class="ps-note">Only if she stays.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>03 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 04 · PREDICT THE KILLER (ink, DO 90s) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="04 Predict the killer">
+  <div class="el k"><span class="m GRN"></span><span>PREDICT &middot; 90 SECONDS &middot; TEAM CALL</span></div>
+  <div class="el" style="left:120px;top:168px;width:300px">
+    <span class="chip solid" style="--c:var(--GRN);color:#06270F">DO</span>
+  </div>
+  <div class="el drill" style="top:288px">Which number kills<br>Anya's model?</div>
+  <div class="el" style="left:120px;top:660px;width:1560px">
+    <div class="t-body" style="color:#CECECE">The room guesses price or cost. The reveal is churn, on the next slide.</div>
+  </div>
+  <div class="el chk c-GRN"><span class="checkpoint"><span class="tick"></span>HOLD THE ANSWER &middot; REVEAL NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>04 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 05 · BEFORE / AFTER + THE KILLER (ink, peak) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="05 Every cost in, the killer">
+  <div class="el k"><span class="m GRN"></span><span>THE TEACHING PEAK</span></div>
+  <div class="el h1">Every cost in. The margin flips.</div>
+  <div class="el" style="left:120px;top:312px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">BEFORE &middot; OPTIMISTIC</div>
+          <div class="ps-claim">Margin looks healthy.</div>
+          <div class="ps-note">Acquisition out. Churn assumed away.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">PUT IT BACK IN</div>
+          <div class="h-delta">All costs. Then the one that breaks it.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">AFTER &middot; HONEST</div>
+          <div class="ps-claim">Margin thins to &euro;2.</div>
+          <div class="ps-note">It only holds if she stays.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:684px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE KILLER</div>
+      <div class="di-body">It dies if teens churn faster than two months. Anya stops at three weeks.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>05 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 06 · METHOD (paper, 3-step rows) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="06 The method">
+  <div class="el k"><span class="m GRNd"></span><span>THE METHOD &middot; RUN IT ON YOUR OWN NUMBERS</span></div>
+  <div class="el h1">Honest unit first. Then break-even. Then the killer.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb rows">
+        <div class="fr">
+          <div class="fr-tag">STEP ONE</div>
+          <div class="fr-body">Honest unit first.</div>
+          <div class="fr-note">One customer, every cost in, acquisition included.</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">STEP TWO</div>
+          <div class="fr-body">Then break-even.</div>
+          <div class="fr-note">Fixed costs over margin. Never before the unit is honest.</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">STEP THREE</div>
+          <div class="fr-body">Find the killer.</div>
+          <div class="fr-note">The one number that, moved against you, breaks the model.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>06 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 07 · THE UNIT FORMULA (paper) — B2 signature ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="07 The unit formula">
+  <div class="el k"><span class="m GRNd"></span><span>THE UNIT, AS ONE LINE</span></div>
+  <div class="el h1">Revenue minus every cost. Then 'it dies if'.</div>
+  <div class="el" style="left:120px;top:384px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span class="run-GRN">Revenue</span>
+      <span class="op">&minus;</span>
+      <span>Product</span>
+      <span class="op">&minus;</span>
+      <span class="run-GRN">Acquisition</span>
+      <span class="op">&minus;</span>
+      <span>Support</span>
+      <span class="op">=</span>
+      <span>Margin</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:516px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE KILL LINE</div>
+      <div class="di-body">It dies if ___ .</div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:720px;width:1680px">
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">ANYA, AS A WORKED FILL</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">&euro;8 &minus; &euro;1 &minus; &euro;4 &minus; &euro;1 = &euro;2. It dies if teens churn faster than two months.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>07 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 08 · YOUR TURN (blue divider, 5-node stage flow) ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="08 Your turn">
+  <div class="el k"><span class="m INK"></span><span>YOUR TURN &middot; 80 MINUTES OF WORK</span></div>
+  <div class="el hero" style="top:240px">Your turn.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr">
+          <div class="fr-tag">HONEST UNIT</div>
+          <div class="fr-body">Every cost in.</div>
+          <div class="fr-note">12 min &middot; do first</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">DRAFT</div>
+          <div class="fr-body">AI fills the line.</div>
+          <div class="fr-note">18 min &middot; hard stop</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">STRESS-TEST</div>
+          <div class="fr-body">Break the numbers.</div>
+          <div class="fr-note">30 min &middot; largest block</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">PROJECT</div>
+          <div class="fr-body">Break-even and 12 months.</div>
+          <div class="fr-note">12 min</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">NAME THE KILLER</div>
+          <div class="fr-body">Lock the one number.</div>
+          <div class="fr-note">8 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>08 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 09 · ACTIVITY · HONEST UNIT (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="09 Honest unit">
+  <div class="el k"><span class="m GRNd"></span><span>STEP 1 &middot; HONEST UNIT FIRST &middot; 12 MIN</span></div>
+  <div class="el h1">One customer in one month. Every cost in.</div>
+  <div class="el" style="left:120px;top:360px;width:792px">
+    <div class="ledger" style="--lg-w:792px">
+      <div class="lg-row"><span class="lg-op">+</span><span class="lg-label">Revenue this month</span><span class="lg-val">&euro;___</span></div>
+      <div class="lg-row minus"><span class="lg-op">&minus;</span><span class="lg-label">Product cost</span><span class="lg-val">&euro;___</span></div>
+      <div class="lg-row minus"><span class="lg-op">&minus;</span><span class="lg-label">Acquisition (the skipped one)</span><span class="lg-val">&euro;___</span></div>
+      <div class="lg-row minus"><span class="lg-op">&minus;</span><span class="lg-label">Support</span><span class="lg-val">&euro;___</span></div>
+      <div class="lg-row total"><span class="lg-op">=</span><span class="lg-label">Contribution margin</span><span class="lg-val">&euro;___</span></div>
+    </div>
+  </div>
+  <div class="el" style="left:984px;top:444px;width:720px">
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">THE TEST</div>
+      <div class="co-body">If acquisition cost is missing, the unit is fiction. Put it back in.</div>
+    </div>
+  </div>
+  <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>MARGIN PER CUSTOMER, ALL COSTS IN</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>09 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 10 · ACTIVITY · DRAFT (paper, staged as suspect) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="10 Draft with the AI">
+  <div class="el k"><span class="m GRNd"></span><span>STEP 2 &middot; DRAFT WITH THE AI &middot; 18 MIN &middot; HARD STOP</span></div>
+  <div class="el h1">Let the AI draft. Expect optimism.</div>
+  <div class="el sub recede">The output is a draft to be broken, not a result.</div>
+  <div class="el" style="left:120px;top:444px;width:1680px">
+    <div class="fill-prompt" style="--c:var(--YEL);--fill:#FFF6DC">
+      "Cost <span class="tok">low</span>, price <span class="tok">tidy</span>, volume <span class="tok">rising</span>, projection <span class="tok">hockey-stick</span>."
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:636px;width:1680px">
+    <div class="callout" style="--c:var(--YEL);--fill:#FFF6DC">
+      <div class="co-eb" style="color:#8A6000">EXPECT THIS</div>
+      <div class="co-body">Acquisition cost missing. Churn assumed low. A 12-month line that only goes up.</div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#8A6000"><span class="checkpoint" style="color:#8A6000"><span class="tick" style="background:#C99700"></span>STOP DRAFTING &middot; START BREAKING</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>10 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 11 · ACTIVITY · STRESS-TEST (paper) — THE SPINE ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="11 Stress-test">
+  <div class="el k"><span class="m GRNd"></span><span>STEP 3 &middot; STRESS-TEST &middot; 30 MIN &middot; THE SPINE</span></div>
+  <div class="el h1">Break the optimistic numbers. Name the killer.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--GRNd)">
+      <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Put <span class="assert">every cost</span> back into the unit, including acquisition.</span></div>
+      <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">Move one assumption against you, one at a time. <span class="assert">Watch which one breaks the margin.</span></span></div>
+      <div class="nli"><span class="nl-n c-GRNd">03</span><span class="nl-t">That assumption is your <span class="assert">economics killer.</span> Name it in one line.</span></div>
+    </div>
+  </div>
+  <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>EVERY COST IN &middot; KILLER NAMED</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>11 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 12 · ACTIVITY · PROJECT (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="12 Project">
+  <div class="el k"><span class="m GRNd"></span><span>STEP 4 &middot; BREAK-EVEN AND 12 MONTHS &middot; 12 MIN</span></div>
+  <div class="el h1">Project only after the unit is honest.</div>
+  <div class="el" style="left:120px;top:432px;width:1680px">
+    <div class="numlist" style="--c:var(--GRNd)">
+      <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Break-even: fixed costs over the <span class="assert">honest margin.</span> The number is customers, not euros.</span></div>
+      <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">Twelve months on the <span class="assert">honest unit,</span> not the optimistic one. Drop the hockey stick.</span></div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:696px;width:1680px">
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">THE TEST</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A projection on a fictional unit is fantasy. Project on the unit you fixed.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>12 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 13 · ACTIVITY · NAME THE KILLER (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="13 Name the killer">
+  <div class="el k"><span class="m GRNd"></span><span>STEP 5 &middot; NAME THE KILLER &middot; 8 MIN</span></div>
+  <div class="el h1">Lock the one number that holds it up.</div>
+  <div class="el" style="left:120px;top:444px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">YOUR KILL LINE</div>
+      <div class="di-body">It dies if ___ .</div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">WHY THIS LINE</div>
+      <div class="co-body">This is what the sponsor will press. Bring it yourself.</div>
+    </div>
+  </div>
+  <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>ONE KILLER, ONE SENTENCE</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>13 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 14 · RECAP · 4 STATS (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="14 What you now hold">
+  <div class="el k"><span class="m GRNd"></span><span>WHAT YOU NOW HOLD</span></div>
+  <div class="el h1">Can these survive a probe?</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="row4">
+      <div class="stat-card" style="--c:var(--GRNd)">
+        <div class="sc-n">&euro;___</div>
+        <div class="sc-l">CONTRIBUTION MARGIN</div>
+        <div class="sc-d">All costs in, including acquisition.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--GRNd)">
+        <div class="sc-n">___</div>
+        <div class="sc-l">BREAK-EVEN CUSTOMERS</div>
+        <div class="sc-d">Fixed costs over the honest margin.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--GRNd)">
+        <div class="sc-n">___</div>
+        <div class="sc-l">12-MONTH PROJECTION</div>
+        <div class="sc-d">Built on the honest unit, not the optimistic one.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--REDd)">
+        <div class="sc-n">!</div>
+        <div class="sc-l">THE KILLER</div>
+        <div class="sc-d">The one number-assumption the model rests on.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">These four travel to B3 and to the sponsor. Bring the killer first.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>14 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 15 · HANDOFF (ink) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="15 Handoff">
+  <div class="el motif mz-corner br accent" style="--mz-op:0.18"></div>
+  <div class="el k"><span class="m GRN"></span><span>NEXT &middot; WEDNESDAY MORNING</span></div>
+  <div class="el hero" style="top:288px">A sponsor probes<br>the math.</div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-GRN">
+        <div class="c-eb c-GRN">SPONSOR FEEDBACK &middot; WED AM</div>
+        <div class="c-head">Bring the killer yourself.</div>
+        <div class="c-body">Don't let them find it. Open with the one number that holds it up.</div>
+      </div>
+      <div class="card rule-top t-MUTE">
+        <div class="c-eb">FEEDS</div>
+        <div class="c-head">B3 100-day plan. PRD business section.</div>
+        <div class="c-body">The honest unit and the killer travel through both.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>15 / 15</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<script src="../system/linter.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Silence the benign ResizeObserver console warning (deck-stage rAF guard). -->
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · Deck Title</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<!-- THE SYSTEM. Load order matters: kit (imports foundation) → motif → diagrams. -->
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  /* ── deck-local helpers ONLY. HEX colour only (no oklch / color-mix — they
+     break the PPTX export). Reference the kit before writing anything here. */
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ═══════════ 01 · COVER (ink plate, signature flood motif) ═══════════ -->
+  <section class="s pl-ink" data-screen-label="01 Cover">
+    <div class="el motif mz-flood accent reg" style="--mz-op:0.22"></div>
+    <div class="el k"><span class="m GRN"></span><span>HUDSON LAB VENTURES &middot; SESSION KICKER</span></div>
+    <div class="el hero" style="top:312px">Deck title<br>goes here.</div>
+    <div class="el sub" style="top:660px;color:#B9B9C0;width:1320px">A one-line setup for what this session is and who it is for.</div>
+    <div class="el foot">HUDSON LAB VENTURES</div>
+    <div class="el pc"><span class="tk GRN"></span><span>01 / NN</span></div>
+  </section>
+
+  <!-- ═══════════ 02 · CONTENT — title + lead, low-anchored payload ═══════ -->
+  <section class="s pl-paper" data-screen-label="02 Big idea">
+    <div class="el k"><span class="m GRNd"></span><span>SECTION &middot; ONE LINE OF CONTEXT</span></div>
+    <div class="el h1">A single, clear statement of the idea.</div>
+    <div class="el sub recede">The supporting line sits directly under the headline.</div>
+    <!-- focus element anchored LOW for bottom balance -->
+    <div class="el" style="left:120px;top:600px;width:1680px">
+      <div class="row3">
+        <div class="card rule-top t-GRNd">
+          <div class="c-eb">01</div>
+          <div class="c-head">First point.</div>
+          <div class="c-body">A short, plain-language explanation of the first point.</div>
+        </div>
+        <div class="card rule-top t-INK">
+          <div class="c-eb">02</div>
+          <div class="c-head">Second point.</div>
+          <div class="c-body">A short, plain-language explanation of the second point.</div>
+        </div>
+        <div class="card rule-top t-MUTE">
+          <div class="c-eb">03</div>
+          <div class="c-head">Third point.</div>
+          <div class="c-body">A short, plain-language explanation of the third point.</div>
+        </div>
+      </div>
+    </div>
+    <div class="el foot">HUDSON LAB VENTURES</div>
+    <div class="el pc"><span class="tk GRNd"></span><span>02 / NN</span></div>
+  </section>
+
+  <!-- ═══════════ 03 · SECTION DIVIDER (green flood) ═══════════ -->
+  <section class="s pl-green" data-screen-label="03 Section divider">
+    <div class="el motif mz-corner br" style="--mz-op:0.18"></div>
+    <div class="el k"><span class="m INK"></span><span>PART ONE</span></div>
+    <div class="el hero" style="top:396px">The section<br>name.</div>
+    <div class="el cred">HUDSON LAB VENTURES</div>
+    <div class="el pc"><span class="tk INK"></span><span>03 / NN</span></div>
+  </section>
+
+  <!-- ═══════════ 04 · ACTIVITY (worked example sticky) ═══════════ -->
+  <section class="s pl-paper" data-screen-label="04 Your turn">
+    <div class="el k"><span class="m GRNd"></span><span>YOUR TURN &middot; 8 MIN &middot; SOLO</span></div>
+    <div class="el h1">Write the one-line version.</div>
+    <div class="el sub-2 recede">Fill the prompt for your own case. Keep it to a single sentence.</div>
+    <div class="el" style="left:120px;top:600px;width:1040px">
+      <div class="fill-prompt" style="--c:var(--YEL)">
+        "<span class="tok">Customer</span> wants <span class="tok">outcome</span> but <span class="tok">what blocks them</span>, so nothing today fills the need."
+      </div>
+    </div>
+    <div class="el" style="left:1240px;top:336px;width:560px">
+      <div class="sticky-example green">
+        <div class="se-label">EXAMPLE</div>
+        <div class="se-body">Maya wants <strong>a better morning</strong> <span class="se-mark">but the 11pm scroll</span> keeps her up, so nothing today fills the need.</div>
+        <div class="se-rule"></div>
+        <div class="se-sub">RISKIEST WORD</div>
+        <div class="se-quote">"the 11pm scroll"</div>
+      </div>
+    </div>
+    <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>ONE SENTENCE, OUT LOUD</span></div>
+    <div class="el pc"><span class="tk GRNd"></span><span>04 / NN</span></div>
+  </section>
+
+  <!-- ═══════════ 05 · END / NEXT (ink) ═══════════ -->
+  <section class="s pl-ink" data-screen-label="05 Next time">
+    <div class="el k"><span class="m GRN"></span><span>NEXT TIME</span></div>
+    <div class="el hero" style="top:396px">What comes<br>next.</div>
+    <div class="el foot">NOW &middot; OUT IN MARKET &rarr;</div>
+    <div class="el pc"><span class="tk GRN"></span><span>05 / NN</span></div>
+  </section>
+
+</deck-stage>
+
+<!-- deck-stage rAF guard + the runner. Keep these last. -->
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<!-- Dev only: press L to lint, G for the grid overlay. Harmless in the export. -->
+<script src="../system/linter.js"></script>
+</body>
+</html>

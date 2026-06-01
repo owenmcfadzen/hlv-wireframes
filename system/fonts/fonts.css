@@ -1,0 +1,4 @@
+/* Offline @font-face for the HLV brand fonts. Link this INSTEAD of the
+   Google Fonts <link> in a deck to render without a network. */
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:400;font-display:swap;src:url("./PlusJakartaSans-Regular.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url("./JetBrainsMono-Regular.ttf") format("truetype");}

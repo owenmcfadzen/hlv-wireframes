@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.addEventListener('error',function(e){if(e.message&&e.message.indexOf('ResizeObserver')>-1){e.stopImmediatePropagation();}});</script>
+<title>Components · HLV Slide System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="motif.css">
+<link rel="stylesheet" href="diagrams.css">
+<link rel="stylesheet" href="specimen.css">
+</head>
+<body>
+
+<nav class="nav">
+  <span class="brand"><span class="navmark"></span>HLV</span>
+  <a href="../HLV Slide System.html">Foundations</a>
+  <a href="components.html" class="here">Components</a>
+  <a href="diagrams.html">Diagrams</a>
+  <a href="archetypes.html">Archetypes</a>
+  <a href="Narrative Range.html">Range</a>
+  <span class="keys">press <b>L</b> lint &nbsp; <b>G</b> grid</span>
+</nav>
+
+<div class="wrap">
+  <header class="hero-h">
+    <div class="ey">Every content element that can go on a slide</div>
+    <h1>Components.</h1>
+    <p>Each obeys the three construction laws: rules are painted (never laid out), rows size to the grid (never to glyphs), and every pad, gap and dimension is a baseline multiple. So they drop into any band, on any plate, and never collide or drift. Copy a frame; swap the copy.</p>
+  </header>
+
+  <!-- ── CHROME ── -->
+  <section class="sec" id="chrome">
+    <div class="sec-h"><span class="n">A</span><h2>Slide chrome</h2></div>
+    <p class="sec-lede">The fixed furniture of every slide: kicker top&#8209;left with a square track marker, the page counter bottom&#8209;right (the only right&#8209;anchored element besides cred), footnotes bottom&#8209;left, and an optional checkpoint pill.</p>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Chrome">
+      <div class="el k"><span class="m GRNd"></span><span>STAGE C / 10 MIN / TEAM</span></div>
+      <div class="el h1">The chrome anchors the page.</div>
+      <div class="el sub recede">Kicker, counter, footnote, checkpoint. Nothing competes with the headline.</div>
+      <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>EVERYONE HAS A SENTENCE</span></div>
+      <div class="el foot">NOW / WORKED EXAMPLE &middot; NEXT / YOUR TURN</div>
+      <div class="el cred">HLV &middot; M1</div>
+      <div class="el pc"><span class="tk GRNd"></span><span>02 / 14</span></div>
+    </section></div></div>
+  </section>
+
+  <!-- ── CARDS ── -->
+  <section class="sec" id="cards">
+    <div class="sec-h"><span class="n">B</span><h2>Cards &amp; text grouping</h2></div>
+    <p class="sec-lede">The bug&#8209;killer for n&#8209;up overlap. A card is a flex column of named children (<code>c-num</code> / <code>c-eb</code> / <code>c-head</code> / <code>c-body</code> / <code>c-foot</code>) that auto&#8209;space and bottom&#8209;align. Finishes: <code>rule-top</code> (painted bar), <code>boxed</code> (owns its border), <code>fill</code> (tint). Drop them into <code>row2</code> / <code>row3</code> / <code>row4</code>.</p>
+
+    <div class="spec-label">Three&#8209;up · rule&#8209;top</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Cards rule-top">
+      <div class="el k"><span class="m GRNd"></span><span>RECAP</span></div>
+      <div class="el h1">Three things to carry forward.</div>
+      <div class="el card-row"><div class="row3">
+        <div class="card rule-top t-GRNd"><div class="c-eb">01</div><div class="c-head">A startup is a search.</div><div class="c-body">Look before you build. The map comes first.</div></div>
+        <div class="card rule-top t-BLUd"><div class="c-eb">02</div><div class="c-head">The gap is a sentence.</div><div class="c-body">If you cannot write it, you have not found it yet.</div></div>
+        <div class="card rule-top t-PURd"><div class="c-eb">03</div><div class="c-head">Test the riskiest word.</div><div class="c-body">One unknown carries the most weight. Start there.</div></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>03 / 14</span></div>
+    </section></div></div>
+
+    <div class="spec-label">Four&#8209;up · boxed &middot; with a leading numeral</div>
+    <div class="frames"><div class="frame"><section class="s pl-ink" data-screen-label="Cards boxed">
+      <div class="el k"><span class="m GRN"></span><span>THE LOOP</span></div>
+      <div class="el h1">Four moves, every cycle.</div>
+      <div class="el card-row"><div class="row4">
+        <div class="card boxed t-GRN"><div class="c-num">1</div><div class="c-head">Notice</div><div class="c-body">where the problem already gets solved.</div></div>
+        <div class="card boxed t-BLU"><div class="c-num">2</div><div class="c-head">Frame</div><div class="c-body">the gap in a single sentence.</div></div>
+        <div class="card boxed t-PUR"><div class="c-num">3</div><div class="c-head">Test</div><div class="c-body">the one word you are least sure of.</div></div>
+        <div class="card boxed t-YEL"><div class="c-num">4</div><div class="c-head">Decide</div><div class="c-body">keep, pivot, or kill. Then repeat.</div></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRN"></span><span>04 / 14</span></div>
+    </section></div></div>
+  </section>
+
+  <!-- ── LISTS & SPECS ── -->
+  <section class="sec" id="lists">
+    <div class="sec-h"><span class="n">C</span><h2>Lists, definitions &amp; specs</h2></div>
+    <p class="sec-lede">Four ways to group text. The definition list and key/value rows use painted row hairlines (zero layout height); the marker and numbered lists use square markers and a mono index. All rows size to the grid.</p>
+
+    <div class="spec-label">Definition list &middot; marker list</div>
+    <div class="frames">
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Deflist">
+        <div class="el k"><span class="m GRNd"></span><span>VOCABULARY</span></div>
+        <div class="el h1">Words we will use.</div>
+        <div class="el" style="left:120px;top:432px;width:1680px"><div class="deflist">
+          <div class="dl-row"><div class="dl-term c-BLUd">Pivot</div><div class="dl-def">A change in strategy without a change in vision.</div></div>
+          <div class="dl-row"><div class="dl-term c-BLUd">Traction</div><div class="dl-def">Evidence that the market is starting to pull.</div></div>
+          <div class="dl-row"><div class="dl-term c-BLUd">Runway</div><div class="dl-def">Months of cash before you must decide again.</div></div>
+        </div></div>
+        <div class="el pc"><span class="tk GRNd"></span><span>05</span></div>
+      </section></div>
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Marker list">
+        <div class="el k"><span class="m GRNd"></span><span>WHAT TO BRING</span></div>
+        <div class="el h1">Three things, on the table.</div>
+        <div class="el" style="left:120px;top:456px;width:1560px"><div class="marker-list">
+          <div class="mi" style="--c:var(--GRNd)">A problem you have watched a real person have.</div>
+          <div class="mi" style="--c:var(--GRNd)">A guess about why nothing today fixes it.</div>
+          <div class="mi" style="--c:var(--GRNd)">One person you could call this week.</div>
+        </div></div>
+        <div class="el pc"><span class="tk GRNd"></span><span>06</span></div>
+      </section></div>
+    </div>
+
+    <div class="spec-label">Numbered list &middot; key / value rows</div>
+    <div class="frames">
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Numlist">
+        <div class="el k"><span class="m GRNd"></span><span>THE SEQUENCE</span></div>
+        <div class="el h1">Do these in order.</div>
+        <div class="el" style="left:120px;top:444px;width:1560px"><div class="numlist">
+          <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Write the gap sentence from memory.</span></div>
+          <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">Circle the word you are least sure of.</span></div>
+          <div class="nli"><span class="nl-n c-GRNd">03</span><span class="nl-t">Design the smallest test for it.</span></div>
+        </div></div>
+        <div class="el pc"><span class="tk GRNd"></span><span>07</span></div>
+      </section></div>
+      <div class="frame half"><section class="s pl-paper" data-screen-label="KV rows">
+        <div class="el k"><span class="m INK"></span><span>AT A GLANCE</span></div>
+        <div class="el h1">The session.</div>
+        <div class="el" style="left:120px;top:432px;width:1560px"><div class="kv">
+          <div class="kvrow"><span class="k-label">Duration</span><span class="k-val">90 minutes</span></div>
+          <div class="kvrow"><span class="k-label">Format</span><span class="k-val">Workshop / pairs</span></div>
+          <div class="kvrow"><span class="k-label">Output</span><span class="k-val">One gap sentence each</span></div>
+          <div class="kvrow"><span class="k-label">Carries to</span><span class="k-val">Out in market</span></div>
+        </div></div>
+        <div class="el pc"><span class="tk INK"></span><span>08</span></div>
+      </section></div>
+    </div>
+  </section>
+
+  <!-- ── NUMBERS ── -->
+  <section class="sec" id="numbers">
+    <div class="sec-h"><span class="n">D</span><h2>Numbers</h2></div>
+    <p class="sec-lede">The big number owns the field; the stat card sits in a row of three over a hairline label, tabular&#8209;num so columns align. Colour is grouping, never decoration.</p>
+
+    <div class="spec-label">Big number &middot; stat-card row</div>
+    <div class="frames">
+      <div class="frame half"><section class="s pl-ink" data-screen-label="Big number">
+        <div class="el k"><span class="m GRN"></span><span>THE NUMBER THAT MATTERS</span></div>
+        <div class="el stat c-GRN">42%</div>
+        <div class="el sub-2" style="color:#fff;top:600px">of pivots happen after a single honest customer call.</div>
+        <div class="el pc"><span class="tk GRN"></span><span>09</span></div>
+      </section></div>
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Stat cards">
+        <div class="el k"><span class="m GRNd"></span><span>THREE SIGNALS</span></div>
+        <div class="el h1">Read the pull.</div>
+        <div class="el" style="left:120px;top:540px;width:1560px"><div class="row3">
+          <div class="stat-card c-GRNd"><div class="sc-n">3x</div><div class="sc-l">Repeat use</div></div>
+          <div class="stat-card c-BLUd"><div class="sc-n">61%</div><div class="sc-l">Would pay</div></div>
+          <div class="stat-card c-PURd"><div class="sc-n">12</div><div class="sc-l">Referrals</div></div>
+        </div></div>
+        <div class="el pc"><span class="tk GRNd"></span><span>10</span></div>
+      </section></div>
+    </div>
+  </section>
+
+  <!-- ── EDITORIAL ── -->
+  <section class="sec" id="editorial">
+    <div class="sec-h"><span class="n">E</span><h2>Editorial blocks</h2></div>
+    <p class="sec-lede">Definition, formula, callout, before/after, and the fill&#8209;prompt. The formula and fill&#8209;prompt are the only sanctioned multi&#8209;colour lines; the callout and prompt carry a painted left seam, never a flow border.</p>
+
+    <div class="spec-label">Definition block &middot; formula (coloured runs)</div>
+    <div class="frames">
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Definition">
+        <div class="el k"><span class="m GRNd"></span><span>DEFINITION</span></div>
+        <div class="el" style="left:120px;top:300px;width:1560px"><div class="definition" style="--c:var(--GRNd)">
+          <div class="df-term"><span class="df-word">Pivot</span><span class="df-pos">verb</span></div>
+          <div class="df-gloss">To change strategy without changing vision. You keep the destination; you swap the road.</div>
+        </div></div>
+        <div class="el pc"><span class="tk GRNd"></span><span>11</span></div>
+      </section></div>
+      <div class="frame half"><section class="s pl-ink" data-screen-label="Formula">
+        <div class="el k"><span class="m GRN"></span><span>HOW FIT IS MADE</span></div>
+        <div class="el h1">Fit can be calculated.</div>
+        <div class="el" style="left:120px;top:540px;width:1680px"><div class="formula" style="--fx:84px">
+          <span class="run-GRN">Pain</span><span class="op">&times;</span><span class="run-BLU">Frequency</span><span class="op">&times;</span><span class="run-PUR">WTP</span>
+        </div></div>
+        <div class="el pc"><span class="tk GRN"></span><span>12</span></div>
+      </section></div>
+    </div>
+
+    <div class="spec-label">Callout / key takeaway &middot; fill&#8209;prompt</div>
+    <div class="frames">
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Callout">
+        <div class="el k"><span class="m GRNd"></span><span>KEY TAKEAWAY</span></div>
+        <div class="el h1">If you remember one thing.</div>
+        <div class="el" style="left:120px;top:516px;width:1560px"><div class="callout" style="--c:var(--GRNd)">
+          <div class="co-eb">The whole course in a line</div>
+          <div class="co-body">Find the gap before you build the thing that fills it.</div>
+        </div></div>
+        <div class="el pc"><span class="tk GRNd"></span><span>13</span></div>
+      </section></div>
+      <div class="frame half"><section class="s pl-paper" data-screen-label="Fill-prompt">
+        <div class="el k"><span class="m YEL"></span><span>THE GAP SENTENCE</span></div>
+        <div class="el h1">Fill the blanks.</div>
+        <div class="el" style="left:120px;top:516px;width:1560px"><div class="fill-prompt" style="--c:var(--YEL)">
+          "<span class="tok">Customer</span> wants <span class="tok">outcome</span> but <span class="tok">what blocks them</span>, so nothing today fills the need."
+        </div></div>
+        <div class="el pc"><span class="tk YEL"></span><span>14</span></div>
+      </section></div>
+    </div>
+
+    <div class="spec-label">Before / after</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Before after">
+      <div class="el k"><span class="m GRNd"></span><span>BEFORE / AFTER</span></div>
+      <div class="el h1">What the sentence changes.</div>
+      <div class="el" style="left:120px;top:516px;width:1680px"><div class="ba">
+        <div class="ba-cell"><div class="ba-eb">Before</div><div class="ba-body">"We are building an app for busy people who want to eat better."</div></div>
+        <div class="ba-arrow"></div>
+        <div class="ba-cell after"><div class="ba-eb">After</div><div class="ba-body">"Maya wants a calm morning but the 11pm scroll wrecks her sleep, so nothing today fills the need."</div></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>15</span></div>
+    </section></div></div>
+  </section>
+
+  <!-- ── ACTIVITY ── -->
+  <section class="sec" id="activity">
+    <div class="sec-h"><span class="n">F</span><h2>Activity scaffolds</h2></div>
+    <p class="sec-lede">Sticky notes for live capture and the canonical Example panel with five named regions you never improvise. Use the Example for Your Turn / Name It / Pair &amp; Share.</p>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Your turn">
+      <div class="el k"><span class="m GRNd"></span><span>YOUR TURN / SOLO / 6 MIN</span></div>
+      <div class="el h1">Write your gap sentence.</div>
+      <div class="el sub recede" style="width:900px">One real customer. One real block. No making it up.</div>
+      <div class="el" style="left:1176px;top:300px;width:620px"><div class="sticky-example green">
+        <div class="se-label">EXAMPLE</div>
+        <div class="se-body">Maya wants <strong>a calm morning</strong> <span class="se-mark">but the 11pm scroll</span> wrecks her sleep, so nothing today fills the need.</div>
+        <div class="se-rule"></div>
+        <div class="se-sub">RISKIEST WORD</div>
+        <div class="se-quote">"the 11pm scroll"</div>
+      </div></div>
+      <div class="el chk"><span class="checkpoint"><span class="tick"></span>ONE SENTENCE, OUT LOUD</span></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>16</span></div>
+    </section></div></div>
+
+    <div class="spec-label">Stickies &middot; chips &middot; tags</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Stickies">
+      <div class="el k"><span class="m GRNd"></span><span>EXIT WALL</span></div>
+      <div class="el h1">Before you go.</div>
+      <div class="el" style="left:120px;top:444px;width:1680px;display:flex;gap:60px;align-items:flex-start">
+        <div class="sticky" style="width:380px">One thing I now understand that I did not at 9am.</div>
+        <div class="sticky green tilt-r" style="width:380px">One question I am leaving with.</div>
+        <div class="sticky" style="width:380px">One person I will call this week.</div>
+      </div>
+      <div class="el" style="left:120px;top:792px;width:1680px;display:flex;gap:24px;align-items:center">
+        <span class="chip" style="--c:var(--GRNd)">SKILL / DISCOVERY</span>
+        <span class="chip solid" style="--c:var(--INK)">ONE INK FIGURE</span>
+        <span class="tag" style="--c:var(--GRNd)">TRACK / GREEN</span>
+      </div>
+      <div class="el pc"><span class="tk GRNd"></span><span>17</span></div>
+    </section></div></div>
+  </section>
+
+  <!-- ── MEDIA ── -->
+  <section class="sec" id="media">
+    <div class="sec-h"><span class="n">G</span><h2>Media placeholders</h2></div>
+    <p class="sec-lede">Never hand&#8209;draw illustration. Drop a striped placeholder with a mono label of what belongs there; the user fills it with a real photo. The slot reads as an honest empty frame, not decoration.</p>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Photo">
+      <div class="el k"><span class="m GRNd"></span><span>THE FIELD</span></div>
+      <div class="el h1">See it before you build it.</div>
+      <div class="el photo" style="left:120px;top:516px;width:1560px;height:372px" data-label="customer interview / photo"></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>18</span></div>
+    </section></div></div>
+  </section>
+
+
+  <!-- ── ICON CARDS ── -->
+  <section class="sec" id="iconcards">
+    <div class="sec-h"><span class="n">H</span><h2>Square&#8209;icon headers</h2></div>
+    <p class="sec-lede">The square&#8209;grid icon vocabulary (see <a href="../HLV Slide System.html#motif"><b>the motif</b></a>) drops into a card header as a <code>.sqicon-box</code> &mdash; an on&#8209;brand alternative to a numeral when the card names a <em>kind</em>, not a step. One green accent tile per glyph; the rest currentColor.</p>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Icon cards">
+      <div class="el k"><span class="m GRNd"></span><span>THE THREE MOVES</span></div>
+      <div class="el h1">Notice, build, repeat.</div>
+      <div class="el card-row"><div class="row3">
+        <div class="card"><span class="sqicon-box fill" data-ico="Focus"></span><div class="c-head">Notice the gap</div><div class="c-body">Watch a real person hit the wall, where it already happens.</div></div>
+        <div class="card"><span class="sqicon-box fill" data-ico="Build"></span><div class="c-head">Build the test</div><div class="c-body">The smallest thing that could prove or kill the guess.</div></div>
+        <div class="card"><span class="sqicon-box fill" data-ico="Cycle"></span><div class="c-head">Run the loop</div><div class="c-body">Keep, pivot or kill. Then go around again, faster.</div></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>19</span></div>
+    </section></div></div>
+
+    <div class="spec-label">On ink &middot; framed glyphs as a feature row</div>
+    <div class="frames"><div class="frame"><section class="s pl-ink" data-screen-label="Icon row ink">
+      <div class="el k"><span class="m GRN"></span><span>WHAT YOU LEAVE WITH</span></div>
+      <div class="el h1">Three durable skills.</div>
+      <div class="el card-row"><div class="row3">
+        <div class="card"><span class="sqicon-box grn" data-ico="Search"></span><div class="c-head">Find</div><div class="c-body">a real problem worth solving.</div></div>
+        <div class="card"><span class="sqicon-box" style="color:#fff" data-ico="Check"></span><div class="c-head">Frame</div><div class="c-body">it in one honest sentence.</div></div>
+        <div class="card"><span class="sqicon-box" style="color:#fff" data-ico="Growth"></span><div class="c-head">Test</div><div class="c-body">the riskiest word in it.</div></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRN"></span><span>20</span></div>
+    </section></div></div>
+  </section>
+
+  <!-- ── TAGS & PROGRESS ── -->
+  <section class="sec" id="tags">
+    <div class="sec-h"><span class="n">I</span><h2>Tags, chips &amp; progress</h2></div>
+    <p class="sec-lede">Labels are <b>square now</b> &mdash; the chip lost its pill radius to match the brand. The step strip is the brand progress marker: a 1&times;N tonal ramp of tiles where the filled run is position and the green tile is here. Use it as a module rail across a deck.</p>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Tags and progress">
+      <div class="el k"><span class="m GRNd"></span><span>STATUS / LABELS</span></div>
+      <div class="el h1">Square labels, square progress.</div>
+      <div class="el" style="left:120px;top:432px;width:1680px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+        <span class="chip" style="--c:var(--GRNd)">DISCOVERY</span>
+        <span class="chip" style="--c:var(--MUTE2)">DRAFT</span>
+        <span class="chip solid" style="--c:var(--INK)">SHIPPED</span>
+        <span class="tag" style="--c:var(--GRNd)">TRACK / GREEN</span>
+        <span class="tag" style="--c:var(--BLUd)">TRACK / BLUE</span>
+      </div>
+      <div class="el" style="left:120px;top:600px;width:1680px;display:flex;flex-direction:column;gap:36px">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span class="t-mono-22 c-MUTE2">MODULE 3 OF 8</span>
+          <span class="steps" style="--st:48px;color:#1E1E1E"><i class="on"></i><i class="on"></i><i class="gr"></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span class="t-mono-22 c-MUTE2">NEARLY THERE &middot; 6 OF 8</span>
+          <span class="steps" style="--st:48px;color:#1E1E1E"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="gr"></i><i></i><i></i></span>
+        </div>
+      </div>
+      <div class="el pc"><span class="tk GRNd"></span><span>21</span></div>
+    </section></div></div>
+  </section>
+
+  <!-- ── WORKSHEET ── -->
+  <section class="sec" id="worksheet">
+    <div class="sec-h"><span class="n">J</span><h2>Worksheet scaffolds</h2></div>
+    <p class="sec-lede">Where participants write. Fill&#8209;in lines are painted rules that own their height (a labelled blank, optionally pre&#8209;filled with a faint prompt); the checklist uses square checkboxes that fill green when done. Pair with the edge&#8209;rail motif for a worksheet plate.</p>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Worksheet fill-in">
+      <div class="el motif mz-edge l accent"></div>
+      <div class="el k" style="left:600px;width:1140px"><span class="m GRNd"></span><span>YOUR TURN / 6 MIN</span></div>
+      <div class="el h1" style="left:600px;width:1200px">Write your gap sentence.</div>
+      <div class="el" style="left:600px;top:384px;width:1140px"><div class="wsheet" style="gap:36px">
+        <div class="wline"><span class="wl-label">Customer</span><div class="wl-rule short"></div></div>
+        <div class="wline"><span class="wl-label">Wants (outcome)</span><div class="wl-rule"></div></div>
+        <div class="wline"><span class="wl-label">But (the block)</span><div class="wl-rule"></div></div>
+        <div class="wline prefill"><span class="wl-label">Riskiest word</span><div class="wl-rule">the one you are least sure of</div></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>22</span></div>
+    </section></div></div>
+
+    <div class="spec-label">Checklist &middot; square checkboxes</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Checklist">
+      <div class="el k"><span class="m GRNd"></span><span>BEFORE YOU PRESENT</span></div>
+      <div class="el h1">Ready to share?</div>
+      <div class="el" style="left:120px;top:432px;width:1560px"><div class="checklist">
+        <div class="ci done"><span class="box"></span><span>My gap sentence names one real customer.</span></div>
+        <div class="ci done"><span class="box"></span><span>I can say the block out loud without notes.</span></div>
+        <div class="ci"><span class="box"></span><span>I circled the single riskiest word.</span></div>
+        <div class="ci"><span class="box"></span><span>I designed the smallest test for it.</span></div>
+      </div></div>
+      <div class="el pc"><span class="tk GRNd"></span><span>23</span></div>
+    </section></div></div>
+  </section>
+
+  <script>
+  (function(){
+    const ICONS={Focus:['#####','#...#','#.g.#','#...#','#####'],Growth:['....g','...##','..###','.####','#####'],Build:['.....','g....','##...','###..','####.'],Search:['ggg..','g.g..','ggg..','...#.','....#'],Check:['.....','....g','#..g.','.#g..','..#..'],Cycle:['.###.','#...#','#...g','#...#','.##..']};
+    const cls={'#':'on','g':'on gr'};
+    function ico(rows,sz){let c='';rows.forEach(r=>{for(const ch of r){const k=cls[ch];c+=k?'<i class="'+k+'"></i>':'<i></i>'}});return '<span class="sqicon" style="--n:'+rows[0].length+';--sq:'+sz+'px">'+c+'</span>';}
+    document.querySelectorAll('[data-ico]').forEach(b=>{const n=b.getAttribute('data-ico');if(ICONS[n])b.innerHTML=ico(ICONS[n],84);});
+  })();
+  </script>
+
+  <div class="callout-doc" style="margin-top:64px">
+    <b>Next:</b> <a href="diagrams.html"><b>Diagrams</b></a> &mdash; the six primitives and the archetype catalogue &middot; <a href="archetypes.html"><b>Archetypes</b></a> &mdash; the full canonical slide set.
+  </div>
+</div>
+
+<script src="linter.js"></script>
+</body>
+</html>

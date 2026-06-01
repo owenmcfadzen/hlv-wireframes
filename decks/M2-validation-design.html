@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · M2 Validation Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  .pl-blue .el.k, .pl-blue .el.foot, .pl-blue .el.cred, .pl-blue .el.pc{color:#1E1E1E}
+  .pl-blue .el.sub{color:#0B2A4A}
+  .voice-chip{display:inline-block;padding:2px 10px;margin-left:10px;border:1.5px solid currentColor;font-weight:700}
+  /* market track (blue) overrides on green-hardcoded kit pieces */
+  .pair .ps.figure{border-color:#0B5FB0}
+  .pl-ink .pair .ps.figure{border-color:#1E9BFE}
+  .pair .hinge .h-delta{color:#0B5FB0}
+  .pl-ink .pair .hinge .h-delta{color:#1E9BFE}
+  .pair .hinge .h-arrow{border-left-color:#0B5FB0}
+  .pl-ink .pair .hinge .h-arrow{border-left-color:#1E9BFE}
+  .pair .ps.figure .ps-tag{color:#0B5FB0}
+  .pl-ink .pair .ps.figure .ps-tag{color:#1E9BFE}
+  .fr.peak{border-color:#0B5FB0}
+  .pl-ink .fr.peak{border-color:#1E9BFE}
+  .fr-tag{color:#0B5FB0}
+  .pl-ink .fr-tag{color:#1E9BFE}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ═══════════════════════ 01 · COVER ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="01 Cover">
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot ink" style="left:120px;top:96px"></span>
+  <span class="gdot ink" style="left:1800px;top:96px"></span>
+  <span class="gdot ink" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m INK"></span><span>MARKET &middot; SESSION 2 &middot; VALIDATION DESIGN &middot; 135 MIN</span></div>
+  <div class="el hero" style="top:312px">Design an experiment<br>that can come back no.</div>
+  <div class="el sub" style="top:660px;width:1320px">A polite yes is not proof. A behaviour is.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>01 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 02 · STATEMENT (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="02 Statement">
+  <div class="el k"><span class="m BLUd"></span><span>WHY BOTHER</span></div>
+  <div class="el state">Validation that sets out to confirm<br>finds confirmation.</div>
+  <div class="el" style="left:120px;top:540px;width:1560px">
+    <div class="t-body c-MUTE2">A real test names what would prove you wrong. Then it goes looking.</div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>02 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 03 · WORKED · says vs does (ink) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="03 Says versus does">
+  <div class="el k"><span class="m BLU"></span><span>MEET ANYA &middot; A WORKED EXAMPLE</span></div>
+  <div class="el h1">She says yes. She has dropped the same fix three times.</div>
+  <div class="el" style="left:120px;top:348px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">SAYS</div>
+          <div class="ps-claim">"I'd use a sleep tool."</div>
+          <div class="ps-note">The polite yes. Easy to hear.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">CHECK BEHAVIOUR</div>
+          <div class="h-delta">Three tools, abandoned in a week.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">DOES</div>
+          <div class="ps-claim">Phone in the kitchen at 10pm.</div>
+          <div class="ps-note">Retrieved at 11:40. The behaviour you can observe.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>03 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 04 · PREDICT THE LEADING QUESTION (ink, DO) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="04 Predict her answer">
+  <div class="el k"><span class="m BLU"></span><span>PREDICT &middot; 90 SECONDS &middot; TEAM CALL</span></div>
+  <div class="el" style="left:120px;top:168px;width:300px">
+    <span class="chip solid" style="--c:var(--BLU);color:#0B2A4A">DO</span>
+  </div>
+  <div class="el drill" style="top:288px">Predict her answer<br>to a leading question.</div>
+  <div class="el" style="left:120px;top:660px;width:1560px">
+    <div class="t-body" style="color:#CECECE">"Would a tool that locks your phone at 11 help you sleep?" Yes, obviously.</div>
+  </div>
+  <div class="el chk c-BLU"><span class="checkpoint" style="color:#1E9BFE"><span class="tick" style="background:#1E9BFE"></span>HOLD THE QUESTION &middot; REWORK IT NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>04 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 05 · BEFORE / AFTER · two questions, one Anya (ink, peak) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="05 Two questions one Anya">
+  <div class="el k"><span class="m BLU"></span><span>THE TEACHING PEAK</span></div>
+  <div class="el h1">The difference is the question. Not the person.</div>
+  <div class="el" style="left:120px;top:312px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">LEADING</div>
+          <div class="ps-claim">"Would this help you sleep?"</div>
+          <div class="ps-note">She says yes.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">SAME ANYA</div>
+          <div class="h-delta">Only the question changed.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">BEHAVIOUR</div>
+          <div class="ps-claim">"What did you do last night at 11pm?"</div>
+          <div class="ps-note">Reached for the phone. Same as every night.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:684px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE INDICTMENT</div>
+      <div class="di-body">Same person, same day, only the question changed. The polite yes was the question, not Anya.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>05 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 06 · TWO STANDING RULES (paper, 2 cards) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="06 Two standing rules">
+  <div class="el k"><span class="m BLUd"></span><span>TWO STANDING RULES</span></div>
+  <div class="el h1">Two rules every question must pass.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">RULE ONE</div>
+        <div class="c-head">Never mention your product.</div>
+        <div class="c-body">If you frame the problem around your fix, you only hear about your fix.</div>
+      </div>
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">RULE TWO</div>
+        <div class="c-head">Ask what they did. Not what they would do.</div>
+        <div class="c-body">Past behaviour is recorded. Future intent is invented.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>06 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 07 · HYPOTHESIS + FALSIFICATION (paper, formula) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="07 Hypothesis and falsification">
+  <div class="el k"><span class="m BLUd"></span><span>THE QUESTION, AS ONE LINE</span></div>
+  <div class="el h1">We believe / currently / because / wrong if.</div>
+  <div class="el" style="left:120px;top:384px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span class="run-BLU">We believe</span>
+      <span>that</span>
+      <span class="run-BLU">currently</span>
+      <span>because</span>
+      <span class="run-BLU">because</span>
+      <span>.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:516px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">WE ARE WRONG IF</div>
+      <div class="di-body">Name the behaviour you would observe that disconfirms the belief. Write it before you ask anyone.</div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:720px;width:1680px">
+    <div class="callout" style="--c:var(--BLUd);--fill:var(--BLU-soft)">
+      <div class="co-eb">ANYA, AS A WORKED FILL</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">We believe teens want sleep. Currently they sleep ~6h on weeknights. Because the 11pm reach is reflex. Wrong if every interviewed teen has tried 3+ fixes and abandoned them.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>07 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 08 · YOUR TURN (blue divider, 5-node) ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="08 Your turn">
+  <div class="el k"><span class="m INK"></span><span>YOUR TURN &middot; 84 MINUTES OF WORK</span></div>
+  <div class="el hero" style="top:240px">Your turn.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr">
+          <div class="fr-tag">FALSIFY</div>
+          <div class="fr-body">Name what proves wrong.</div>
+          <div class="fr-note">12 min &middot; do first</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">DRAFT</div>
+          <div class="fr-body">AI drafts. Will fish for yes.</div>
+          <div class="fr-note">20 min &middot; hard stop</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">DEBIAS</div>
+          <div class="fr-body">Break the questions.</div>
+          <div class="fr-note">30 min &middot; largest block</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">TIER</div>
+          <div class="fr-body">Lock criteria.</div>
+          <div class="fr-note">10 min</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">DRY-RUN</div>
+          <div class="fr-body">Rehearse before the field.</div>
+          <div class="fr-note">12 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>08 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 09 · FALSIFY (paper, activity) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="09 Falsify first">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 1 &middot; FALSIFY &middot; 12 MIN &middot; DO FIRST</span></div>
+  <div class="el h1">Name what would prove you wrong. First.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t">Take M1's <span class="assert">riskiest word.</span> The behaviour you cannot yet observe.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t">Write one sentence: <span class="assert">"We are wrong if ___."</span> Observable. Specific.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">03</span><span class="nl-t">If the AI cannot disprove your belief, <span class="assert">your test will not either.</span></span></div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#0B5FB0"><span class="checkpoint" style="color:#0B5FB0"><span class="tick" style="background:#0B5FB0"></span>FALSIFICATION LINE WRITTEN &middot; BEFORE THE DRAFT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>09 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 10 · DRAFT (paper, suspect) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="10 The AI drafts">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 2 &middot; DRAFT &middot; 20 MIN &middot; HARD STOP</span></div>
+  <div class="el h1">The AI drafts. It will fish for yes.</div>
+  <div class="el sub recede">The output is a draft to be broken, not a script to run.</div>
+  <div class="el" style="left:120px;top:444px;width:1680px">
+    <div class="fill-prompt" style="--c:var(--YEL);--fill:#FFF6DC">
+      "Would you use <span class="tok">our fix</span> to solve <span class="tok">your problem</span>? Would you recommend it?"
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:636px;width:1680px">
+    <div class="callout" style="--c:var(--YEL);--fill:#FFF6DC">
+      <div class="co-eb" style="color:#8A6000">EXPECT THIS</div>
+      <div class="co-body">Leading. Future-tense. Mentions the product. Yes-bait.</div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#8A6000"><span class="checkpoint" style="color:#8A6000"><span class="tick" style="background:#C99700"></span>STOP DRAFTING &middot; START BREAKING</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>10 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 11 · DEBIAS (paper, the spine) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="11 Debias the questions">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 3 &middot; DEBIAS &middot; 30 MIN &middot; THE SPINE</span></div>
+  <div class="el h1">Break the questions. Three moves.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t"><span class="assert">Strip the product.</span> Cut every word that names your fix.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t"><span class="assert">Replace "would" with "did".</span> Past behaviour, not future intent.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">03</span><span class="nl-t"><span class="assert">Open a door to no.</span> Each question must invite a disconfirming answer.</span></div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#0B5FB0"><span class="checkpoint" style="color:#0B5FB0"><span class="tick" style="background:#0B5FB0"></span>EVERY QUESTION CAN COME BACK NO</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>11 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 12 · TIER + CRITERIA (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="12 Lock the criteria">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 4 &middot; TIER + CRITERIA &middot; 10 MIN</span></div>
+  <div class="el h1">Lock what counts as signal. Before you hear it.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">TIER YOUR QUESTIONS</div>
+        <div class="c-head">Must-ask, may-ask.</div>
+        <div class="c-body">Three to four behavioural must-asks. Two to three may-asks if there is time.</div>
+      </div>
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">CRITERIA, WRITTEN</div>
+        <div class="c-head">What count as yes. What as no.</div>
+        <div class="c-body">A polite yes does not get retroactively reclassified after the interview.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>12 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 13 · DRY-RUN + FIELD KIT (paper, PROPOSED) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="13 Dry-run">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 5 &middot; DRY-RUN &middot; 12 MIN</span></div>
+  <div class="el h1">Rehearse before the field.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t">Run the protocol on a <span class="assert">peer specialist.</span> Two minutes per question.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t">Peer flags every line that <span class="assert">fishes for yes.</span> Rewrite on the spot.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">03</span><span class="nl-t">Best debiased questions feed the <span class="assert">shared Field Kit</span> the cohort takes out this afternoon.</span></div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#0B5FB0"><span class="checkpoint" style="color:#0B5FB0"><span class="tick" style="background:#0B5FB0"></span>DRY-RUN PASSED &middot; KIT CONTRIBUTED</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>13 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 14 · RECAP · 3 STATS (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="14 What you now hold">
+  <div class="el k"><span class="m BLUd"></span><span>WHAT YOU NOW HOLD</span></div>
+  <div class="el h1">Can your experiment come back no?</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="row3">
+      <div class="stat-card" style="--c:var(--BLUd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">DISCONFIRMING SIGNAL</div>
+        <div class="sc-d">The behaviour that, if you see it, you are wrong.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--BLUd)">
+        <div class="sc-n">___</div>
+        <div class="sc-l">DEBIASED QUESTIONS</div>
+        <div class="sc-d">Past tense. No product. Door to no.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--BLUd)">
+        <div class="sc-n">!</div>
+        <div class="sc-l">LOCKED CRITERIA</div>
+        <div class="sc-d">Yes and no, written before the first interview.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">A survey that was always going to say yes is not a test.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>14 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 15 · HANDOFF (ink) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="15 Handoff">
+  <div class="el motif mz-corner br" style="--mz-op:0.16"></div>
+  <div class="el k"><span class="m BLU"></span><span>NEXT &middot; THIS AFTERNOON</span></div>
+  <div class="el hero" style="top:288px">Real behaviour decides.<br>Not the whiteboard.</div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-BLU">
+        <div class="c-eb c-BLU">OUT IN MARKET #1 &middot; TUE PM</div>
+        <div class="c-head">Run the protocol on real teens.</div>
+        <div class="c-body">Record what they did. Not what they said they would do.</div>
+      </div>
+      <div class="card rule-top t-MUTE">
+        <div class="c-eb">FEEDS</div>
+        <div class="c-head">PRD. M3 First Moves.</div>
+        <div class="c-body">A disconfirming signal travels both directions.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>15 / 15</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<script src="../system/linter.js"></script>
+</body>
+</html>

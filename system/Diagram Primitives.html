@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.addEventListener('error',function(e){if(e.message&&e.message.indexOf('ResizeObserver')>-1){e.stopImmediatePropagation();}});</script>
+<title>Diagram Primitives · HLV Slide System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="diagrams.css">
+<link rel="stylesheet" href="specimen.css">
+<style>
+  /* board-local chrome only — never touches slide internals */
+  .acc-swap{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;background:#fff;border:1px solid var(--doc-line);border-left:6px solid var(--grn);padding:22px 26px;margin:28px 0 8px;max-width:1000px}
+  .acc-swap .as-keys{display:flex;flex-direction:column;gap:12px;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.04em}
+  .acc-swap .as-row{display:flex;align-items:center;gap:12px}
+  .acc-swap .as-sw{width:22px;height:22px;flex:0 0 auto}
+  .acc-swap .as-row .tier{color:var(--doc-mute);text-transform:uppercase;letter-spacing:.08em}
+  .acc-swap p{margin:0;font-size:15px;line-height:1.6;color:var(--doc-mute);max-width:520px;text-wrap:pretty}
+  .acc-swap p code{font-family:"JetBrains Mono",monospace;font-size:13px;background:var(--doc-quiet);border:1px solid var(--doc-line);padding:1px 6px;color:var(--doc-ink)}
+  /* the marked "key word" — a square outline (the brand has no circles) */
+  .kw{display:inline-block;border:3px solid var(--GRNd);padding:6px 18px;font-family:var(--type-mono);font-size:32px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--GRNd)}
+  .pl-ink .kw{border-color:var(--GRN);color:var(--GRN)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="brand"><span class="navmark"></span>HLV</span>
+  <a href="../HLV Slide System.html">Foundations</a>
+  <a href="components.html">Components</a>
+  <a href="diagrams.html">Diagrams</a>
+  <a href="archetypes.html">Archetypes</a>
+  <a href="Narrative Range.html">Range</a>
+  <a href="Diagram Primitives.html" class="here">Primitives</a>
+  <span class="keys">press <b>L</b> lint &nbsp; <b>G</b> grid</span>
+</nav>
+
+<div class="wrap">
+  <header class="hero-h">
+    <div class="ey">A reusable diagram vocabulary</div>
+    <h1>Six primitives.</h1>
+    <p>The recurring diagram types a teaching deck reaches for, built once as clean, label&#8209;swappable objects. Drop one into a slide and relabel it &mdash; never re&#8209;specify its geometry. Each is composed from the same six&#8209;part grammar, so it lands on the substrate and reads at a glance on a projector and on a phone.</p>
+  </header>
+
+  <div class="acc-swap">
+    <div class="as-keys">
+      <div class="as-row"><span class="as-sw" style="background:#0A8C3D"></span><b>GREEN</b>&nbsp;<span class="tier">primary &middot; default</span></div>
+      <div class="as-row"><span class="as-sw" style="background:#0B5FB0"></span><b>BLUE</b>&nbsp;<span class="tier">secondary</span></div>
+      <div class="as-row"><span class="as-sw" style="background:#7649C2"></span><b>PURPLE</b>&nbsp;<span class="tier">tertiary</span></div>
+    </div>
+    <p>Every primitive carries its accent on one token, so it is swappable in one move &mdash; set <code>--c</code> (or swap the <code>t-GRNd</code> / <code>dgm-GRN</code> class) to blue or purple. Shown here in the default green. <b>Note:</b> the brief asked for blue/orange/green; this system&rsquo;s palette is locked and <b>orange is retired</b>, so the third swap is <b>purple</b> per the green&rarr;blue&rarr;purple hierarchy.</p>
+  </div>
+
+  <section class="sec" id="primitives">
+    <div class="sec-h"><span class="n">&mdash;</span><h2>The board</h2></div>
+
+    <!-- 1 · 2×2 SCATTER ─────────────────────────────────────────────── -->
+    <div class="spec-label">01 &middot; 2&times;2 scatter plot <span class="pill">accent: the bet + the gap</span></div>
+    <div class="spec-note"><b>Use when</b> &mdash; you need to find an open gap in a crowded field. Plot how it gets solved today, highlight the empty quadrant, drop your bet in it.</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="2x2 scatter">
+      <div class="el k"><span class="m GRNd"></span><span>PRIMITIVE 01 &middot; 2&times;2 SCATTER</span></div>
+      <div class="el" style="left:300px;top:204px"><div class="dgm">
+        <div class="matrix" style="--mx:660px">
+          <div class="mx-q tr gap">OPEN GAP</div>
+          <span class="mx-axis-y" style="left:-78px">PAIN &rarr;</span>
+          <span class="mx-axis-x" style="top:calc(100% + 22px)">FREQUENCY &rarr;</span>
+          <div class="mx-plot" style="left:26%;top:70%"><span class="dot"></span><span class="lbl">INCUMBENT</span></div>
+          <div class="mx-plot" style="left:44%;top:80%"><span class="dot"></span></div>
+          <div class="mx-plot" style="left:20%;top:46%"><span class="dot"></span><span class="lbl">DIY</span></div>
+          <div class="mx-plot" style="left:58%;top:62%"><span class="dot"></span></div>
+          <div class="mx-plot you" style="left:74%;top:26%"><span class="dot"></span><span class="lbl">THE BET</span></div>
+        </div>
+      </div></div>
+      <div class="el" style="left:1160px;top:336px;width:600px"><div class="col gap-36">
+        <div class="chip-node" style="--c:var(--INK)">Existing players today</div>
+        <div class="chip-node" style="--c:var(--GRN-soft)">Open gap &mdash; unserved space</div>
+        <div class="chip-node" style="--c:var(--GRNd)">The bet &mdash; your lane</div>
+      </div></div>
+      <div class="el foot">ACCENT &rarr; THE BET MARKER + THE GAP FILL</div>
+    </section></div></div>
+
+    <!-- 2 · NESTED CONCENTRIC FRAMES ────────────────────────────────── -->
+    <div class="spec-label">02 &middot; Nested frames <span class="pill">accent: centre + layer in focus</span></div>
+    <div class="spec-note"><b>Use when</b> &mdash; you want to show the layers of context around one person. Centre is who you serve; each ring is a layer further out.</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Nested frames">
+      <div class="el k"><span class="m GRNd"></span><span>PRIMITIVE 02 &middot; NESTED FRAMES</span></div>
+      <div class="el" style="left:300px;top:168px"><div class="dgm"><div class="nest" style="--nz:744px">
+        <div class="ring r1"><span class="rl">THE WORLD</span></div>
+        <div class="ring r2 hot"><span class="rl">THEIR PEOPLE</span></div>
+        <div class="ring r3"><span class="rl">THEIR TOOLS</span></div>
+        <div class="core"></div>
+        <div class="core-lbl">THE USER</div>
+      </div></div></div>
+      <div class="el" style="left:1200px;top:348px;width:560px"><div class="col gap-36">
+        <div class="chip-node" style="--c:var(--GRNd)">Centre &mdash; the person you serve</div>
+        <div class="chip-node" style="--c:var(--MUTE2)">Each ring &mdash; one layer of context</div>
+        <div class="chip-node" style="--c:var(--GRN-soft)">Highlight the layer in focus</div>
+      </div></div>
+      <div class="el foot">ACCENT &rarr; THE CENTRE FIGURE + THE LAYER IN FOCUS</div>
+    </section></div></div>
+
+    <!-- 3 · LEFT-TO-RIGHT STAGE FLOW ────────────────────────────────── -->
+    <div class="spec-label">03 &middot; Stage flow <span class="pill">accent: the output stage</span></div>
+    <div class="spec-note"><b>Use when</b> &mdash; you are walking through an activity sequence. Four stages, three arrows; each node carries a label and a small time / output sub&#8209;line.</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Stage flow">
+      <div class="el k"><span class="m GRNd"></span><span>PRIMITIVE 03 &middot; STAGE FLOW</span></div>
+      <div class="el h1">Four moves, left to right.</div>
+      <div class="el" style="left:120px;top:456px;width:1680px"><div class="dgm ctx-band">
+        <div style="display:flex;align-items:stretch;gap:18px">
+          <div class="node" style="flex:1"><div class="node__k">01</div><div class="node__t">Frame</div><div class="node__d">8 min &middot; the question on the board</div></div>
+          <div class="arrow-r" style="align-self:center"><span class="stem"></span><span class="head"></span></div>
+          <div class="node" style="flex:1"><div class="node__k">02</div><div class="node__t">Diverge</div><div class="node__d">12 min &middot; many rough options</div></div>
+          <div class="arrow-r" style="align-self:center"><span class="stem"></span><span class="head"></span></div>
+          <div class="node" style="flex:1"><div class="node__k">03</div><div class="node__t">Converge</div><div class="node__d">10 min &middot; one bet chosen</div></div>
+          <div class="arrow-r hot" style="align-self:center"><span class="stem"></span><span class="head"></span></div>
+          <div class="node lead" style="flex:1;--c:var(--GRNd)"><div class="node__k">04</div><div class="node__t">Commit</div><div class="node__d">5 min &middot; the next concrete action</div></div>
+        </div>
+      </div></div>
+      <div class="el foot">ACCENT &rarr; THE OUTPUT STAGE + ITS INBOUND ARROW</div>
+    </section></div></div>
+
+    <!-- 4 · FILL-IN-THE-BLANK FORMULA ───────────────────────────────── -->
+    <div class="spec-label">04 &middot; Fill&#8209;in&#8209;the&#8209;blank formula <span class="pill">accent: blanks + key word</span></div>
+    <div class="spec-note"><b>Use when</b> &mdash; you want to compress an insight to one line. Fixed connective text in neutral, three swappable blanks in the accent, one marked key word.</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Fill-in formula">
+      <div class="el k"><span class="m GRNd"></span><span>PRIMITIVE 04 &middot; FILL&#8209;IN FORMULA</span></div>
+      <div class="el" style="left:120px;top:288px;width:1560px"><div class="fill-prompt" style="--c:var(--GRNd)">
+        <span class="tok">who</span> can&rsquo;t <span class="tok">do the job</span> because <span class="tok">the obstacle</span>, so today nothing really fits.
+      </div></div>
+      <div class="el" style="left:120px;top:636px;width:1560px;display:flex;align-items:center;gap:40px">
+        <span class="kw">the obstacle</span>
+        <span class="note">&larr; the riskiest word. Mark it, test it first.</span>
+      </div>
+      <div class="el foot">ACCENT &rarr; THE THREE BLANKS + THE KEY&#8209;WORD MARK</div>
+    </section></div></div>
+
+    <!-- 5 · STAT / RECAP CARDS ──────────────────────────────────────── -->
+    <div class="spec-label">05 &middot; Stat / recap cards <span class="pill">accent: the headline stat</span></div>
+    <div class="spec-note"><b>Use when</b> &mdash; you are recapping with numbers. A row of three: each a big numeral over a short label. Tone ranks them; accent the one that matters most.</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Stat cards">
+      <div class="el k"><span class="m GRNd"></span><span>PRIMITIVE 05 &middot; STAT / RECAP CARDS</span></div>
+      <div class="el h1">What the week proved.</div>
+      <div class="el" style="left:120px;top:480px;width:1680px"><div class="row3">
+        <div class="stat-card" style="--c:var(--GRNd)"><div class="sc-n">3&times;</div><div class="sc-l">Faster to first insight</div></div>
+        <div class="stat-card"><div class="sc-n">41%</div><div class="sc-l">Said it solved the problem</div></div>
+        <div class="stat-card"><div class="sc-n">12</div><div class="sc-l">Calls before the pivot</div></div>
+      </div></div>
+      <div class="el foot">ACCENT &rarr; THE HEADLINE STAT (ONE, NOT ALL)</div>
+    </section></div></div>
+
+    <!-- 6 · BEFORE / AFTER DELTA ─────────────────────────────────────── -->
+    <div class="spec-label">06 &middot; Before / after delta <span class="pill">accent: the after frame</span></div>
+    <div class="spec-note"><b>Use when</b> &mdash; you are showing a change. Left is what we had; right is what changed &mdash; and the right column is sized larger so it visibly carries the point.</div>
+    <div class="frames"><div class="frame"><section class="s pl-paper" data-screen-label="Before after">
+      <div class="el k"><span class="m GRNd"></span><span>PRIMITIVE 06 &middot; BEFORE / AFTER DELTA</span></div>
+      <div class="el h1">What changed, and why it matters.</div>
+      <div class="el" style="left:120px;top:432px;width:1680px"><div class="ba" style="grid-template-columns:5fr auto 8fr">
+        <div class="ba-cell"><div class="ba-eb">WHAT WE HAD</div><div class="ba-body">A clever build, shipped on a hunch. We guessed at the need and hoped the market agreed.</div></div>
+        <div class="ba-arrow"></div>
+        <div class="ba-cell after"><div class="ba-eb">WHAT CHANGED</div><div class="ba-body">A need we heard in real words, from real people. The same effort, aimed at a problem we could name &mdash; and a sentence anyone on the team can repeat back.</div></div>
+      </div></div>
+      <div class="el foot">ACCENT &rarr; THE AFTER FRAME (THE LARGER, GREEN&#8209;EDGED COLUMN)</div>
+    </section></div></div>
+
+  </section>
+
+  <div class="callout-doc" style="margin-top:64px">
+    Six objects, one grammar. Relabel any of them in place &mdash; swap the text, swap <b>one accent token</b> (green &rarr; blue &rarr; purple) &mdash; and the geometry, spacing and type stay on the substrate. Press <b>L</b> to lint, <b>G</b> for the grid.
+  </div>
+</div>
+
+<script src="linter.js"></script>
+</body>
+</html>

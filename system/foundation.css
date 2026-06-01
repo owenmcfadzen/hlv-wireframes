@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   foundation.css · HLV Slide System — THE SUBSTRATE
+   ───────────────────────────────────────────────────────────────────────
+   Single source of truth for both renderers: the browser (this kit) and
+   Keynote 14.x via the AppleScript pipeline.
+
+   THE THESIS. Rhythm and "feeling solid" are not added — they EMERGE when
+   every dimension resolves onto ONE shared substrate. Nothing below is a
+   magic number: every value is a token, every token is a baseline multiple.
+   If a position can be hand-typed, it will drift, so the kit references
+   these tokens and never restates a literal.
+
+   FIVE HARD CONSTRAINTS (the export contract — do not break these):
+     1. Colour is HEX/RGB only. Never oklch() or color-mix(). The PPTX/Keynote
+        parser silently drops modern colour syntax (backgrounds vanish, type
+        defaults to pure black). Every token here is hex; keep it so.
+     2. The atom is 12px. x snaps to 24, y snaps to 12. No cqi / vw / %.
+     3. The palette is locked to co-created.com. No lime. No new colours.
+     4. Every element is absolutely positioned at a fixed snap target.
+        No margin:auto, no flow-stacking between groups.
+     5. Leading is the ONE place screen and Keynote differ. Single-line roles
+        are positioned by box TOP at a snap target (leading never enters
+        cross-element rhythm). Multi-line roles cap their line count, so the
+        block is a known integer-baseline multiple here and a predictable
+        ~1.2x block there. Same tops, reconciled blocks.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── 1 · SPATIAL SUBSTRATE ──────────────────────────────────────────────
+     One atom. Everything vertical and spatial is an integer multiple of it. */
+  --u:         12px;   /* THE ATOM — vertical baseline                       */
+  --sub:       24px;   /* horizontal sub-unit              = 2u              */
+  --col:       96px;   /* major column                     = 8u              */
+  --gutter:    48px;   /* gutter                           = 4u              */
+  --margin:   120px;   /* L/R margin                       = 10u             */
+  --canvas-w: 1920px;
+  --canvas-h: 1080px;
+  --live:     1680px;  /* live width (120 -> 1800)         = 14 cols         */
+
+  /* Sealed spacing scale. Every gap / padding / margin is ONE of these.
+     No arbitrary values — round to the scale. (8u jumps after 144.) */
+  --sp-1:  12px;  --sp-2:  24px;  --sp-3:  36px;  --sp-4:  48px;
+  --sp-5:  60px;  --sp-6:  72px;  --sp-7:  84px;  --sp-8:  96px;
+  --sp-10:120px;  --sp-12:144px;  --sp-14:168px;  --sp-16:192px;
+
+  /* ── 2 · BANDS ──────────────────────────────────────────────────────────
+     Four horizontal bands. Each role lives in exactly one. Vertical
+     composition is anchoring, never centring: kicker high, headline high,
+     sub directly under, the focus/payload element anchors LOW (~648-720) so
+     whitespace carries the middle and the page balances to the bottom. */
+  --band-top:     96px;   /* Top:     96 -> 336   kicker, h1, hero            */
+  --band-anchor: 336px;   /* Anchor: 336 -> 552   sub, lead, anchor sub       */
+  --band-content:552px;   /* Content:552 -> 864   cards, diagrams, payload    */
+  --band-footer: 864px;   /* Footer: 864 -> 984   checkpoint, counter, cred   */
+  --band-end:    984px;   /* below this is the bleed margin to 1080           */
+
+  /* ── 3 · SNAP TARGETS (the working set; all multiples of 12) ─────────────
+     The pipeline writes these exact y values. The kit never exposes a raw
+     uncompensated y. Slots read these; never hand-type a vertical literal. */
+  --y-kicker:       96px;   --y-h1:          168px;   --y-hero:        264px;
+  --y-statement:   312px;   --y-drill:       288px;   --y-sub:         288px;
+  --y-sub2:        372px;   --y-cover-sub:   432px;   --y-lead:        300px;
+  --y-stat:        384px;   --y-quote-mark:  180px;   --y-quote:       396px;
+  --y-quote-attr:  660px;   --y-content:     552px;   --y-card:        600px;
+  --y-card-cushion:624px;   --y-stat-row:    612px;   --y-stat-label:  792px;
+  --y-eyebrow-672: 672px;   --y-body-768:    768px;   --y-checkpoint:  888px;
+  --y-cred:        912px;   --y-pc:          936px;   --y-ghost:       120px;
+  --y-payload:     648px;   /* generic LOW anchor for a content block         */
+
+  /* ── 4 · X ORIGINS & WIDTHS (all snap to 24) ─────────────────────────────*/
+  --x-margin:  120px;   --x-right:  1800px;   /* the only right-anchor edge   */
+  --x-2up-b:  1000px;
+  --x-3up-b:   720px;   --x-3up-c: 1320px;
+  --x-4up-b:   552px;   --x-4up-c:  984px;    --x-4up-d: 1416px;
+
+  --w-live:    1680px;  --w-reading:  816px;  /* 1-up body cap                */
+  --w-display:1320px;   --w-h1:      1560px;  /* hero / drill / definition    */
+  --w-2up:     800px;   --w-3up:      520px;  --w-4up:     384px;
+
+  /* ── 5 · COLOUR — a perceptual neutral ladder, expressed in HEX ──────────
+     Reason about CONTRAST, not hex codes: the ladder is an even lightness
+     scale (descending L, zero chroma). Tokens never flip meaning — a plate
+     selects the opposite end (paper = ink on white; ink = white on ink).
+     HEX ONLY — never oklch()/color-mix(); the export parser drops them. */
+  --WHITE: #FFFFFF;   /* paper plate / type on ink                           */
+  --L92:   #E4E4E4;   /* faint hairline on paper, dim divider                */
+  --L86:   #CECECE;   /* high tone on ink, soft rule                         */
+  --MUTE:  #939393;   /* brand mute — footer feeds, ghosts, dim type on ink  */
+  --SEC:   #666666;   /* secondary tier                                      */
+  --MUTE2: #565656;   /* hairlines on paper, dimmer gray                     */
+  --tone1: #2B2B2B;   /* strong secondary on paper                           */
+  --INK:   #1E1E1E;   /* brand ink — plate / type on paper                   */
+
+  /* ── Accents — LOCKED to co-created.com, in a STRICT HIERARCHY. This is the
+     only place colour is defined; no new hexes elsewhere.
+       GREEN   — PRIMARY. The signature; the default accent everywhere.
+       BLUE    — SECONDARY. The second voice when grouping needs two marks.
+       PURPLE  — TERTIARY. The third mark; reach for it only after blue.
+       YELLOW + RED — HIGHLIGHT / CRITICAL ONLY. Never a grouping track, never
+                 body type. Yellow flags the thing to act on; red flags risk.
+     Use the LEAST colour that does the job: one green is the norm; blue and
+     purple enter only for genuine 2- and 3-way grouping. Tone + position
+     still carry hierarchy first.  bright variant = ink plates · deep = paper. */
+  --GRN:  #00D967;  --GRNd: #0A8C3D;   /* PRIMARY                                   */
+  --BLU:  #1E9BFE;  --BLUd: #0B5FB0;   /* SECONDARY                                 */
+  --PUR:  #B884FE;  --PURd: #7649C2;   /* TERTIARY                                  */
+  --YEL:  #FFC21A;                     /* HIGHLIGHT — ONE value, no deep variant    */
+  --RED:  #FF6B6B;  --REDd: #C2342B;   /* CRITICAL                                  */
+
+  /* Soft tints — sticky notes, tinted cards, region fills (backgrounds under
+     ink type only; never a type colour). */
+  --GRN-soft: #BFF1D6;  --BLU-soft: #CFE6FF;  --PUR-soft: #E7DBFF;
+  --YEL-soft: #FFE680;  --RED-soft: #FFDCDC;
+
+  /* GROUPING SET — when a diagram needs 2-3 distinct marks, draw IN ORDER:
+     green, then blue, then purple, then a neutral. Colour is grouping only. */
+  --grp-1: var(--GRNd);  --grp-2: var(--BLUd);  --grp-3: var(--PURd);  --grp-4: var(--MUTE2);
+
+  /* ── DEPRECATED (do not use in new work) ──────────────────────────────────
+     Orange was retired -> green. WARN -> yellow. YELd had a deep value that no
+     longer exists -> aliased to the single yellow so legacy markup still paints.
+     Yellow has ONE value now; never reference --YELd or --ORG* in new work. */
+  --ORG:  var(--GRN);   --ORGd: var(--GRNd);
+  --WARN: var(--YEL);   --YELd: var(--YEL);   --ORG-soft: var(--YEL-soft);
+
+  /* Plate surfaces — the recessive "quiet" surface and the inset wash. */
+  --paper-quiet: #F4F3F1;   /* recessive paper surface (quiet slides)        */
+  --ink-raise:   #2A2A2A;   /* raised cell on the ink plate                  */
+
+  /* ── 6 · TYPE AS A CLOSED COORDINATE SPACE ───────────────────────────────
+     role = size-step x tone x weight x case ; tracking is DERIVED, never
+     chosen at the call site. Each step is a SEALED TRIAD: size / leading /
+     tracking, leading FIXED and baseline-locked (an integer count of 12px
+     rows) so each block fills whole rows. Weight is a SEALED SET — Book(400)
+     / Medium(500) / Bold(700) / Black(800) — and is NEVER a hierarchy lever;
+     a heavier weight only restores presence lost at small size or wide
+     tracking. Tone is THE hierarchy axis. The kit and any specimen consume
+     the SAME token, so docs can never drift from product. */
+  --type-display: "Plus Jakarta Sans", "CircularPro", system-ui, sans-serif;
+  --type-body:    "Plus Jakarta Sans", "CircularPro", system-ui, sans-serif;
+  --type-mono:    "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  /* role            weight  size / leading(rows)         family             | rows */
+  --t-kicker:        500     32px / 48px   var(--type-mono);     /* 4u */
+  --t-body:          400     40px / 60px   var(--type-body);     /* 5u */
+  --t-body-small:    400     32px / 48px   var(--type-body);     /* 4u — floor */
+  --t-body-large:    500     48px / 60px   var(--type-body);     /* 5u */
+  --t-cover-sub:     400     52px / 72px   var(--type-body);     /* 6u */
+  --t-card-head:     700     48px / 60px   var(--type-display);  /* 5u */
+  --t-label:         700     40px / 48px   var(--type-display);  /* 4u — small head */
+  --t-h1:            700     64px / 84px   var(--type-display);  /* 7u */
+  --t-statement:     700     64px / 84px   var(--type-display);  /* 7u */
+  --t-drill:         800     92px / 108px  var(--type-display);  /* 9u */
+  --t-hero:          800    110px / 132px  var(--type-display);  /* 11u */
+  --t-stat:          800    150px / 168px  var(--type-display);  /* 14u */
+  --t-stat-mid:      800    104px / 120px  var(--type-display);  /* 10u */
+  --t-quote:         600     60px / 72px   var(--type-display);  /* 6u */
+  --t-mono-32:       500     32px / 48px   var(--type-mono);     /* 4u */
+  --t-mono-24:       500     24px / 36px   var(--type-mono);     /* 3u */
+  --t-mono-22:       500     22px / 36px   var(--type-mono);     /* footer */
+  --t-mono-20:       500     20px / 36px   var(--type-mono);     /* frame-internal */
+  --t-pc:            500     22px / 36px   var(--type-mono);     /* page counter */
+
+  /* Derived tracking per step — wider on small/mono caps, tighter on display. */
+  --ls-kicker: 0.12em;  --ls-mono: 0.14em;   --ls-body:  -0.005em;
+  --ls-body-l:-0.01em;  --ls-h1:  -0.02em;   --ls-hero:  -0.025em;
+  --ls-stat:  -0.04em;  --ls-quote:-0.018em; --ls-caps:   0.10em;
+}
+
+/* ── TYPE ROLE CLASSES — the single source of truth ────────────────────────
+   Both layout slots and inline specimens apply these. One definition only. */
+.ty-kicker     { font: var(--t-kicker);     letter-spacing: var(--ls-kicker); text-transform: uppercase; }
+.ty-body       { font: var(--t-body);       letter-spacing: var(--ls-body);   text-wrap: pretty; }
+.ty-body-small { font: var(--t-body-small); letter-spacing: 0;                text-wrap: pretty; }
+.ty-body-large { font: var(--t-body-large); letter-spacing: var(--ls-body-l); text-wrap: pretty; }
+.ty-cover-sub  { font: var(--t-cover-sub);  letter-spacing: var(--ls-body-l); text-wrap: pretty; }
+.ty-card-head  { font: var(--t-card-head);  letter-spacing: -0.015em;          text-wrap: pretty; }
+.ty-label      { font: var(--t-label);      letter-spacing: -0.01em;           text-wrap: pretty; }
+.ty-h1         { font: var(--t-h1);         letter-spacing: var(--ls-h1);      text-wrap: pretty; }
+.ty-statement  { font: var(--t-statement);  letter-spacing: var(--ls-h1);      text-wrap: pretty; }
+.ty-drill      { font: var(--t-drill);      letter-spacing: var(--ls-h1); }
+.ty-hero       { font: var(--t-hero);       letter-spacing: var(--ls-hero);    text-wrap: pretty; }
+.ty-stat       { font: var(--t-stat);       letter-spacing: var(--ls-stat); }
+.ty-stat-mid   { font: var(--t-stat-mid);   letter-spacing: var(--ls-stat); }
+.ty-quote      { font: var(--t-quote);      letter-spacing: var(--ls-quote);   text-wrap: pretty; }
+.ty-mono-32    { font: var(--t-mono-32);    letter-spacing: var(--ls-caps);    text-transform: uppercase; }
+.ty-mono-24    { font: var(--t-mono-24);    letter-spacing: var(--ls-kicker);  text-transform: uppercase; }
+.ty-mono-22    { font: var(--t-mono-22);    letter-spacing: var(--ls-mono);    text-transform: uppercase; }
+.ty-mono-20    { font: var(--t-mono-20);    letter-spacing: var(--ls-mono);    text-transform: uppercase; }
+
+/* INLINE EMPHASIS IS A TONE MOVE, never bold or colour: assert toward ink,
+   recede toward mute. (Brand exception: a single coloured run is allowed in
+   a formula / token sentence — see kit.css .fill-prompt and .run-* .) */
+.assert { color: var(--INK); }     .pl-ink .assert,  .pl-blue .assert  { color: var(--WHITE); }
+.recede { color: var(--MUTE2); }   .pl-ink .recede,  .pl-blue .recede  { color: var(--MUTE); }
+
+/* ── LEADING-TRIM — OPT-IN, WEB-FINAL ONLY (never on Keynote-bound decks) ───
+   CSS centres glyphs in the line box, so a text BASELINE floats inside an
+   otherwise on-grid box. `text-box: trim-both cap alphabetic` makes each line
+   box run cap-top -> alphabetic baseline, so the baseline is a deterministic
+   box edge. NOT default on slide roles: Keynote ships untrimmed ~1.2x leading,
+   and our untrimmed web roles match that ("browser = faithful Keynote
+   preview"). Apply `.trim` only to a self-contained web-final subtree. */
+@supports (text-box: trim-both cap alphabetic) {
+  .trim, [data-medium="web-final"] { text-box: trim-both cap alphabetic; }
+}

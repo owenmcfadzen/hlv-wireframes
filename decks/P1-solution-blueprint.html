@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · P1 Solution Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  .pl-blue .el.k, .pl-blue .el.foot, .pl-blue .el.cred, .pl-blue .el.pc{color:#1E1E1E}
+  .pl-blue .el.sub{color:#0B2A4A}
+  .voice-chip{display:inline-block;padding:2px 10px;margin-left:10px;border:1.5px solid currentColor;font-weight:700}
+  /* product track (purple) overrides */
+  .pair .ps.figure{border-color:#7649C2}
+  .pl-ink .pair .ps.figure{border-color:#B884FE}
+  .pair .hinge .h-delta{color:#7649C2}
+  .pl-ink .pair .hinge .h-delta{color:#B884FE}
+  .pair .hinge .h-arrow{border-left-color:#7649C2}
+  .pl-ink .pair .hinge .h-arrow{border-left-color:#B884FE}
+  .pair .ps.figure .ps-tag{color:#7649C2}
+  .pl-ink .pair .ps.figure .ps-tag{color:#B884FE}
+  .fr.peak{border-color:#7649C2}
+  .pl-ink .fr.peak{border-color:#B884FE}
+  .fr-tag{color:#7649C2}
+  .pl-ink .fr-tag{color:#B884FE}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 COVER -->
+<section class="s pl-blue" data-screen-label="01 Cover">
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot ink" style="left:120px;top:96px"></span>
+  <span class="gdot ink" style="left:1800px;top:96px"></span>
+  <span class="gdot ink" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m INK"></span><span>PRODUCT &middot; SESSION 1 &middot; SOLUTION BLUEPRINT &middot; 105 MIN</span></div>
+  <div class="el hero" style="top:312px">Find the moment.<br>Cut to it.</div>
+  <div class="el sub" style="top:660px;width:1320px">A product is what happens at one moment. Everything else is noise.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>01 / 14</span></div>
+</section>
+
+<!-- 02 STATEMENT -->
+<section class="s pl-paper" data-screen-label="02 Statement">
+  <div class="el k"><span class="m PURd"></span><span>WHY BOTHER</span></div>
+  <div class="el state">A product is what happens<br>at one moment.</div>
+  <div class="el" style="left:120px;top:540px;width:1560px">
+    <div class="t-body c-MUTE2">Not everything you could build. The move at the moment that decides whether they come back.</div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>02 / 14</span></div>
+</section>
+
+<!-- 03 STORYBOARD MODEL -->
+<section class="s pl-ink" data-screen-label="03 Sequence of moments">
+  <div class="el k"><span class="m PUR"></span><span>THE MODEL</span></div>
+  <div class="el h1">An experience is a sequence of moments.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr"><div class="fr-tag">EVENING</div><div class="fr-body">The day ends.</div></div>
+        <div class="fr"><div class="fr-tag">BEDTIME</div><div class="fr-body">She turns off the light.</div></div>
+        <div class="fr"><div class="fr-tag">11 PM</div><div class="fr-body">A ping. A reach.</div></div>
+        <div class="fr"><div class="fr-tag">SLEEP</div><div class="fr-body">Or not.</div></div>
+        <div class="fr"><div class="fr-tag">MORNING</div><div class="fr-body">She is tired.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>03 / 14</span></div>
+</section>
+
+<!-- 04 WORKED FRAME · Anya's bedtime -->
+<section class="s pl-ink" data-screen-label="04 Anya's bedtime sketched">
+  <div class="el k"><span class="m PUR"></span><span>MEET ANYA &middot; A WORKED EXAMPLE</span></div>
+  <div class="el h1">Anya's bedtime, sketched.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr"><div class="fr-tag">10 PM</div><div class="fr-body">Lights off. Phone on the pillow.</div></div>
+        <div class="fr peak"><div class="fr-tag">11 PM</div><div class="fr-body">The notification pings.</div><div class="fr-note">The reach.</div></div>
+        <div class="fr"><div class="fr-tag">2 AM</div><div class="fr-body">Still scrolling. The night is gone.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>04 / 14</span></div>
+</section>
+
+<!-- 05 PREDICT THE MOMENT -->
+<section class="s pl-ink" data-screen-label="05 Which moment">
+  <div class="el k"><span class="m PUR"></span><span>PREDICT &middot; 90 SECONDS &middot; TEAM CALL</span></div>
+  <div class="el" style="left:120px;top:168px;width:300px">
+    <span class="chip solid" style="--c:var(--PUR);color:#1E1E1E">DO</span>
+  </div>
+  <div class="el drill" style="top:288px">Which moment does the product<br>live or die on?</div>
+  <div class="el" style="left:120px;top:660px;width:1560px">
+    <div class="t-body" style="color:#CECECE">The room names a feature. The reveal is a behaviour: the 11pm reach.</div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#B884FE"><span class="tick" style="background:#B884FE"></span>HOLD THE GUESS &middot; MARK IT NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>05 / 14</span></div>
+</section>
+
+<!-- 06 TWO TRAPS -->
+<section class="s pl-paper" data-screen-label="06 Two traps">
+  <div class="el k"><span class="m PURd"></span><span>TWO TRAPS</span></div>
+  <div class="el h1">Everything that is not the moment defends itself.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-PURd">
+        <div class="c-eb">TRAP ONE &middot; THE FEATURE LIST</div>
+        <div class="c-head">Every part wants to stay.</div>
+        <div class="c-body">An app is many small fights. Each feature has a reason. None of them is the moment.</div>
+      </div>
+      <div class="card rule-top t-PURd">
+        <div class="c-eb">TRAP TWO &middot; THE FULL JOURNEY</div>
+        <div class="c-head">The whole arc looks like the product.</div>
+        <div class="c-body">It is not. The product is one move at the one moment that decides everything.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>06 / 14</span></div>
+</section>
+
+<!-- 07 PRODUCT SENTENCE FORMULA -->
+<section class="s pl-paper" data-screen-label="07 Product sentence">
+  <div class="el k"><span class="m PURd"></span><span>THE PRODUCT, AS ONE LINE</span></div>
+  <div class="el h1">Write the product in one sentence.</div>
+  <div class="el" style="left:120px;top:384px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span>For</span>
+      <span class="run-PUR">user</span>
+      <span>at</span>
+      <span class="run-PUR">moment</span>
+      <span>we</span>
+      <span class="run-PUR">move</span>
+      <span>so</span>
+      <span class="run-PUR">outcome</span>
+      <span>.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:552px;width:1680px">
+    <div class="callout" style="--c:var(--PURd);--fill:var(--PUR-soft)">
+      <div class="co-eb">ANYA, AS A WORKED FILL</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">For a teen at the 11pm reach we lock the feed so the night is not lost.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>07 / 14</span></div>
+</section>
+
+<!-- 08 YOUR TURN -->
+<section class="s pl-blue" data-screen-label="08 Your turn">
+  <div class="el k"><span class="m INK"></span><span>YOUR TURN &middot; 46 MINUTES OF WORK</span></div>
+  <div class="el hero" style="top:240px">Your turn.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr"><div class="fr-tag">MAP</div><div class="fr-body">The moments.</div><div class="fr-note">15 min &middot; do first</div></div>
+        <div class="fr"><div class="fr-tag">MARK</div><div class="fr-body">The moment of truth.</div><div class="fr-note">8 min</div></div>
+        <div class="fr peak"><div class="fr-tag">CUT</div><div class="fr-body">To one move.</div><div class="fr-note">15 min &middot; largest block</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>08 / 14</span></div>
+</section>
+
+<!-- 09 MAP THE MOMENTS -->
+<section class="s pl-paper" data-screen-label="09 Map the moments">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 1 &middot; MAP &middot; 15 MIN &middot; DO FIRST</span></div>
+  <div class="el h1">Sketch the moments before the AI does.</div>
+  <div class="el sub recede">Three to seven frames. Plain words. What actually happens.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr empty"><div class="fr-tag">&nbsp;</div><div class="fr-body">Moment 1</div></div>
+        <div class="fr empty"><div class="fr-tag">&nbsp;</div><div class="fr-body">Moment 2</div></div>
+        <div class="fr empty"><div class="fr-tag">&nbsp;</div><div class="fr-body">Moment 3</div></div>
+        <div class="fr empty"><div class="fr-tag">&nbsp;</div><div class="fr-body">Moment 4</div></div>
+        <div class="fr empty"><div class="fr-tag">&nbsp;</div><div class="fr-body">Moment 5</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#7649C2"><span class="tick" style="background:#7649C2"></span>STORYBOARD READY &middot; MARK NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>09 / 14</span></div>
+</section>
+
+<!-- 10 MARK THE MOMENT OF TRUTH -->
+<section class="s pl-paper" data-screen-label="10 Mark the moment">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 2 &middot; MARK &middot; 8 MIN</span></div>
+  <div class="el h1">Star the moment the product lives or dies on.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr"><div class="fr-tag">BEFORE</div><div class="fr-body">A moment.</div></div>
+        <div class="fr"><div class="fr-tag">BEFORE</div><div class="fr-body">A moment.</div></div>
+        <div class="fr peak"><div class="fr-tag">THE MOMENT</div><div class="fr-body">A behaviour. Not a feature.</div></div>
+        <div class="fr"><div class="fr-tag">AFTER</div><div class="fr-body">A moment.</div></div>
+        <div class="fr"><div class="fr-tag">AFTER</div><div class="fr-body">A moment.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#7649C2"><span class="tick" style="background:#7649C2"></span>ONE MOMENT STARRED &middot; A BEHAVIOUR</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>10 / 14</span></div>
+</section>
+
+<!-- 11 AI OVER-BUILDS -->
+<section class="s pl-paper" data-screen-label="11 The AI over-builds">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 3 &middot; AI DRAFTS &middot; 8 MIN</span></div>
+  <div class="el h1">The AI drafts the product. It over-builds.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">AI BUILDS</div>
+          <div class="ps-claim">Onboarding. Settings. Streaks. Dashboard.</div>
+          <div class="ps-note">Every feature has a reason. None is the moment.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">CUT TO</div>
+          <div class="h-delta">One move at the moment.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">THE MOMENT NEEDS</div>
+          <div class="ps-claim">Lock the feed at 11.</div>
+          <div class="ps-note">One move. Everything else defends itself.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:684px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE POINT</div>
+      <div class="di-body">One move at the moment. Not a feature list. The AI drafts are provisional, to be cut.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>11 / 14</span></div>
+</section>
+
+<!-- 12 CUT TO THE MOMENT -->
+<section class="s pl-paper" data-screen-label="12 Cut to the moment">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 4 &middot; CUT &middot; 15 MIN &middot; THE SPINE</span></div>
+  <div class="el h1">Cut to one move. Write the sentence.</div>
+  <div class="el" style="left:120px;top:432px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span>For</span>
+      <span class="run-PUR">user</span>
+      <span>at</span>
+      <span class="run-PUR">moment</span>
+      <span>we</span>
+      <span class="run-PUR">move</span>
+      <span>so</span>
+      <span class="run-PUR">outcome</span>
+      <span>.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:600px;width:1680px">
+    <div class="callout" style="--c:var(--PURd);--fill:var(--PUR-soft)">
+      <div class="co-eb">THE TEST</div>
+      <div class="co-body">If you can name your move at your moment in one sentence, the rest is defensible.</div>
+    </div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#7649C2"><span class="tick" style="background:#7649C2"></span>ONE MOVE &middot; ONE SENTENCE</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>12 / 14</span></div>
+</section>
+
+<!-- 13 RECAP -->
+<section class="s pl-paper" data-screen-label="13 What you now hold">
+  <div class="el k"><span class="m PURd"></span><span>WHAT YOU NOW HOLD</span></div>
+  <div class="el h1">A storyboard, a starred moment, a sentence.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="row3">
+      <div class="stat-card" style="--c:var(--PURd)">
+        <div class="sc-n">___</div>
+        <div class="sc-l">MOMENTS MAPPED</div>
+        <div class="sc-d">Three to seven frames. The user's experience.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--PURd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">STARRED MOMENT</div>
+        <div class="sc-d">A behaviour, not a feature.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--PURd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">PRODUCT SENTENCE</div>
+        <div class="sc-d">One move at one moment, in one line.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">One move at one moment travels. A feature list does not.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>13 / 14</span></div>
+</section>
+
+<!-- 14 HANDOFF -->
+<section class="s pl-ink" data-screen-label="14 Handoff">
+  <div class="el motif mz-corner br" style="--mz-op:0.16"></div>
+  <div class="el k"><span class="m PUR"></span><span>NEXT &middot; TUE AM &middot; P2 PRODUCT DEFINITION</span></div>
+  <div class="el hero" style="top:288px">The moment<br>carries forward.</div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-PUR">
+        <div class="c-eb c-PUR">P2 &middot; PRODUCT DEFINITION</div>
+        <div class="c-head">Scope V1 around the moment.</div>
+        <div class="c-body">The party feature. The V1 line. Nothing that does not serve the move.</div>
+      </div>
+      <div class="card rule-top t-MUTE">
+        <div class="c-eb">FEEDS</div>
+        <div class="c-head">PRD. P3 prototype build.</div>
+        <div class="c-body">One move, one sentence. Everything else gets cut.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>14 / 14</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<script src="../system/linter.js"></script>
+</body>
+</html>

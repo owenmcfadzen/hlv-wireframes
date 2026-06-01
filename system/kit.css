@@ -1,0 +1,336 @@
+@import url("foundation.css");
+/* ═══════════════════════════════════════════════════════════════════════
+   kit.css · HLV Slide System — SLOTS + COMPONENTS
+   ───────────────────────────────────────────────────────────────────────
+   Every slot is positioned at a SNAP TARGET token and typed with a ROLE
+   token. There is not one hand-typed vertical literal here — if a value
+   drifts, it drifts in foundation.css, in ONE place, for every deck.
+
+   THREE CONSTRUCTION LAWS (a component obeys these or it falls off-grid):
+     1. RULES ARE PAINTED, NEVER LAID OUT. A divider is a zero-height
+        box-shadow or an absolutely-positioned hairline — never a `border`
+        in the flow (a 1px border shoves everything below it and the shoves
+        COMPOUND down the page). Box-borders are allowed only on a box that
+        OWNS its height (cards, frames, chips).
+     2. ROWS SIZE TO THE GRID, NOT TO GLYPHS. Use align-items:center with
+        shared line-heights — never align-items:baseline (it sizes a mixed
+        row by the tallest glyph and overshoots the line-height by ~1px).
+     3. EVERY pad / margin / gap / min-height / object dimension is an integer
+        baseline multiple. Reference the --sp-* scale; never type a literal.
+
+   Drop into a deck-stage slide:
+     <section class="s pl-paper" data-screen-label="02 Agenda">
+       <div class="el k"><span class="m GRNd"></span><span>KICKER</span></div>
+       <div class="el h1">Headline.</div>
+       <div class="el sub recede">Sub line.</div>
+       <div class="el pc"><span class="tk GRNd"></span><span>02 / 14</span></div>
+     </section>
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════ STAGE / SLIDE / PLATES ═══════════════ */
+html, body { margin: 0; background: #000; }
+
+section.s {
+  position: relative;
+  width: var(--canvas-w); height: var(--canvas-h);
+  overflow: hidden;
+  font-family: var(--type-display);
+  color: var(--INK); background: var(--WHITE);
+  aspect-ratio: auto;                 /* override deck-stage 16:9 cards */
+  border: 0; -webkit-font-smoothing: antialiased;
+}
+section.s > .el { position: absolute; }
+
+/* Plates — each selects the opposite end of the one neutral ladder. */
+section.s.pl-paper { background: var(--WHITE);       color: var(--INK);   }
+section.s.pl-ink   { background: var(--INK);         color: var(--WHITE); }
+section.s.pl-blue  { background: var(--BLU);         color: var(--INK);   }
+section.s.pl-quiet { background: var(--paper-quiet); color: var(--MUTE2); }  /* recessive */
+section.s.pl-green { background: var(--GRN);         color: var(--INK);   }  /* signature flood */
+section.s.pl-ink .el.h1, section.s.pl-blue .el.h1 { color: inherit; }
+
+/* ═══════════════════════ SLOTS — snap targets ═══════════════════════ */
+
+/* TOP BAND (96-336) ─────────────────────────────────────────────────── */
+.el.k {
+  left: var(--margin); top: var(--y-kicker); width: var(--w-live);
+  font: var(--t-mono-24); letter-spacing: var(--ls-kicker); text-transform: uppercase;
+  color: var(--MUTE2); display: flex; align-items: center; gap: var(--sp-1); white-space: nowrap;
+}
+.pl-ink .el.k  { color: var(--MUTE); }
+.pl-blue .el.k, .pl-green .el.k { color: var(--INK); }
+.el.k.right { justify-content: flex-end; }
+.el.k > .m { display: inline-block; width: 18px; height: 18px; background: currentColor; flex-shrink: 0; }
+
+.el.h1    { left: var(--margin); top: var(--y-h1);        width: var(--w-h1);      font: var(--t-h1);        letter-spacing: var(--ls-h1);   text-wrap: pretty; }
+.el.hero  { left: var(--margin); top: var(--y-hero);      width: var(--w-display); font: var(--t-hero);      letter-spacing: var(--ls-hero); text-wrap: pretty; }
+.el.state { left: var(--margin); top: var(--y-statement); width: var(--w-live);    font: var(--t-statement); letter-spacing: var(--ls-h1);   text-wrap: pretty; }
+.el.drill { left: var(--margin); top: var(--y-drill);     width: var(--w-h1);      font: var(--t-drill);     letter-spacing: var(--ls-h1); }
+
+/* ANCHOR BAND (336-552) ─────────────────────────────────────────────── */
+.el.sub   { left: var(--margin); top: var(--y-sub);       width: var(--w-display); font: var(--t-body);       letter-spacing: var(--ls-body);   text-wrap: pretty; }
+.el.sub-2 { left: var(--margin); top: var(--y-sub2);      width: var(--w-display); font: var(--t-body);       letter-spacing: var(--ls-body);   text-wrap: pretty; }
+.el.cs    { left: var(--margin); top: var(--y-cover-sub); width: var(--w-display); font: var(--t-cover-sub);  letter-spacing: var(--ls-body-l); text-wrap: pretty; }
+.el.lead  { left: var(--margin); top: var(--y-lead);      width: var(--w-display); font: var(--t-body-large); letter-spacing: var(--ls-body-l); text-wrap: pretty; }
+.el.stat  { left: var(--margin); top: var(--y-stat);      width: var(--w-live);    font: var(--t-stat);       letter-spacing: var(--ls-stat);   white-space: nowrap; }
+
+.el.q-body { left: var(--margin); top: var(--y-quote);      width: var(--w-h1); font: var(--t-quote); letter-spacing: var(--ls-quote); text-wrap: pretty; }
+.el.q-mark { left: var(--margin); top: var(--y-quote-mark); width: 200px; font-family: var(--type-display); font-size: 280px; font-weight: 700; line-height: 1; opacity: 0.18; }
+.el.q-attr { left: var(--margin); top: var(--y-quote-attr); width: var(--w-h1); font: var(--t-mono-24); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--MUTE2); }
+.pl-ink .el.q-attr { color: var(--MUTE); }
+
+/* CONTENT BAND (552-864) ────────────────────────────────────────────── */
+.el.content    { left: var(--margin); top: var(--y-content);      width: var(--w-live); }
+.el.payload    { left: var(--margin); top: var(--y-payload);      width: var(--w-live); }   /* LOW anchor */
+.el.card-row   { left: var(--margin); top: var(--y-card);         width: var(--w-live); color: inherit; }
+.el.card-row-2 { left: var(--margin); top: var(--y-card-cushion); width: var(--w-live); color: inherit; }
+.el.stat-row   { left: var(--margin); top: var(--y-stat-row);     width: var(--w-live); color: inherit; }
+.el.eb-672  { left: var(--margin); top: var(--y-eyebrow-672); width: var(--w-live); font: var(--t-kicker); letter-spacing: var(--ls-kicker); text-transform: uppercase; color: var(--MUTE2); }
+.pl-ink .el.eb-672 { color: var(--MUTE); }
+.el.body-768 { left: var(--margin); top: var(--y-body-768); width: var(--w-h1); font: var(--t-body); letter-spacing: var(--ls-body); }
+
+/* FOOTER BAND (864-984) ─────────────────────────────────────────────── */
+.el.chk { left: var(--margin); top: var(--y-checkpoint); font: var(--t-mono-24); letter-spacing: var(--ls-caps); text-transform: uppercase; }
+/* Footer mono lines (footnotes, transitions, feeds) live bottom-LEFT.
+   The page counter + cred are the ONLY bottom-RIGHT elements. */
+.el.foot {
+  left: var(--margin); top: var(--y-pc); width: var(--w-display);
+  font: var(--t-mono-22); letter-spacing: var(--ls-mono); text-transform: uppercase;
+  color: var(--MUTE2); white-space: nowrap;
+}
+.pl-ink .el.foot { color: var(--MUTE); }
+.el.cred {
+  right: var(--margin); left: auto; top: var(--y-cred);
+  font: var(--t-mono-24); letter-spacing: var(--ls-kicker); text-transform: uppercase;
+  color: var(--MUTE2); white-space: nowrap;
+}
+.pl-ink .el.cred  { color: var(--MUTE); }
+.pl-blue .el.cred, .pl-green .el.cred { color: var(--INK); }
+.el.pc {
+  right: var(--margin); left: auto; top: var(--y-pc);
+  font: var(--t-pc); letter-spacing: var(--ls-mono); text-transform: uppercase;
+  color: var(--MUTE2); display: flex; align-items: center; gap: var(--sp-1); white-space: nowrap;
+}
+.pl-ink .el.pc { color: var(--MUTE); }
+.pl-blue .el.pc, .pl-green .el.pc { color: var(--INK); }
+.el.pc > .tk { display: inline-block; width: 12px; height: 12px; background: currentColor; flex-shrink: 0; }
+
+/* Index ghost — decorative motif, top-right, very low opacity. */
+.el.ghost {
+  left: var(--x-3up-c); top: var(--y-ghost); width: 600px;
+  font-family: var(--type-display); font-size: 220px; font-weight: 800;
+  letter-spacing: var(--ls-stat); line-height: 0.9; color: currentColor; opacity: 0.10; text-align: right;
+}
+
+/* ═══════════════ ACCENT PAINT on markers (.m / .tk) ═══════════════ */
+.m.PUR,.tk.PUR{background:var(--PUR)} .m.BLU,.tk.BLU{background:var(--BLU)} .m.GRN,.tk.GRN{background:var(--GRN)}
+.m.YEL,.tk.YEL{background:var(--YEL)} .m.ORG,.tk.ORG{background:var(--ORG)} .m.WARN,.tk.WARN{background:var(--WARN)}
+.m.PURd,.tk.PURd{background:var(--PURd)} .m.BLUd,.tk.BLUd{background:var(--BLUd)} .m.GRNd,.tk.GRNd{background:var(--GRNd)}
+.m.YELd,.tk.YELd{background:var(--YEL)} .m.ORGd,.tk.ORGd{background:var(--ORGd)} .m.REDd,.tk.REDd{background:var(--REDd)}
+
+/* ═══════════════ TYPE UTILITY CLASSES (alias the role tokens) ═══════════ */
+.t-body{font:var(--t-body);letter-spacing:var(--ls-body)} .t-body-small{font:var(--t-body-small)} .t-body-large{font:var(--t-body-large);letter-spacing:var(--ls-body-l)}
+.t-card-head{font:var(--t-card-head);letter-spacing:-0.015em;text-wrap:pretty} .t-label{font:var(--t-label);letter-spacing:-0.01em}
+.t-card-num{font-family:var(--type-display);font-size:64px;font-weight:800;letter-spacing:var(--ls-h1);line-height:0.95}
+.t-mono-32{font:var(--t-mono-32);letter-spacing:var(--ls-caps);text-transform:uppercase} .t-mono-24{font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase}
+.t-mono-22{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase} .t-mono-20{font:var(--t-mono-20);letter-spacing:var(--ls-mono);text-transform:uppercase}
+
+/* ═══════════════ COLOUR PAINT HELPERS (scoped to .el to beat slot rules) ══ */
+.el.c-WHITE,.c-WHITE{color:var(--WHITE)} .b-WHITE{background:var(--WHITE)}
+.el.c-INK,.c-INK{color:var(--INK)} .b-INK{background:var(--INK)}
+.el.c-MUTE,.c-MUTE{color:var(--MUTE)} .el.c-MUTE2,.c-MUTE2{color:var(--MUTE2)} .el.c-SEC,.c-SEC{color:var(--SEC)}
+.el.c-BLU,.c-BLU{color:var(--BLU)} .el.c-GRN,.c-GRN{color:var(--GRN)} .el.c-PUR,.c-PUR{color:var(--PUR)} .el.c-YEL,.c-YEL{color:var(--YEL)} .el.c-ORG,.c-ORG{color:var(--ORG)} .el.c-WARN,.c-WARN{color:var(--WARN)}
+.el.c-BLUd,.c-BLUd{color:var(--BLUd)} .el.c-GRNd,.c-GRNd{color:var(--GRNd)} .el.c-PURd,.c-PURd{color:var(--PURd)} .el.c-YELd,.c-YELd{color:var(--YEL)} .el.c-ORGd,.c-ORGd{color:var(--ORGd)} .el.c-REDd,.c-REDd{color:var(--REDd)}
+.b-BLU{background:var(--BLU)} .b-GRN{background:var(--GRN)} .b-PUR{background:var(--PUR)} .b-YEL{background:var(--YEL)} .b-ORG{background:var(--ORG)}
+.b-YEL-soft{background:var(--YEL-soft)} .b-GRN-soft{background:var(--GRN-soft)} .b-PUR-soft{background:var(--PUR-soft)} .b-BLU-soft{background:var(--BLU-soft)} .b-RED-soft{background:var(--RED-soft)} .b-ORG-soft{background:var(--ORG-soft)}
+
+/* ═══════════════ LAYOUT HELPERS (gaps reference the scale) ═══════════════ */
+.row{display:flex;flex-direction:row;align-items:center;gap:var(--sp-2)}
+.col{display:flex;flex-direction:column;gap:var(--sp-2)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-7)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gutter)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-7);align-items:start}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-7);align-items:start}
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gutter);align-items:start}
+.split-5x7{display:grid;grid-template-columns:5fr 7fr;gap:var(--sp-8);align-items:start}   /* text | diagram */
+.split-7x5{display:grid;grid-template-columns:7fr 5fr;gap:var(--sp-8);align-items:start}
+.gap-12{gap:var(--sp-1)} .gap-24{gap:var(--sp-2)} .gap-36{gap:var(--sp-3)} .gap-48{gap:var(--sp-4)} .gap-60{gap:var(--sp-5)} .gap-72{gap:var(--sp-6)} .gap-96{gap:var(--sp-8)}
+
+/* ═══════════════ NATIVE-LINE PRIMITIVES (painted, never laid out) ═══════ */
+.ln{position:absolute;background:var(--WHITE)} .pl-paper .ln,.pl-blue .ln,.pl-green .ln{background:var(--INK)}
+.shp{position:absolute;background:var(--BLU)}    /* square by default — the brand has no circles */
+.rect-out{position:absolute;border:1px solid var(--WHITE)} .pl-paper .rect-out{border-color:var(--INK)}
+.star{position:absolute;width:14px;height:14px;background:var(--c,var(--WHITE));transform:rotate(45deg)}
+/* The brand asterisk (X + green diamond), as a positioned motif. */
+.asterisk{position:relative;display:inline-block;width:var(--ast,64px);height:var(--ast,64px);flex-shrink:0}
+.asterisk::before,.asterisk::after{content:"";position:absolute;top:50%;left:50%;width:140%;height:14%;background:var(--ast-c,var(--INK));transform-origin:center}
+.asterisk::before{transform:translate(-50%,-50%) rotate(45deg)} .asterisk::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.asterisk > i{position:absolute;top:50%;left:50%;width:26%;height:26%;background:var(--GRN);transform:translate(-50%,-50%) rotate(45deg)}
+.pl-ink .asterisk{--ast-c:var(--WHITE)} .pl-blue .asterisk,.pl-green .asterisk{--ast-c:var(--INK)}
+
+/* Painted hairline — zero layout height (Law 1). --rule-c flips per plate. */
+:root{--rule-c:var(--L92)} .pl-ink{--rule-c:#3A3A3A} .pl-blue{--rule-c:rgba(30,30,30,0.28)}
+.rule{height:0;box-shadow:0 1px 0 0 var(--rule-c)}
+.rule.strong{box-shadow:0 2px 0 0 var(--MUTE2)} .pl-ink .rule.strong{box-shadow:0 2px 0 0 var(--MUTE)}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTS
+   Every box that draws a border OWNS its height (Law 1 exception). Every pad
+   / gap is a --sp-* multiple (Law 3). Rows use align-items:center (Law 2).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── CHIP / TAG — hairline-framed SQUARE labels (no radius — the brand is
+   square). The .solid variant is the "ink figure": at most ONE solid-fill
+   element per slide; reserve it. ─────────────────────────────────── */
+.chip{
+  display:inline-flex;align-items:center;gap:10px;padding:8px var(--sp-2);
+  border:1.5px solid var(--c,currentColor);color:var(--c,currentColor);
+  font:var(--t-mono-20);letter-spacing:var(--ls-kicker);text-transform:uppercase;white-space:nowrap;
+}
+.chip.solid{background:var(--c,var(--INK));border-color:var(--c,var(--INK));color:var(--WHITE)}
+.tag{display:inline-flex;align-items:center;gap:14px;font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--c,var(--MUTE2));white-space:nowrap}
+.tag::before{content:"";width:18px;height:18px;background:var(--c,currentColor);flex-shrink:0}
+.tag.no-mark::before{display:none}
+
+/* ── CARD — generic vertical-stack card; named children auto-space. The
+   bug-killer for n-up text overlap. min-height keeps a row even. ───────── */
+.card{display:flex;flex-direction:column;align-items:flex-start;min-height:var(--card-min,0)}
+.card>*+*{margin-top:var(--sp-2)}
+.card>.c-num+.c-eb{margin-top:18px} .card>.c-eb+.c-head{margin-top:18px}
+.card>.c-head+.c-body{margin-top:var(--sp-2)} .card>.c-body+.c-body{margin-top:18px}
+.card>.c-foot{margin-top:auto;padding-top:var(--sp-2)}
+.card .c-num{font-family:var(--type-display);font-size:64px;font-weight:800;letter-spacing:var(--ls-h1);line-height:0.95;color:var(--c,var(--GRNd))}
+.card .c-eb{font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--c,var(--MUTE2))}
+.card .c-head{font:var(--t-card-head);font-size:40px;letter-spacing:-0.015em;color:inherit;text-wrap:pretty}
+.card .c-body{font:var(--t-body-small);color:var(--MUTE2);text-wrap:pretty}        /* 32px — the floor */
+.card .c-foot{font:var(--t-mono-22);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--c,var(--MUTE2))}
+.pl-ink .card .c-body{color:var(--MUTE)}
+/* finishes: rule-top (painted bar) · boxed (owns its border) · fill (tint) */
+.card.rule-top{padding-top:28px;position:relative}
+.card.rule-top::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--c,var(--MUTE2))}
+.card.rule-top.thin::before{height:1px}
+.card.boxed{border:1.5px solid var(--rule-c);padding:var(--sp-3) var(--sp-3) var(--sp-4)}
+.card.fill{background:var(--fill,var(--paper-quiet));padding:var(--sp-3) var(--sp-3) var(--sp-4)}
+.pl-ink .card.boxed{border-color:#3A3A3A} .pl-ink .card.fill{background:var(--fill,var(--ink-raise))}
+/* track colour set (deep for paper, bright for ink) */
+.card.t-PURd{--c:var(--PURd)} .card.t-BLUd{--c:var(--BLUd)} .card.t-GRNd{--c:var(--GRNd)} .card.t-YELd{--c:var(--YEL)} .card.t-ORGd{--c:var(--ORGd)} .card.t-REDd{--c:var(--REDd)}
+.card.t-PUR{--c:var(--PUR)} .card.t-BLU{--c:var(--BLU)} .card.t-GRN{--c:var(--GRN)} .card.t-YEL{--c:var(--YEL)} .card.t-ORG{--c:var(--ORG)}
+/* tonal tracks — the strict-palette grouping: green / ink / mute, plate-aware */
+.card.t-INK{--c:var(--INK)} .pl-ink .card.t-INK{--c:var(--WHITE)}
+.card.t-MUTE{--c:var(--MUTE2)} .pl-ink .card.t-MUTE{--c:var(--MUTE)}
+.card.t-GRNd{--c:var(--GRNd)} .pl-ink .card.t-GRNd{--c:var(--GRN)}
+.card.t-YELd{--c:var(--YEL)} .pl-ink .card.t-YELd{--c:var(--YEL)}
+
+/* ── DEFINITION LIST — term / definition rows (grouping text). Painted
+   row rule, align-items:center, integer min-height. ───────────────────── */
+.deflist{display:flex;flex-direction:column}
+.deflist .dl-row{display:grid;grid-template-columns:var(--dl-term,420px) 1fr;align-items:start;gap:var(--sp-4);padding:var(--sp-2) 0;box-shadow:inset 0 -1px 0 0 var(--rule-c)}
+.deflist .dl-row:first-child{box-shadow:inset 0 1px 0 0 var(--rule-c),inset 0 -1px 0 0 var(--rule-c)}
+.deflist .dl-term{font:var(--t-card-head);font-size:40px;letter-spacing:-0.01em;color:var(--c,inherit)}
+.deflist .dl-def{font:var(--t-body-small);color:var(--MUTE2);text-wrap:pretty} .pl-ink .deflist .dl-def{color:var(--MUTE)}
+
+/* ── MARKER LIST + NUMBERED LIST ──────────────────────────────────────── */
+.marker-list{display:flex;flex-direction:column;gap:var(--sp-3)}
+.marker-list .mi{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:var(--sp-2);font:var(--t-body);letter-spacing:var(--ls-body);text-wrap:pretty}
+.marker-list .mi::before{content:"";width:22px;height:22px;margin-top:18px;background:var(--c,var(--GRNd));flex-shrink:0}
+.numlist{display:flex;flex-direction:column;gap:var(--sp-3)}
+.numlist .nli{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:var(--sp-3)}
+.numlist .nl-n{font:var(--t-mono-32);letter-spacing:var(--ls-caps);color:var(--c,var(--GRNd))}
+.numlist .nl-t{font:var(--t-body);letter-spacing:var(--ls-body);text-wrap:pretty}
+
+/* ── KEY / VALUE SPEC ROWS ────────────────────────────────────────────── */
+.kv{display:flex;flex-direction:column}
+.kv .kvrow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--sp-4);padding:18px 0;box-shadow:inset 0 -1px 0 0 var(--rule-c)}
+.kv .k-label{font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .kv .k-label{color:var(--MUTE)}
+.kv .k-val{font:var(--t-body-small);font-weight:500;color:inherit;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ── STAT CARD — big tabular numeral over a hairline-topped label ──────── */
+.stat-card{display:flex;flex-direction:column;gap:var(--sp-1);padding-top:var(--sp-2);position:relative}
+.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--rule-c)}
+.stat-card .sc-n{font-family:var(--type-display);font-weight:800;font-size:104px;line-height:1;letter-spacing:var(--ls-stat);color:var(--c,inherit);font-variant-numeric:tabular-nums}
+.stat-card .sc-l{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .stat-card .sc-l{color:var(--MUTE)}
+.stat-card .sc-d{font:var(--t-body-small);color:var(--MUTE2);text-wrap:pretty}
+
+/* ── DEFINITION BLOCK — term · part-of-speech · gloss ─────────────────── */
+.definition{display:flex;flex-direction:column;gap:var(--sp-2)}
+.definition .df-term{display:flex;align-items:baseline;gap:var(--sp-2)}
+.definition .df-word{font:var(--t-drill);font-size:92px;letter-spacing:var(--ls-h1)}
+.definition .df-pos{font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase;font-style:normal;color:var(--c,var(--GRNd))}
+.definition .df-gloss{font:var(--t-body-large);letter-spacing:var(--ls-body-l);color:var(--MUTE2);max-width:var(--w-display);text-wrap:pretty} .pl-ink .definition .df-gloss{color:var(--MUTE)}
+
+/* ── FORMULA — coloured runs (the one sanctioned multi-colour line) ─────── */
+.formula{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 18px;font-family:var(--type-display);font-weight:800;font-size:var(--fx,92px);letter-spacing:var(--ls-h1);line-height:1.1}
+.formula .op{color:var(--MUTE)} .pl-paper .formula .op{color:var(--MUTE2)}
+.run-GRN{color:var(--GRN)} .run-BLU{color:var(--BLU)} .run-PUR{color:var(--PUR)} .run-YEL{color:var(--YEL)} .run-ORG{color:var(--ORG)}
+.pl-paper .run-GRN{color:var(--GRNd)} .pl-paper .run-BLU{color:var(--BLUd)} .pl-paper .run-PUR{color:var(--PURd)} .pl-paper .run-YEL{color:var(--YEL)} .pl-paper .run-ORG{color:var(--ORGd)}
+
+/* ── CALLOUT / KEY TAKEAWAY — left accent seam (painted), tinted body ──── */
+.callout{position:relative;padding:var(--sp-3) var(--sp-4) var(--sp-4) var(--sp-5);background:var(--fill,var(--paper-quiet))}
+.callout::before{content:"";position:absolute;top:0;bottom:0;left:0;width:8px;background:var(--c,var(--GRNd))}
+.callout .co-eb{font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--c,var(--GRNd));margin-bottom:var(--sp-2)}
+.callout .co-body{font:var(--t-body-large);letter-spacing:var(--ls-body-l);color:inherit;text-wrap:pretty}
+.pl-ink .callout{background:var(--fill,var(--ink-raise))}
+
+/* ── BEFORE / AFTER — two boxed cells, an arrow painted between ───────── */
+.ba{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:var(--sp-4)}
+.ba .ba-cell{border:1.5px solid var(--rule-c);padding:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2);min-height:300px}
+.ba .ba-cell.after{border-color:var(--GRNd)} .pl-ink .ba .ba-cell.after{border-color:var(--GRN)}
+.ba .ba-eb{font:var(--t-mono-24);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--MUTE2)}
+.ba .ba-cell.after .ba-eb{color:var(--GRNd)} .pl-ink .ba .ba-cell.after .ba-eb{color:var(--GRN)}
+.ba .ba-body{font:var(--t-body-small);color:inherit;text-wrap:pretty}
+.ba .ba-arrow{align-self:center;width:0;height:0;border-top:22px solid transparent;border-bottom:22px solid transparent;border-left:30px solid var(--MUTE2)} .pl-ink .ba .ba-arrow{border-left-color:var(--MUTE)}
+
+/* ── FILL-PROMPT — mono prompt with {token} highlights ─────────────────── */
+/* Background is a faint tint of the accent (yellow by default), never a neutral
+   grey — the panel should read as "the highlight colour, quietened", tying it to
+   the {token} flags and the left bar. Hex only (no color-mix) for export. */
+.fill-prompt{position:relative;font-family:var(--type-mono);font-size:32px;line-height:1.5;letter-spacing:0;color:var(--INK);font-weight:700;background:var(--fill,#FFF6DC);padding:var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-5)}
+.fill-prompt::before{content:"";position:absolute;top:0;bottom:0;left:0;width:8px;background:var(--c,var(--YEL))}
+.pl-ink .fill-prompt{color:var(--WHITE);background:var(--fill,var(--ink-raise))}
+.fill-prompt .tok{color:var(--c,var(--YEL));font-weight:700} .fill-prompt .tok::before{content:"{"} .fill-prompt .tok::after{content:"}"}
+
+/* ── STICKY NOTES + the canonical Example panel ───────────────────────── */
+.sticky{background:var(--YEL-soft);color:var(--INK);padding:var(--sp-3) var(--sp-2);font:var(--t-body-small);box-shadow:4px 8px 24px rgba(0,0,0,0.16);position:relative;transform:rotate(-2deg);display:flex;flex-direction:column;gap:var(--sp-1)}
+.sticky.green{background:var(--GRN-soft)} .sticky.purple{background:var(--PUR-soft)} .sticky.blue{background:var(--BLU-soft)}
+.sticky.tilt-r{transform:rotate(1.5deg)} .sticky.flat{transform:none;box-shadow:none}
+.sticky-example{background:var(--YEL-soft);color:var(--INK);padding:var(--sp-4) var(--sp-4) var(--sp-5);position:relative;display:grid;grid-template-columns:1fr;row-gap:var(--sp-2)}
+.sticky-example.green{background:var(--GRN-soft)} .sticky-example.purple{background:var(--PUR-soft)} .sticky-example.blue{background:var(--BLU-soft)}
+/* EXAMPLE title is a BOLD accent chip so the card has a clear anchor (not a
+   faint grey label); the sub-label stays a quiet grey mono. */
+.sticky-example .se-label{justify-self:start;background:var(--INK);color:var(--WHITE);padding:6px 16px;font:var(--t-mono-24);letter-spacing:var(--ls-mono);text-transform:uppercase}
+.sticky-example.green .se-label{background:var(--GRNd)} .sticky-example.purple .se-label{background:var(--PURd)} .sticky-example.blue .se-label{background:var(--BLUd)}
+.sticky-example .se-sub{font:var(--t-mono-24);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)}
+.sticky-example .se-body{font:var(--t-body-small);font-weight:500;color:var(--INK)} .sticky-example .se-body strong{font-weight:700}
+/* the inline highlight reads as an underlined run, not low-contrast green text */
+.sticky-example .se-mark{color:var(--INK);font-weight:700;text-decoration:underline;text-decoration-color:var(--GRNd);text-decoration-thickness:3px;text-underline-offset:3px}
+.sticky-example.purple .se-mark{text-decoration-color:var(--PURd)} .sticky-example.blue .se-mark{text-decoration-color:var(--BLUd)}
+.sticky-example .se-rule{height:0;box-shadow:0 0 0 0.5px rgba(30,30,30,0.18);margin:4px 0}
+.sticky-example .se-quote{font:var(--t-body-small);font-weight:700;color:var(--INK)}
+
+/* ── CHECKPOINT PILL (activity slides) ─────────────────────────────────── */
+.checkpoint{display:inline-flex;align-items:center;gap:14px;white-space:nowrap;font:var(--t-mono-24);letter-spacing:0.06em;color:var(--GRNd)}
+.checkpoint .tick{width:16px;height:16px;background:var(--GRNd);flex-shrink:0} .pl-ink .checkpoint{color:var(--GRN)} .pl-ink .checkpoint .tick{background:var(--GRN)}
+
+/* ── WORKSHEET — fill-in lines, square checkboxes, prompt rows (live capture)
+   Activity scaffolds where participants write. Lines are PAINTED rules that
+   own their height; checkboxes are square (filled green = done). ───────── */
+.wsheet{display:flex;flex-direction:column;gap:var(--sp-4)}
+.wline{display:flex;flex-direction:column;gap:10px}
+.wline .wl-label{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .wline .wl-label{color:var(--MUTE)}
+.wline .wl-rule{height:60px;box-shadow:inset 0 -3px 0 0 var(--MUTE2)} .pl-ink .wline .wl-rule{box-shadow:inset 0 -3px 0 0 var(--MUTE)}
+.wline .wl-rule.short{width:480px}
+.wline.prefill .wl-rule{display:flex;align-items:flex-end;padding-bottom:8px;font:var(--t-body);color:var(--MUTE2);font-style:italic}
+.checklist{display:flex;flex-direction:column;gap:var(--sp-3)}
+.checklist .ci{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:var(--sp-2);font:var(--t-body);letter-spacing:var(--ls-body);text-wrap:pretty}
+.checklist .ci .box{width:36px;height:36px;border:3px solid var(--MUTE2);margin-top:16px;flex-shrink:0;box-sizing:border-box} .pl-ink .checklist .ci .box{border-color:var(--MUTE)}
+.checklist .ci.done .box{background:var(--GRNd);border-color:var(--GRNd)} .pl-ink .checklist .ci.done .box{background:var(--GRN);border-color:var(--GRN)}
+.checklist .ci.done{color:var(--MUTE2)} .pl-ink .checklist .ci.done{color:var(--MUTE)}
+
+/* ── PHOTO PLACEHOLDER — an honest empty slot, never decoration ────────── */
+.photo{background:repeating-linear-gradient(135deg,rgba(30,30,30,0.06) 0 16px,rgba(30,30,30,0.02) 16px 32px),#E7E3DD;position:relative}
+.pl-ink .photo{background:repeating-linear-gradient(135deg,rgba(255,255,255,0.05) 0 16px,rgba(255,255,255,0.02) 16px 32px),#262626}
+.photo::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:rgba(30,30,30,0.4)}
+.pl-ink .photo::after{color:rgba(255,255,255,0.4)}
+
+/* ─────────── end kit.css ─────────── */

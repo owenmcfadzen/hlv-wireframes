@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · B1 Canvas Lite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  .pl-blue .el.k, .pl-blue .el.foot, .pl-blue .el.cred, .pl-blue .el.pc{color:#1E1E1E}
+  .pl-blue .el.sub{color:#0B2A4A}
+  .voice-chip{display:inline-block;padding:2px 10px;margin-left:10px;border:1.5px solid currentColor;font-weight:700}
+  /* a small "proposed" tag for unsettled coordination */
+  .prop-chip{display:inline-block;padding:4px 12px;margin-left:14px;border:1.5px dashed currentColor;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2);vertical-align:middle}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ═══════════════════════ 01 · COVER ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="01 Cover">
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot ink" style="left:120px;top:96px"></span>
+  <span class="gdot ink" style="left:1800px;top:96px"></span>
+  <span class="gdot ink" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m INK"></span><span>BUSINESS &middot; SESSION 1 &middot; CANVAS LITE &middot; 105 MIN</span></div>
+  <div class="el hero" style="top:312px">Defend the model.<br>Not the confident one.</div>
+  <div class="el sub" style="top:660px;width:1320px">Who pays, what for, how much, and whether the price holds up.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>01 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 02 · SECTION · 2 CARDS ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="02 Two reasons">
+  <div class="el k"><span class="m GRNd"></span><span>WHY BOTHER</span></div>
+  <div class="el h1">Two reasons to build a Canvas.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-GRNd">
+        <div class="c-eb">DIRECTION</div>
+        <div class="c-head">How the money works.</div>
+        <div class="c-body">Who pays, what for, how much, how often. A frame, not a guess.</div>
+      </div>
+      <div class="card rule-top t-GRNd">
+        <div class="c-eb">DOUBT</div>
+        <div class="c-head">What is least defended.</div>
+        <div class="c-body">The price you cannot back up. The trap your model hides.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>02 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 03 · USER / PAYER SPLIT (ink, pair) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="03 User payer split">
+  <div class="el k"><span class="m GRN"></span><span>MEET ANYA &middot; A WORKED EXAMPLE</span></div>
+  <div class="el h1">Who you help is not who pays.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">USER</div>
+          <div class="ps-claim">Anya, 16.</div>
+          <div class="ps-note">No money. Wants her phone and her freedom.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">OPPOSITE WANTS</div>
+          <div class="h-delta">A revenue model has to bridge them.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">PAYER</div>
+          <div class="ps-claim">Her dad.</div>
+          <div class="ps-note">Wants her asleep by eleven. Will pay to make it happen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>03 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 04 · PREDICT THE PAYER (ink, DO) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="04 Predict the payer">
+  <div class="el k"><span class="m GRN"></span><span>PREDICT &middot; 90 SECONDS &middot; TEAM CALL</span></div>
+  <div class="el" style="left:120px;top:168px;width:300px">
+    <span class="chip solid" style="--c:var(--GRN);color:#06270F">DO</span>
+  </div>
+  <div class="el drill" style="top:288px">Who pays for Anya's<br>sleep fix?</div>
+  <div class="el" style="left:120px;top:660px;width:1560px">
+    <div class="t-body" style="color:#CECECE">The room says Anya. That guess is the reveal coming on the next slide.</div>
+  </div>
+  <div class="el chk c-GRN"><span class="checkpoint"><span class="tick"></span>HOLD THE ANSWER &middot; REVEAL NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>04 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 05 · THE PAYER FLIP + TRAP (ink, peak) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="05 Payer flip and trap">
+  <div class="el k"><span class="m GRN"></span><span>THE TEACHING PEAK</span></div>
+  <div class="el h1">Dad pays. The model serves who Anya resists.</div>
+  <div class="el" style="left:120px;top:312px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">BEFORE &middot; NAIVE</div>
+          <div class="ps-claim">Anya pays.</div>
+          <div class="ps-note">No revenue. The model has no engine.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">FLIP THE PAYER</div>
+          <div class="h-delta">Now the model carries a real risk.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">AFTER &middot; REAL</div>
+          <div class="ps-claim">Her dad pays a subscription.</div>
+          <div class="ps-note">A sleep tool for the teen who resists his rules.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:684px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE TRAP</div>
+      <div class="di-body">The payer wants control. The user wants freedom. Build it as surveillance and she games it and churns.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>05 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 06 · METHOD (paper, 3-step rows) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="06 The method">
+  <div class="el k"><span class="m GRNd"></span><span>THE METHOD &middot; RUN IT ON YOUR OWN MODEL</span></div>
+  <div class="el h1">Check the payer. Defend the price. Name the trap.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb rows">
+        <div class="fr">
+          <div class="fr-tag">STEP ONE</div>
+          <div class="fr-body">Check the payer.</div>
+          <div class="fr-note">Is who you help who pays? Often not.</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">STEP TWO</div>
+          <div class="fr-body">Defend the price.</div>
+          <div class="fr-note">One real number: a competitor, a willingness, a cost.</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">STEP THREE</div>
+          <div class="fr-body">Name the trap.</div>
+          <div class="fr-note">Every pattern hides a failure mode. Name yours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>06 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 07 · REVENUE SENTENCE (paper, formula) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="07 Revenue sentence">
+  <div class="el k"><span class="m GRNd"></span><span>THE MODEL, AS ONE LINE</span></div>
+  <div class="el h1">Write the revenue sentence.</div>
+  <div class="el" style="left:120px;top:384px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span class="run-GRN">Payer</span>
+      <span>pays</span>
+      <span class="run-GRN">price</span>
+      <span>per</span>
+      <span class="run-GRN">unit</span>
+      <span>for</span>
+      <span class="run-GRN">value</span>
+      <span>.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:552px;width:1680px">
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">ANYA, AS A WORKED FILL</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">Anya's dad pays &euro;8 a month per teen for a sleep tool she will actually keep using.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>07 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 08 · YOUR TURN (blue divider, 4-node sb) ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="08 Your turn">
+  <div class="el k"><span class="m INK"></span><span>YOUR TURN &middot; 52 MINUTES OF WORK</span></div>
+  <div class="el hero" style="top:240px">Your turn.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr">
+          <div class="fr-tag">FRAME</div>
+          <div class="fr-body">Patterns, together.</div>
+          <div class="fr-note">12 min &middot; cross-team &middot; hard stop</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">FILL</div>
+          <div class="fr-body">Your four boxes.</div>
+          <div class="fr-note">12 min &middot; own team</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">STRESS-TEST</div>
+          <div class="fr-body">Break the model.</div>
+          <div class="fr-note">20 min &middot; largest block</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">SENTENCE</div>
+          <div class="fr-body">Lock the line.</div>
+          <div class="fr-note">8 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>08 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 09 · CROSS-TEAM CONVENE (paper, PROPOSED) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="09 Cross-team convene">
+  <div class="el k"><span class="m GRNd"></span><span>STAGE 1 &middot; CROSS-TEAM CONVENE &middot; 12 MIN</span></div>
+  <div class="el h1">Specialists frame patterns together first. <span class="prop-chip">PROPOSED</span></div>
+  <div class="el" style="left:120px;top:444px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr">
+          <div class="fr-tag">GATHER</div>
+          <div class="fr-body">Business specialists, one per team.</div>
+          <div class="fr-note">Leave product and market behind.</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">SHARED CANVAS</div>
+          <div class="fr-body">Pattern row only.</div>
+          <div class="fr-note">Which model fits which problem. Cross-pollinate.</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">CARRY BACK</div>
+          <div class="fr-body">Take the pattern to your team.</div>
+          <div class="fr-note">Payer / price / trap stays per-team.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>SHARED PATTERNS &middot; PERSONA STAYS PER-TEAM</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>09 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 10 · FILL (paper, provisional Canvas) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="10 Fill the four boxes">
+  <div class="el k"><span class="m GRNd"></span><span>STAGE 2 &middot; FILL &middot; 12 MIN &middot; HARD STOP</span></div>
+  <div class="el h1">Fill the four boxes. Provisional, not finished.</div>
+  <div class="el sub recede">The AI frames a pattern. You write the boxes. Stress-test comes next.</div>
+  <div class="el" style="left:120px;top:432px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="canvas" style="grid-template-columns:1fr 1fr 1fr 1fr;grid-template-rows:auto auto">
+        <div class="cell"><div class="cl-k">WHO PAYS</div><div class="cl-t">___</div></div>
+        <div class="cell"><div class="cl-k">WHAT FOR</div><div class="cl-t">___</div></div>
+        <div class="cell"><div class="cl-k">HOW MUCH</div><div class="cl-t">___</div></div>
+        <div class="cell"><div class="cl-k">HOW OFTEN</div><div class="cl-t">___</div></div>
+        <div class="cell heart" style="grid-column:span 4"><div class="cl-k">PATTERN &middot; AI FRAMED</div><div class="cl-t">Freemium / subscription / marketplace / ads / licence ...</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#8A6000"><span class="checkpoint" style="color:#8A6000"><span class="tick" style="background:#C99700"></span>NO DEFENDED PRICE YET &middot; NO NAMED TRAP YET</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>10 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 11 · STRESS-TEST (paper, the spine) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="11 Stress-test the model">
+  <div class="el k"><span class="m GRNd"></span><span>STAGE 3 &middot; STRESS-TEST &middot; 20 MIN &middot; THE SPINE</span></div>
+  <div class="el h1">Break the model. Three moves.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--GRNd)">
+      <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t"><span class="assert">Check the payer.</span> Is the user really the payer? If not, change box one.</span></div>
+      <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t"><span class="assert">Defend the price.</span> Against one real number: a competitor, a willingness, a cost.</span></div>
+      <div class="nli"><span class="nl-n c-GRNd">03</span><span class="nl-t"><span class="assert">Name the trap.</span> The failure mode your pattern hides. Write it in one line.</span></div>
+    </div>
+  </div>
+  <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>PRICE DEFENDED &middot; TRAP NAMED</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>11 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 12 · REVENUE SENTENCE LOCK (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="12 Lock the sentence">
+  <div class="el k"><span class="m GRNd"></span><span>STAGE 4 &middot; LOCK THE SENTENCE &middot; 8 MIN</span></div>
+  <div class="el h1">Your model, as one line.</div>
+  <div class="el" style="left:120px;top:432px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span class="run-GRN">Payer</span>
+      <span>pays</span>
+      <span class="run-GRN">price</span>
+      <span>per</span>
+      <span class="run-GRN">unit</span>
+      <span>for</span>
+      <span class="run-GRN">value</span>
+      <span>.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:600px;width:1680px">
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">THE TEST</div>
+      <div class="co-body">The payer blank is not the user. The price is defended. The trap is the next slide's risk.</div>
+    </div>
+  </div>
+  <div class="el chk c-GRNd"><span class="checkpoint"><span class="tick"></span>ONE SENTENCE &middot; OUT LOUD</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>12 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 13 · RECAP · 4 STATS (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="13 What you now hold">
+  <div class="el k"><span class="m GRNd"></span><span>WHAT YOU NOW HOLD</span></div>
+  <div class="el h1">A model you can take out into the market.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="row4">
+      <div class="stat-card" style="--c:var(--GRNd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">PAYER NAMED</div>
+        <div class="sc-d">Checked against the user. They may not be the same.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--GRNd)">
+        <div class="sc-n">&euro;___</div>
+        <div class="sc-l">PRICE DEFENDED</div>
+        <div class="sc-d">Backed by one real reference number.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--REDd)">
+        <div class="sc-n">!</div>
+        <div class="sc-l">THE TRAP NAMED</div>
+        <div class="sc-d">The failure mode your pattern hides.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--GRNd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">REVENUE SENTENCE</div>
+        <div class="sc-d">Payer, price, unit, value.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">A model without a named trap is not done.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRNd"></span><span>13 / 14</span></div>
+</section>
+
+<!-- ═══════════════════════ 14 · HANDOFF (ink) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="14 Handoff">
+  <div class="el motif mz-corner br accent" style="--mz-op:0.18"></div>
+  <div class="el k"><span class="m GRN"></span><span>NEXT &middot; TUE PM &middot; OUT IN MARKET</span></div>
+  <div class="el hero" style="top:288px">Real payers decide.<br>Not the whiteboard.</div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-GRN">
+        <div class="c-eb c-GRN">OUT IN MARKET &middot; TUE PM</div>
+        <div class="c-head">Test the price on real people.</div>
+        <div class="c-body">The trap is what you carry to test. Bring it yourself.</div>
+      </div>
+      <div class="card rule-top t-MUTE">
+        <div class="c-eb">FEEDS</div>
+        <div class="c-head">B2 Napkin Economics. PRD business section.</div>
+        <div class="c-body">The revenue sentence is the seam to tomorrow morning.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk GRN"></span><span>14 / 14</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<script src="../system/linter.js"></script>
+</body>
+</html>

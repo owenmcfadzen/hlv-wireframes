@@ -1,0 +1,306 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   diagrams.css · HLV Slide System — THE DIAGRAM GRAMMAR
+   ───────────────────────────────────────────────────────────────────────
+   Same thesis as type: a diagram is a COMPOSED POINT, never an invention.
+   Every chart, canvas, flow, matrix or model is assembled from ONE small
+   closed grammar of SIX primitives. A new diagram type is a new ARRANGEMENT
+   of the grammar, not new ink. Load order: foundation -> kit -> diagrams.
+
+   THE DIAGRAM LAWS (inherited from the foundation):
+     • COLOUR IS GROUPING, NEVER HIERARCHY. Hue lives in the marker square +
+       the matching id/label — never a node fill, never a headline, never
+       decoration. MAX THREE mark hues per diagram.
+     • HIERARCHY IS TONE + POSITION. A node asserts on ink (the one "ink
+       figure") or recedes to a quiet tint — never by colour.
+     • RULES ARE PAINTED, NEVER LAID OUT. Connectors, frames and seams are
+       inset box-shadow or absolutely-positioned hairlines -> zero layout
+       height. Canvas / matrix grids use SHARED painted seams so cells never
+       compound borders.
+     • EVERYTHING LANDS ON THE GRID. Every pad / gap / min-height is a
+       baseline multiple.
+     • SVG geometry uses vector-effect:non-scaling-stroke (a 1px rule stays
+       1px at any size) and EXPLICIT HEX fill/stroke — never currentColor
+       (the export renders currentColor black). Colours come from .dgm-*
+       token classes so diagrams track the active plate.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── CONTEXT STANCES — a diagram renders at one of these. Each redefines a
+   set of LOCAL context tokens once; every consumer (type, pad, markers,
+   label density) steps together. Never re-scaled by eye. ───────────────── */
+.dgm{
+  /* ctx-figure — the DEFAULT (a documented figure in a deck body) */
+  --n-pad-y:var(--sp-2); --n-pad-x:var(--sp-3); --n-min-h:120px;
+  --n-kicker:var(--t-mono-22); --n-title:var(--t-card-head); --n-title-fs:40px;
+  --n-body:var(--t-body-small); --seq-d:48px; --cell-pad:var(--sp-3); --cell-min-h:168px;
+  --conn-w:2px; --frame-w:1.5px; position:relative;
+}
+.dgm.ctx-inline   { --n-min-h:84px;  --n-title-fs:28px; --seq-d:32px; --cell-pad:var(--sp-2); --cell-min-h:108px; --conn-w:2px; }   /* small aside */
+.dgm.ctx-band     { --n-min-h:108px; --n-title-fs:32px; --seq-d:40px; --cell-pad:var(--sp-3); --cell-min-h:132px; }                  /* half-slide */
+.dgm.ctx-hero     { --n-min-h:156px; --n-title-fs:48px; --seq-d:60px; --cell-pad:var(--sp-4); --cell-min-h:204px; --conn-w:3px; }   /* main object */
+.dgm.ctx-immersive{ --n-min-h:192px; --n-title-fs:56px; --seq-d:72px; --cell-pad:var(--sp-5); --cell-min-h:240px; --conn-w:3px; --frame-w:2px; }
+.dgm.ctx-inline .node__d{display:none}     /* shed detail, don't shrink it */
+.dgm.ctx-inline svg text{display:none}     /* tiny SVG -> mark-only */
+
+/* colour classes for SVG + marks (token-driven, never literals) */
+.dgm-ink{color:var(--INK)} .pl-ink .dgm-ink{color:var(--WHITE)}
+.dgm-mute{color:var(--MUTE2)} .pl-ink .dgm-mute{color:var(--MUTE)}
+.dgm-GRN{color:var(--GRNd)} .dgm-BLU{color:var(--BLUd)} .dgm-PUR{color:var(--PURd)} .dgm-YEL{color:var(--YEL)} .dgm-ORG{color:var(--ORGd)} .dgm-RED{color:var(--REDd)}
+.pl-ink .dgm-GRN{color:var(--GRN)} .pl-ink .dgm-BLU{color:var(--BLU)} .pl-ink .dgm-PUR{color:var(--PUR)} .pl-ink .dgm-YEL{color:var(--YEL)} .pl-ink .dgm-ORG{color:var(--ORG)}
+.dgm svg [stroke]{vector-effect:non-scaling-stroke}
+
+/* ═══════ 1 · FIELD — the bounded canvas a diagram lives in ═══════ */
+.field{position:relative;border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.field.plain{border:0}                          /* diagrams that ARE their own shape */
+.field-label{position:absolute;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)}
+.pl-ink .field-label{color:var(--MUTE)}
+
+/* ═══════ 2 · NODE — a labelled unit (box form + chip form) ═══════ */
+.node{box-sizing:border-box;display:flex;flex-direction:column;gap:var(--sp-1);min-height:var(--n-min-h);padding:var(--n-pad-y) var(--n-pad-x);border:var(--frame-w) solid var(--rule-c);background:transparent}
+.node.ink{background:var(--INK);color:var(--WHITE);border-color:var(--INK)}      /* the asserting "ink figure" */
+.node.quiet{background:var(--paper-quiet);border-color:transparent} .pl-ink .node.quiet{background:var(--ink-raise)}
+.node.lead{position:relative;padding-left:calc(var(--n-pad-x) + 8px)}            /* grouping = painted left seam + kicker */
+.node.lead::before{content:"";position:absolute;top:0;bottom:0;left:0;width:8px;background:var(--c,var(--GRNd))}
+.node__k{font:var(--n-kicker);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--c,var(--MUTE2))} .pl-ink .node__k{color:var(--c,var(--MUTE))}
+.node__t{font:var(--n-title);font-size:var(--n-title-fs);font-weight:700;letter-spacing:-0.015em;color:inherit;text-wrap:pretty}
+.node__d{font:var(--n-body);color:var(--MUTE2);text-wrap:pretty} .pl-ink .node__d{color:var(--MUTE)}
+/* chip node — the atom that carries grouping (16x16 mark + id + label) */
+.chip-node{display:inline-flex;align-items:center;gap:14px;font:var(--t-body-small);color:inherit;white-space:nowrap}
+.chip-node::before{content:"";width:22px;height:22px;background:var(--c,var(--GRNd));flex-shrink:0}
+.chip-node .cn-id{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)}
+
+/* ═══════ 3 · CONNECTOR — relation between nodes (painted + arrowhead) ═══ */
+.arrow-r,.arrow-d{display:flex;align-items:center;color:var(--c,var(--MUTE2))} .pl-ink .arrow-r,.pl-ink .arrow-d{color:var(--c,var(--MUTE))}
+.arrow-r{flex-direction:row} .arrow-d{flex-direction:column}
+.arrow-r .stem{height:var(--conn-w);width:var(--len,64px);background:currentColor} .arrow-r .head{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:15px solid currentColor}
+.arrow-d .stem{width:var(--conn-w);height:var(--len,48px);background:currentColor} .arrow-d .head{width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:15px solid currentColor}
+.arrow-r.hot,.arrow-d.hot{--c:var(--GRNd)} .pl-ink .arrow-r.hot,.pl-ink .arrow-d.hot{--c:var(--GRN)}
+
+/* ═══════ 4 · REGION / ZONE — grouping container (tint or painted seams) ═ */
+.zone{position:relative;box-sizing:border-box}
+.zone.tint-GRN{background:var(--GRN-soft)} .zone.tint-BLU{background:var(--BLU-soft)} .zone.tint-PUR{background:var(--PUR-soft)} .zone.tint-YEL{background:var(--YEL-soft)} .zone.tint-RED{background:var(--RED-soft)}
+/* painted-seam grid — cells share single hairlines, never compound */
+.seam-grid{display:grid;gap:1px;background:var(--rule-c);border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.seam-grid>.cell{background:var(--WHITE);padding:var(--cell-pad);min-height:var(--cell-min-h);box-sizing:border-box;display:flex;flex-direction:column;gap:var(--sp-1)}
+.pl-ink .seam-grid>.cell{background:var(--INK)}
+.seam-grid>.cell.heart{background:var(--paper-quiet)} .pl-ink .seam-grid>.cell.heart{background:var(--ink-raise)}   /* emphasised by tone + position */
+.cell .cl-k{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .cell .cl-k{color:var(--MUTE)}
+.cell .cl-t{font:var(--t-body-small);color:inherit;text-wrap:pretty}
+
+/* ═══════ 5 · MARKER — points / indices over geometry ═══════ */
+.seq{display:inline-grid;place-items:center;width:var(--seq-d,48px);height:var(--seq-d,48px);background:var(--GRNd);color:var(--WHITE);font:var(--t-mono-24);font-weight:700;letter-spacing:0;flex-shrink:0}   /* always a SQUARE — the fallback keeps it from collapsing to a tall content box when --seq-d is unset */   /* sequence index — deep-green chip */
+.pl-ink .seq{background:var(--GRN);color:var(--INK)}
+.vertex{width:18px;height:18px;background:var(--c,var(--GRNd));position:absolute;transform:translate(-50%,-50%)}
+.dgm .here{width:36px;height:36px;border:3px solid var(--GRNd);position:absolute;transform:translate(-50%,-50%)}    /* you-are-here — square outline (no rings); scoped to .dgm so the nav active-link class="here" never inherits it */
+.pl-ink .dgm .here{border-color:var(--GRN)}
+
+/* ═══════ 6 · ANNOTATION — the layer that makes a diagram explain itself ═ */
+.anno{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .anno{color:var(--MUTE)}
+.anno.hot{color:var(--GRNd)} .pl-ink .anno.hot{color:var(--GRN)}
+.note{font-family:var(--type-mono);font-size:24px;font-style:italic;letter-spacing:0.02em;color:var(--GRNd);line-height:1.4}   /* the one human hand */
+.pl-ink .note{color:var(--GRN)}
+.leader{position:absolute;background:var(--MUTE2)} .pl-ink .leader{background:var(--MUTE)}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ARCHETYPES — each is just an arrangement of the six primitives.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── STORYBOARD / PROCESS FLOW — a row of frames, the accent sequence
+   carries the path. Generalised from the P1 .sb primitive. ───────────── */
+.sb{display:flex;align-items:stretch;gap:var(--sp-3)}
+.fr{position:relative;box-sizing:border-box;flex:1 1 0;min-height:var(--cell-min-h);border:var(--frame-w) solid var(--rule-c);background:var(--paper-quiet);padding:var(--cell-pad);display:flex;flex-direction:column;gap:var(--sp-1)}
+.pl-ink .fr{background:var(--ink-raise)}
+.fr.empty{background:transparent;border-style:dashed;border-width:2px;border-color:var(--MUTE2)} .pl-ink .fr.empty{border-color:var(--MUTE)}
+.fr.peak{border-color:var(--GRNd);border-width:2px} .pl-ink .fr.peak{border-color:var(--GRN)}
+.fr-tag{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--c,var(--GRNd))} .pl-ink .fr-tag{color:var(--c,var(--GRN))}
+.fr-body{font:var(--t-card-head);font-size:32px;letter-spacing:-0.015em;color:inherit;text-wrap:pretty}
+.fr-note{font:var(--t-body-small);color:var(--MUTE2);text-wrap:pretty} .pl-ink .fr-note{color:var(--MUTE)}
+.fr-label{position:absolute;top:calc(100% + var(--sp-2));left:0;right:0;text-align:center;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .fr-label.hot{color:var(--GRNd)}
+/* ROWS variant — a vertical timeline where each frame lays its tag and body in
+   one v-centred row (tag in a fixed gutter, body fills the rest). Reads as a
+   clean stacked list instead of cramped tag-over-body cells. */
+.sb.rows{flex-direction:column;gap:var(--sp-2)}
+.sb.rows .fr{flex-direction:row;align-items:center;gap:var(--sp-4);min-height:0;padding:var(--sp-2) var(--sp-3)}
+.sb.rows .fr .fr-tag{flex:0 0 168px}
+.sb.rows .fr .fr-body{flex:1 1 auto}
+
+/* ── 2x2 MATRIX — square field, axis labels OUTSIDE, four painted
+   quadrants, items plotted as positioned chips on the field. ─────────── */
+.matrix{position:relative;width:var(--mx,720px);height:var(--mx,720px);border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.matrix::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--rule-c)}
+.matrix::after{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:var(--rule-c)}
+.matrix .mx-q{position:absolute;width:50%;height:50%;display:flex;padding:18px;box-sizing:border-box;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)}
+.matrix .mx-q.tl{top:0;left:0;align-items:flex-start;justify-content:flex-start} .matrix .mx-q.tr{top:0;right:0;align-items:flex-start;justify-content:flex-end} .matrix .mx-q.bl{bottom:0;left:0;align-items:flex-end;justify-content:flex-start} .matrix .mx-q.br{bottom:0;right:0;align-items:flex-end;justify-content:flex-end}
+.matrix .mx-q.gap{background:var(--GRN-soft);color:var(--GRNd)}
+/* The plot IS the square, centred exactly on its coordinate; the label is an
+   absolutely-positioned child so it never shifts the marker off its point.
+   Default label sits below; flip it with lbl-up / lbl-l / lbl-r so neighbours
+   never overlap a marker. */
+.matrix .mx-plot{position:absolute;transform:translate(-50%,-50%);width:24px;height:24px}
+.matrix .mx-plot .dot{display:block;width:24px;height:24px;background:var(--c,var(--INK))} .matrix .mx-plot.you .dot{background:var(--GRNd);outline:6px solid var(--GRN-soft)}   /* you = green square, haloed */
+.pl-ink .matrix .mx-plot.you .dot{background:var(--GRN);outline-color:rgba(0,217,103,0.28)}
+.matrix .mx-plot .lbl{position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);font:var(--t-mono-20);letter-spacing:var(--ls-mono);text-transform:uppercase;color:inherit;white-space:nowrap}
+.matrix .mx-plot.lbl-up .lbl{top:auto;bottom:calc(100% + 8px)}
+.matrix .mx-plot.lbl-r .lbl{left:calc(100% + 12px);top:50%;transform:translateY(-50%)}
+.matrix .mx-plot.lbl-l .lbl{left:auto;right:calc(100% + 12px);top:50%;transform:translateY(-50%)}
+.mx-axis-x,.mx-axis-y{position:absolute;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2);white-space:nowrap}
+.mx-axis-x{left:50%;transform:translateX(-50%)} .mx-axis-y{top:50%;transform:translateY(-50%) rotate(-90deg)}
+
+/* ── CANVAS — the region primitive at full scale (BMC / Lean / custom).
+   One shared painted-seam grid; the heart cell emphasised by tone. ────── */
+.canvas{display:grid;gap:1px;background:var(--rule-c);border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.canvas>.cell{background:var(--WHITE);padding:var(--sp-2);min-height:120px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px}
+.pl-ink .canvas>.cell{background:var(--INK)}
+.canvas>.cell.heart{background:var(--GRN-soft)}
+.canvas .cl-k{font:var(--t-mono-20);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .canvas .cl-k{color:var(--MUTE)}
+.canvas .cl-t{font-family:var(--type-body);font-size:32px;line-height:1.25;color:inherit;text-wrap:pretty}
+
+/* ── ROADMAP / TIMELINE — time x workstream. Bars span columns; tone says
+   planned vs committed. Header row of quarters, lane rows below. ──────── */
+.roadmap{display:grid;gap:1px;background:var(--rule-c);border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.roadmap>.rm-cell{background:var(--WHITE);min-height:96px;box-sizing:border-box;position:relative;padding:var(--sp-2)}
+.pl-ink .roadmap>.rm-cell{background:var(--INK)}
+.roadmap .rm-head{background:var(--paper-quiet);min-height:60px;display:flex;align-items:center;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .roadmap .rm-head{background:var(--ink-raise);color:var(--MUTE)}
+.roadmap .rm-lane{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2);display:flex;align-items:center} .pl-ink .roadmap .rm-lane{color:var(--MUTE)}
+.rm-bar{height:48px;display:flex;align-items:center;padding:0 var(--sp-2);font:var(--t-mono-22);letter-spacing:0;text-transform:none;color:var(--WHITE);background:var(--c,var(--GRNd))}
+.rm-bar.planned{background:transparent;border:2px dashed var(--c,var(--GRNd));color:var(--c,var(--GRNd))}
+
+/* ── HIERARCHY / LAYERED STACK — pyramid / maturity ladder, tone-ranked ── */
+.stack{display:flex;flex-direction:column;gap:1px}
+.stack .layer{display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);min-height:96px;box-sizing:border-box;background:var(--paper-quiet);font:var(--t-card-head);font-size:40px} .pl-ink .stack .layer{background:var(--ink-raise)}
+.stack .layer .ly-k{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)}
+.stack .layer.top{background:var(--INK);color:var(--WHITE)} .pl-ink .stack .layer.top{background:var(--WHITE);color:var(--INK)}
+
+/* ── COMPARISON TABLE — options × criteria, square truth marks. Built on the
+   painted-seam grid so cells never compound borders. The "ours" column is the
+   ink figure (tone + position), and a filled green square = yes. ────────── */
+.compare{display:grid;gap:1px;background:var(--rule-c);border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.compare>.cmp{background:var(--WHITE);padding:var(--sp-2) var(--sp-3);min-height:108px;box-sizing:border-box;display:flex;align-items:center;gap:var(--sp-2)} .pl-ink .compare>.cmp{background:var(--INK)}
+.compare>.cmp.head{background:var(--paper-quiet);font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .compare>.cmp.head{background:var(--ink-raise);color:var(--MUTE)}
+.compare>.cmp.crit{font:var(--t-body-small);font-weight:500;color:inherit;justify-content:flex-start}
+.compare>.cmp.ours{background:var(--paper-quiet)} .pl-ink .compare>.cmp.ours{background:var(--ink-raise)}
+.compare>.cmp.head.ours{color:var(--GRNd)} .pl-ink .compare>.cmp.head.ours{color:var(--GRN)}
+.compare .mk{width:32px;height:32px;flex-shrink:0;margin:0 auto;box-sizing:border-box}
+.compare .mk.yes{background:var(--GRNd)} .pl-ink .compare .mk.yes{background:var(--GRN)}
+.compare .mk.part{background:var(--GRNd);clip-path:polygon(0 0,100% 0,0 100%)} .pl-ink .compare .mk.part{background:var(--GRN)}
+.compare .mk.no{border:3px solid var(--L86)} .pl-ink .compare .mk.no{border-color:var(--MUTE2)}
+
+/* ── TIMELINE — a single horizontal axis with milestone markers. Distinct
+   from the roadmap (which is time × workstream). Square ticks; labels above. */
+.timeline{position:relative;padding:var(--sp-8) 0 var(--sp-6)}
+.timeline .tl-axis{position:absolute;left:0;right:0;top:50%;height:3px;background:var(--MUTE2)} .pl-ink .timeline .tl-axis{background:var(--MUTE)}
+.timeline .tl-row{position:relative;display:flex;justify-content:space-between}
+.timeline .ms{display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);position:relative}
+.timeline .ms .tk{width:28px;height:28px;background:var(--INK);position:relative;z-index:1} .pl-ink .timeline .ms .tk{background:var(--WHITE)}
+.timeline .ms.now .tk{background:var(--GRNd);outline:8px solid var(--GRN-soft)} .pl-ink .timeline .ms.now .tk{background:var(--GRN);outline-color:rgba(0,217,103,0.25)}
+.timeline .ms .ms-date{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .timeline .ms .ms-date{color:var(--MUTE)}
+.timeline .ms .ms-label{font:var(--t-body-small);font-weight:500;color:inherit;text-align:center;max-width:280px;text-wrap:pretty}
+.timeline .ms.below{flex-direction:column-reverse}
+
+/* ── SWEET SPOT — overlapping SQUARES (the brand's answer to a Venn). Three
+   translucent tiles; the centre overlap is the green figure. ───────────── */
+.sweet{position:relative;width:var(--sw,600px);height:var(--sw,600px)}
+.sweet .lobe{position:absolute;width:58%;height:58%;border:3px solid var(--MUTE2);box-sizing:border-box;display:flex;padding:18px;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .sweet .lobe{border-color:var(--MUTE);color:var(--MUTE)}
+.sweet .lobe.a{left:0;top:0;align-items:flex-start;justify-content:flex-start} .sweet .lobe.b{right:0;top:0;align-items:flex-start;justify-content:flex-end} .sweet .lobe.c{left:50%;bottom:0;transform:translateX(-50%);align-items:flex-end;justify-content:center}
+/* the meeting of all three \u2014 the green figure (core), haloed in soft green so
+   the overlap zone reads without guessing the exact intersection geometry */
+.sweet .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:120px;height:120px;background:var(--GRNd);outline:12px solid var(--GRN-soft);display:grid;place-items:center;color:var(--WHITE);font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;text-align:center;z-index:2;padding:12px;box-sizing:border-box} .pl-ink .sweet .core{background:var(--GRN);color:var(--INK);outline-color:rgba(0,217,103,0.28)}
+
+/* ── NEST — concentric SQUARE frames around a centre (the brand's answer to
+   the onion / circles-around-a-user model). N nested square rings, each
+   labelled at its top seam, plus a centre figure. Tone + position rank the
+   rings; the accent marks the ONE layer in focus + the centre. Sizes are
+   fixed ratios so labels never collide. ─────────────────────────────────── */
+.nest{position:relative;width:var(--nz,660px);height:var(--nz,660px)}
+.nest .ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:var(--frame-w) solid var(--rule-c);box-sizing:border-box}
+.nest .ring.r1{width:100%;height:100%}
+.nest .ring.r2{width:66.6%;height:66.6%}
+.nest .ring.r3{width:33.3%;height:33.3%}
+.nest .ring.hot{border-color:var(--GRNd);border-width:3px} .pl-ink .nest .ring.hot{border-color:var(--GRN)}
+/* layer label straddles the top seam, paper knocking out the rule behind it */
+.nest .ring .rl{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);background:var(--WHITE);padding:0 14px;font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2);white-space:nowrap}
+.pl-ink .nest .ring .rl{background:var(--INK);color:var(--MUTE)}
+.nest .ring.hot .rl{color:var(--GRNd)} .pl-ink .nest .ring.hot .rl{color:var(--GRN)}
+/* the centre figure — a green square (the person / object at the core) */
+.nest .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--core-d,40px);height:var(--core-d,40px);background:var(--GRNd);z-index:2} .pl-ink .nest .core{background:var(--GRN)}
+.nest .core-lbl{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(-50% + var(--core-d,40px)));margin-top:14px;font:var(--t-mono-20);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--GRNd);white-space:nowrap;z-index:2} .pl-ink .nest .core-lbl{color:var(--GRN)}
+
+/* ── TRANSFORM PAIR — the worked-example comparison. Two parallel panels with
+   a labelled HINGE between them naming the ONE change. The brand's answer to a
+   before/after: richer than the kit .ba (which is two bare cells + an arrow) —
+   it adds the named delta, aligned ledger rows so two panels line up to the
+   pixel, and a figure/faint tone split (the RIGHT panel asserts = the taught
+   state, the LEFT recedes = the naive state). One archetype serves the whole
+   batch: two-questions before/after, optimistic-vs-honest, prototype A->B,
+   pride-vs-party-feature. Colour is grouping only; the taught side is the green
+   figure by TONE + a green seam, never a louder fill. ──────────────────────── */
+.pair{display:grid;grid-template-columns:1fr var(--hinge-w,264px) 1fr;align-items:stretch;gap:0}
+.pair .ps{box-sizing:border-box;border:var(--frame-w) solid var(--rule-c);padding:var(--cell-pad);display:flex;flex-direction:column;gap:var(--sp-2);background:var(--paper-quiet);min-height:var(--cell-min-h)}
+.pl-ink .pair .ps{background:var(--ink-raise)}
+.pair .ps.faint{background:transparent}
+.pair .ps.figure{background:transparent;border-color:var(--GRNd);border-width:3px} .pl-ink .pair .ps.figure{border-color:var(--GRN)}
+.pair .ps-tag{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .pair .ps-tag{color:var(--MUTE)}
+.pair .ps.figure .ps-tag{color:var(--GRNd)} .pl-ink .pair .ps.figure .ps-tag{color:var(--GRN)}
+.pair .ps-claim{font:var(--n-title);font-size:var(--n-title-fs);font-weight:700;letter-spacing:-0.015em;color:inherit;text-wrap:pretty}
+/* the behaviour note — the one human hand; mono italic, pinned to the cell foot */
+.pair .ps-note{font-family:var(--type-mono);font-size:24px;font-style:italic;letter-spacing:0.01em;color:var(--MUTE2);line-height:1.4;margin-top:auto;padding-top:var(--sp-2)} .pl-ink .pair .ps-note{color:var(--MUTE)}
+/* aligned ledger rows (label | value) — two panels stay row-locked */
+.pair .ps-rows{display:flex;flex-direction:column}
+.pair .pr-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--sp-3);padding:14px 0;box-shadow:inset 0 -1px 0 0 var(--rule-c);font:var(--t-body-small);color:inherit}
+.pair .pr-row .pr-v{font-family:var(--type-mono);font-weight:700;font-variant-numeric:tabular-nums}
+/* the HINGE — narrow centre column: the named delta over a right arrow */
+.pair .hinge{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-2);padding:0 var(--sp-2);text-align:center}
+.pair .hinge .h-k{font:var(--t-mono-20);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--MUTE2)} .pl-ink .pair .hinge .h-k{color:var(--MUTE)}
+.pair .hinge .h-delta{font:var(--t-body-small);font-weight:700;color:var(--GRNd);text-wrap:pretty} .pl-ink .pair .hinge .h-delta{color:var(--GRN)}
+.pair .hinge .h-arrow{width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:28px solid var(--GRNd)} .pl-ink .pair .hinge .h-arrow{border-left-color:var(--GRN)}
+
+/* ── UNIT LEDGER — the napkin-economics math stack. A column of +/- lines that
+   resolve to a margin across a painted total rule, then the critical "it dies
+   if" kill line. Red is used ONLY here, as the brand's CRITICAL flag — the one
+   condition under which the unit does not survive. The unit FORMULA sentence
+   itself stays a .formula line; this is the worked number that produces it. ── */
+.ledger{display:flex;flex-direction:column;width:var(--lg-w,720px)}
+.ledger .lg-row{display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:var(--sp-2);padding:16px 0;box-shadow:inset 0 -1px 0 0 var(--rule-c);font:var(--t-body-small);color:inherit}
+.ledger .lg-op{font-family:var(--type-mono);font-weight:700;font-size:32px;color:var(--MUTE2);text-align:center} .pl-ink .ledger .lg-op{color:var(--MUTE)}
+.ledger .lg-row.minus .lg-op{color:var(--REDd)} .pl-ink .ledger .lg-row.minus .lg-op{color:var(--RED)}
+.ledger .lg-label{font:var(--t-body-small);color:inherit}
+.ledger .lg-val{font-family:var(--type-mono);font-weight:700;font-size:32px;font-variant-numeric:tabular-nums;color:inherit}
+.ledger .lg-row.total{box-shadow:inset 0 2px 0 0 var(--MUTE2);padding-top:24px;margin-top:4px} .pl-ink .ledger .lg-row.total{box-shadow:inset 0 2px 0 0 var(--MUTE)}
+.ledger .lg-row.total .lg-label{font-weight:700;font-size:40px;font-family:var(--type-display);letter-spacing:-0.01em}
+.ledger .lg-row.total .lg-val{font-size:48px;color:var(--GRNd)} .pl-ink .ledger .lg-row.total .lg-val{color:var(--GRN)}
+.ledger .lg-row.total.dead .lg-val{color:var(--REDd)} .pl-ink .ledger .lg-row.total.dead .lg-val{color:var(--RED)}
+/* the kill line — a red-seam critical block; reads as "the number that ends it" */
+.dies-if{position:relative;padding:var(--sp-2) var(--sp-3) var(--sp-3) var(--sp-4);background:var(--RED-soft);color:var(--INK)}
+.pl-ink .dies-if{background:#3A2526;color:var(--WHITE)}
+.dies-if::before{content:"";position:absolute;top:0;bottom:0;left:0;width:8px;background:var(--REDd)} .pl-ink .dies-if::before{background:var(--RED)}
+.dies-if .di-k{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--REDd);margin-bottom:8px} .pl-ink .dies-if .di-k{color:var(--RED)}
+.dies-if .di-body{font:var(--t-body-large);letter-spacing:var(--ls-body-l);color:inherit;text-wrap:pretty}
+
+/* ── COLLISION + GATE — the two-number reconciliation. Two source numbers from
+   two sides converge on one reconciled figure. Tone + a green halo mark the
+   reconciled centre (agreement = green); the two sources carry one mark each
+   (legitimate 2-way grouping). DUAL-ACCENT (market blue meeting business green)
+   is SANCTIONED for B3M3 only — single mark everywhere else. ───────────────── */
+.collision{display:flex;align-items:center;justify-content:center;gap:var(--sp-3)}
+.collision .cl-src{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:var(--sp-1);text-align:center;padding:var(--sp-2) var(--sp-3);min-width:300px}
+.collision .cl-src .cs-k{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--c,var(--MUTE2))}
+.collision .cl-src .cs-n{font-family:var(--type-display);font-weight:800;font-size:var(--cn,104px);line-height:1;letter-spacing:var(--ls-stat);color:var(--c,inherit);font-variant-numeric:tabular-nums}
+.collision .cl-src .cs-cap{font:var(--t-body-small);color:var(--MUTE2);text-wrap:pretty;max-width:300px} .pl-ink .collision .cl-src .cs-cap{color:var(--MUTE)}
+.collision .cl-arrow{flex:0 0 auto;width:0;height:0;border-top:20px solid transparent;border-bottom:20px solid transparent;border-left:30px solid var(--MUTE2)} .pl-ink .collision .cl-arrow{border-left-color:var(--MUTE)}
+.collision .cl-arrow.to-l{transform:scaleX(-1)}
+/* the reconciled centre — the ink figure, green-haloed (the agreed number) */
+.collision .cl-out{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:var(--sp-1);text-align:center;background:var(--INK);color:var(--WHITE);padding:var(--sp-3) var(--sp-4);outline:12px solid var(--GRN-soft)} .pl-ink .collision .cl-out{background:var(--GRN);color:var(--INK);outline-color:rgba(0,217,103,0.28)}
+.collision .cl-out .co-k{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--GRN)} .pl-ink .collision .cl-out .co-k{color:var(--INK)}
+.collision .cl-out .co-n{font-family:var(--type-display);font-weight:800;font-size:var(--cn,104px);line-height:1;letter-spacing:var(--ls-stat);font-variant-numeric:tabular-nums}
+
+/* GATE — a checkpoint barrier that must be cleared before the next step. A
+   full-width ink bar with a square mark; the dashed boundary beneath says
+   nothing proceeds until this clears. Reusable, but load-bearing for B3M3
+   (reconcile before you plan — this gate must never reorder after the work). */
+.gate{display:flex;align-items:center;gap:var(--sp-3);background:var(--INK);color:var(--WHITE);padding:var(--sp-3) var(--sp-4);position:relative} .pl-ink .gate{background:var(--ink-raise)}
+.gate::after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:0;border-bottom:3px dashed var(--MUTE2)} .pl-ink .gate::after{border-bottom-color:var(--MUTE)}
+.gate .g-mark{width:40px;height:40px;background:var(--GRN);flex-shrink:0}
+.gate .g-txt{display:flex;flex-direction:column;gap:6px}
+.gate .g-k{font:var(--t-mono-22);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--GRN)}
+.gate .g-t{font:var(--t-card-head);font-size:40px;color:var(--WHITE);letter-spacing:-0.015em;text-wrap:pretty}
+
+/* ─────────── end diagrams.css ─────────── */

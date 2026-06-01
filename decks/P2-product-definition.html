@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · P2 Product Definition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  .pl-blue .el.k, .pl-blue .el.foot, .pl-blue .el.cred, .pl-blue .el.pc{color:#1E1E1E}
+  .pl-blue .el.sub{color:#0B2A4A}
+  .voice-chip{display:inline-block;padding:2px 10px;margin-left:10px;border:1.5px solid currentColor;font-weight:700}
+  .pair .ps.figure{border-color:#7649C2}
+  .pl-ink .pair .ps.figure{border-color:#B884FE}
+  .pair .hinge .h-delta{color:#7649C2}
+  .pl-ink .pair .hinge .h-delta{color:#B884FE}
+  .pair .hinge .h-arrow{border-left-color:#7649C2}
+  .pl-ink .pair .hinge .h-arrow{border-left-color:#B884FE}
+  .pair .ps.figure .ps-tag{color:#7649C2}
+  .pl-ink .pair .ps.figure .ps-tag{color:#B884FE}
+  .fr.peak{border-color:#7649C2}
+  .pl-ink .fr.peak{border-color:#B884FE}
+  .fr-tag{color:#7649C2}
+  .pl-ink .fr-tag{color:#B884FE}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 COVER -->
+<section class="s pl-blue" data-screen-label="01 Cover">
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot ink" style="left:120px;top:96px"></span>
+  <span class="gdot ink" style="left:1800px;top:96px"></span>
+  <span class="gdot ink" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m INK"></span><span>PRODUCT &middot; SESSION 2 &middot; PRODUCT DEFINITION &middot; 135 MIN</span></div>
+  <div class="el hero" style="top:312px">Commit to one<br>buildable product.</div>
+  <div class="el sub" style="top:660px;width:1320px">P1 found the moment. P2 commits to one move worth telling a friend about.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>01 / 15</span></div>
+</section>
+
+<!-- 02 STATEMENT -->
+<section class="s pl-paper" data-screen-label="02 Statement">
+  <div class="el k"><span class="m PURd"></span><span>WHY BOTHER</span></div>
+  <div class="el state">Define everything<br>and you build nothing.</div>
+  <div class="el" style="left:120px;top:540px;width:1560px">
+    <div class="t-body c-MUTE2">The vision is a list. The product is a commitment to one thing.</div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>02 / 15</span></div>
+</section>
+
+<!-- 03 BUILT MOST vs TOLD FRIENDS (ink, worked) -->
+<section class="s pl-ink" data-screen-label="03 Built most vs told">
+  <div class="el k"><span class="m PUR"></span><span>MEET ANYA &middot; A WORKED EXAMPLE</span></div>
+  <div class="el h1">The full vision, and what Anya tells a friend.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">THE TEAM BUILT MOST</div>
+          <div class="ps-claim">Sleep analytics.</div>
+          <div class="ps-note">Graphs, streaks, an onboarding flow.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">WHAT SHE TELLS A FRIEND</div>
+          <div class="h-delta">One sentence, unprompted.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">THE PARTY FEATURE</div>
+          <div class="ps-claim">"It locks my phone at 11."</div>
+          <div class="ps-note">"And I stopped fighting it."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>03 / 15</span></div>
+</section>
+
+<!-- 04 PREDICT THE PARTY FEATURE (ink, DO) -->
+<section class="s pl-ink" data-screen-label="04 Predict the party feature">
+  <div class="el k"><span class="m PUR"></span><span>PREDICT &middot; 90 SECONDS &middot; TEAM CALL</span></div>
+  <div class="el" style="left:120px;top:168px;width:300px">
+    <span class="chip solid" style="--c:var(--PUR);color:#1E1E1E">DO</span>
+  </div>
+  <div class="el drill" style="top:288px">Which one feature<br>does Anya mention?</div>
+  <div class="el" style="left:120px;top:660px;width:1560px">
+    <div class="t-body" style="color:#CECECE">The room names what the team built most. The reveal is the one feature she says out loud.</div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#B884FE"><span class="tick" style="background:#B884FE"></span>HOLD THE GUESS &middot; REVEAL NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>04 / 15</span></div>
+</section>
+
+<!-- 05 PRIDE vs PARTY (ink, peak) -->
+<section class="s pl-ink" data-screen-label="05 Pride versus party">
+  <div class="el k"><span class="m PUR"></span><span>THE TEACHING PEAK</span></div>
+  <div class="el h1">The party feature is what she says. Not your pride.</div>
+  <div class="el" style="left:120px;top:312px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">PRIDE</div>
+          <div class="ps-claim">Sleep analytics, streaks, dashboard.</div>
+          <div class="ps-note">What the team built most.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">SELECTION CRITERION</div>
+          <div class="h-delta">Word of mouth. Not effort.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">PARTY</div>
+          <div class="ps-claim">The lock. And letting go.</div>
+          <div class="ps-note">What she tells a friend, unprompted.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:684px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE POINT</div>
+      <div class="di-body">Word of mouth is the selection criterion, not effort. Build the one thing they will say out loud.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>05 / 15</span></div>
+</section>
+
+<!-- 06 METHOD (paper) -->
+<section class="s pl-paper" data-screen-label="06 The method">
+  <div class="el k"><span class="m PURd"></span><span>THE METHOD &middot; PARTY FEATURE FIRST</span></div>
+  <div class="el h1">Party feature first. Then the V1 line.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb rows">
+        <div class="fr"><div class="fr-tag">STEP ONE</div><div class="fr-body">Name the party feature.</div><div class="fr-note">The one thing a user tells a friend, unprompted.</div></div>
+        <div class="fr"><div class="fr-tag">STEP TWO</div><div class="fr-body">Draw the V1 line.</div><div class="fr-note">What is in. What waits. What gets cut.</div></div>
+        <div class="fr peak"><div class="fr-tag">STEP THREE</div><div class="fr-body">Write the V1 sentence.</div><div class="fr-note">One product, one move, one line.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>06 / 15</span></div>
+</section>
+
+<!-- 07 V1 LINE -->
+<section class="s pl-paper" data-screen-label="07 V1 line">
+  <div class="el k"><span class="m PURd"></span><span>V1, AS ONE LINE</span></div>
+  <div class="el h1">One product line. Then the cut.</div>
+  <div class="el" style="left:120px;top:384px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span>V1 is</span>
+      <span class="run-PUR">party feature</span>
+      <span>for</span>
+      <span class="run-PUR">user</span>
+      <span>at</span>
+      <span class="run-PUR">moment</span>
+      <span>.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:552px;width:1680px">
+    <div class="callout" style="--c:var(--PURd);--fill:var(--PUR-soft)">
+      <div class="co-eb">ANYA, AS A WORKED FILL</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">V1 is a phone-lock for a teen at the 11pm reach. Analytics, streaks, the dashboard. Cut.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>07 / 15</span></div>
+</section>
+
+<!-- 08 YOUR TURN (blue, 5-node) -->
+<section class="s pl-blue" data-screen-label="08 Your turn">
+  <div class="el k"><span class="m INK"></span><span>YOUR TURN &middot; 82 MINUTES OF WORK</span></div>
+  <div class="el hero" style="top:240px">Your turn.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr"><div class="fr-tag">PARTY</div><div class="fr-body">The one feature.</div><div class="fr-note">10 min &middot; do first</div></div>
+        <div class="fr"><div class="fr-tag">DRAFT</div><div class="fr-body">AI over-scopes.</div><div class="fr-note">20 min &middot; hard stop</div></div>
+        <div class="fr peak"><div class="fr-tag">COMMIT</div><div class="fr-body">Cut to V1.</div><div class="fr-note">30 min &middot; largest block</div></div>
+        <div class="fr"><div class="fr-tag">SUCCESS</div><div class="fr-body">Works if / falls apart if.</div><div class="fr-note">10 min</div></div>
+        <div class="fr"><div class="fr-tag">REGENERATE</div><div class="fr-body">PRD Lab.</div><div class="fr-note">12 min</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>08 / 15</span></div>
+</section>
+
+<!-- 09 PARTY FEATURE (paper) -->
+<section class="s pl-paper" data-screen-label="09 Party feature">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 1 &middot; PARTY FEATURE &middot; 10 MIN &middot; DO FIRST</span></div>
+  <div class="el h1">Pick the one thing worth telling a friend about.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--PURd)">
+      <div class="nli"><span class="nl-n c-PURd">01</span><span class="nl-t">Look at your P1 sentence. The <span class="assert">move at the moment</span> is the seed.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">02</span><span class="nl-t">Ask: <span class="assert">what does a user say, unprompted, to a friend?</span> One sentence.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">03</span><span class="nl-t">If it sounds like a spec sheet, <span class="assert">it is not the party feature yet.</span></span></div>
+    </div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#7649C2"><span class="tick" style="background:#7649C2"></span>PARTY FEATURE NAMED &middot; BEFORE THE DRAFT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>09 / 15</span></div>
+</section>
+
+<!-- 10 AI OVER-SCOPES (paper, suspect) -->
+<section class="s pl-paper" data-screen-label="10 The AI over-scopes">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 2 &middot; DRAFT &middot; 20 MIN &middot; HARD STOP</span></div>
+  <div class="el h1">The AI over-scopes.</div>
+  <div class="el sub recede">The PRD draft is provisional. Everything everywhere all at once. You cut next.</div>
+  <div class="el" style="left:120px;top:444px;width:1680px">
+    <div class="fill-prompt" style="--c:var(--YEL);--fill:#FFF6DC">
+      "<span class="tok">Onboarding</span>, <span class="tok">analytics</span>, <span class="tok">streaks</span>, <span class="tok">notifications</span>, <span class="tok">dashboard</span>, <span class="tok">settings</span> ..."
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:636px;width:1680px">
+    <div class="callout" style="--c:var(--YEL);--fill:#FFF6DC">
+      <div class="co-eb" style="color:#8A6000">EXPECT THIS</div>
+      <div class="co-body">Everything that could be useful. None of it is the party feature.</div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#8A6000"><span class="checkpoint" style="color:#8A6000"><span class="tick" style="background:#C99700"></span>STOP DRAFTING &middot; START CUTTING</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>10 / 15</span></div>
+</section>
+
+<!-- 11 COMMIT TO SCOPE (paper, the spine) -->
+<section class="s pl-paper" data-screen-label="11 Commit to scope">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 3 &middot; COMMIT &middot; 30 MIN &middot; THE SPINE</span></div>
+  <div class="el h1">Draw the V1 line. Cut to one thing built well.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--PURd)">
+      <div class="nli"><span class="nl-n c-PURd">01</span><span class="nl-t"><span class="assert">In V1:</span> the party feature. Everything that serves the move at the moment.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">02</span><span class="nl-t"><span class="assert">Waits:</span> the things you will build next. Once V1 holds.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">03</span><span class="nl-t"><span class="assert">Cut:</span> everything the AI added that does not serve the moment.</span></div>
+    </div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#7649C2"><span class="tick" style="background:#7649C2"></span>V1 LINE DRAWN &middot; ONE THING BUILT WELL</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>11 / 15</span></div>
+</section>
+
+<!-- 12 SUCCESS + ASSUMPTION (paper) -->
+<section class="s pl-paper" data-screen-label="12 Success and risk">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 4 &middot; SUCCESS + RISK &middot; 10 MIN</span></div>
+  <div class="el h1">Works if. Falls apart if.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-PURd">
+        <div class="c-eb">WORKS IF</div>
+        <div class="c-head">One behaviour, observed.</div>
+        <div class="c-body">A test you could run this week. Not a metric, a behaviour.</div>
+      </div>
+      <div class="card rule-top t-PURd">
+        <div class="c-eb">FALLS APART IF</div>
+        <div class="c-head">The biggest assumption breaks.</div>
+        <div class="c-body">Name the one thing that, if wrong, kills V1.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>12 / 15</span></div>
+</section>
+
+<!-- 13 REGENERATE PRD (paper) -->
+<section class="s pl-paper" data-screen-label="13 Regenerate the PRD">
+  <div class="el k"><span class="m PURd"></span><span>STAGE 5 &middot; REGENERATE &middot; 12 MIN</span></div>
+  <div class="el h1">Regenerate the PRD. Lock it for P3.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--PURd)">
+      <div class="nli"><span class="nl-n c-PURd">01</span><span class="nl-t">Run PRD Lab's <span class="assert">Product Definition</span> regenerate.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">02</span><span class="nl-t">Check: does the regenerated PRD read like <span class="assert">one V1, not a wish list?</span></span></div>
+      <div class="nli"><span class="nl-n c-PURd">03</span><span class="nl-t">If yes, lock the version. P3 builds against it tomorrow.</span></div>
+    </div>
+  </div>
+  <div class="el chk"><span class="checkpoint" style="color:#7649C2"><span class="tick" style="background:#7649C2"></span>PRD LOCKED &middot; READY FOR P3</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>13 / 15</span></div>
+</section>
+
+<!-- 14 RECAP -->
+<section class="s pl-paper" data-screen-label="14 What you now hold">
+  <div class="el k"><span class="m PURd"></span><span>WHAT YOU NOW HOLD</span></div>
+  <div class="el h1">Is V1 one thing, built well?</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="row4">
+      <div class="stat-card" style="--c:var(--PURd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">PARTY FEATURE</div>
+        <div class="sc-d">What a user tells a friend, unprompted.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--PURd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">V1 LINE</div>
+        <div class="sc-d">In, waits, cut. Defensible.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--PURd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">SUCCESS CRITERION</div>
+        <div class="sc-d">A behaviour you could observe this week.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--REDd)">
+        <div class="sc-n">!</div>
+        <div class="sc-l">BIGGEST ASSUMPTION</div>
+        <div class="sc-d">The one thing that, if wrong, kills V1.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">One thing built well, not the whole vision built badly.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PURd"></span><span>14 / 15</span></div>
+</section>
+
+<!-- 15 HANDOFF -->
+<section class="s pl-ink" data-screen-label="15 Handoff">
+  <div class="el motif mz-corner br" style="--mz-op:0.16"></div>
+  <div class="el k"><span class="m PUR"></span><span>NEXT &middot; WED AM &middot; P3 PROTOTYPE BUILD</span></div>
+  <div class="el hero" style="top:288px">Build the one<br>scoped thing.</div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-PUR">
+        <div class="c-eb c-PUR">P3 &middot; WEDNESDAY AM</div>
+        <div class="c-head">Build V1. Not the vision.</div>
+        <div class="c-body">Carry the party feature and the biggest assumption.</div>
+      </div>
+      <div class="card rule-top t-MUTE">
+        <div class="c-eb">FEEDS</div>
+        <div class="c-head">PRD. B3 100-day plan.</div>
+        <div class="c-body">The V1 line is what the rest of the week is sized against.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk PUR"></span><span>15 / 15</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<script src="../system/linter.js"></script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});})();
+</script>
+<title>HLV · M1 Landscape Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  .pl-blue .el.k, .pl-blue .el.foot, .pl-blue .el.cred, .pl-blue .el.pc{color:#1E1E1E}
+  .pl-blue .el.sub{color:#0B2A4A}
+  .voice-chip{display:inline-block;padding:2px 10px;margin-left:10px;border:1.5px solid currentColor;font-weight:700}
+  /* market track override: green-accented kit components flipped to blue for M1 */
+  .pair .ps.figure{border-color:#0B5FB0}
+  .pl-ink .pair .ps.figure{border-color:#1E9BFE}
+  .pair .hinge .h-delta{color:#0B5FB0}
+  .pl-ink .pair .hinge .h-delta{color:#1E9BFE}
+  .pair .hinge .h-arrow{border-left-color:#0B5FB0}
+  .pl-ink .pair .hinge .h-arrow{border-left-color:#1E9BFE}
+  .pair .ps.figure .ps-tag{color:#0B5FB0}
+  .pl-ink .pair .ps.figure .ps-tag{color:#1E9BFE}
+  .fr.peak{border-color:#0B5FB0}
+  .pl-ink .fr.peak{border-color:#1E9BFE}
+  .fr-tag{color:#0B5FB0}
+  .pl-ink .fr-tag{color:#1E9BFE}
+  .seq{background:#0B5FB0}
+  .pl-ink .seq{background:#1E9BFE;color:#11121A}
+  /* nest archetype track-accent overrides */
+  .nest .ring.hot{border-color:#0B5FB0}
+  .pl-ink .nest .ring.hot{border-color:#1E9BFE}
+  .nest .ring.hot .rl{color:#0B5FB0}
+  .pl-ink .nest .ring.hot .rl{color:#1E9BFE}
+  .nest .core{background:#0B5FB0}
+  .pl-ink .nest .core{background:#1E9BFE}
+  .nest .core-lbl{color:#0B5FB0}
+  .pl-ink .nest .core-lbl{color:#1E9BFE}
+  /* matrix archetype track-accent overrides */
+  .matrix .mx-plot.you .dot{background:#0B5FB0;outline:6px solid #CFE6FF}
+  .pl-ink .matrix .mx-plot.you .dot{background:#1E9BFE;outline-color:rgba(30,155,254,0.28)}
+  .matrix .mx-q.gap{background:#CFE6FF;color:#0B5FB0}
+  .pl-ink .matrix .mx-q.gap{background:rgba(30,155,254,0.18);color:#1E9BFE}
+  /* dies-if seam — only used as "the point" callout on S11, keep red as critical */
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ═══════════════════════ 01 · COVER ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="01 Cover">
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot ink" style="left:120px;top:96px"></span>
+  <span class="gdot ink" style="left:1800px;top:96px"></span>
+  <span class="gdot ink" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m INK"></span><span>MARKET &middot; SESSION 1 &middot; LANDSCAPE MAP &middot; 105 MIN</span></div>
+  <div class="el hero" style="top:312px">Map the field.<br>Find the bet.</div>
+  <div class="el sub" style="top:660px;width:1320px">Three layers around the user. The empty corner is the bet.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>01 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 02 · TWO REASONS (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="02 Two reasons">
+  <div class="el k"><span class="m BLUd"></span><span>WHY BOTHER</span></div>
+  <div class="el h1">Two reasons to map the field.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">DIRECTION</div>
+        <div class="c-head">Where to differ.</div>
+        <div class="c-body">Three layers around the user. The empty corner is the bet.</div>
+      </div>
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">DOUBT</div>
+        <div class="c-head">What to test first.</div>
+        <div class="c-body">The gap is a behaviour, not a missing app. Name the riskiest word.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>02 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 03 · THREE LAYERS (ink, nest) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="03 Three layers">
+  <div class="el k"><span class="m BLU"></span><span>THE FIELD &middot; THREE LAYERS</span></div>
+  <div class="el h1">Three layers around the user.</div>
+  <div class="el" style="left:600px;top:336px;width:720px">
+    <div class="dgm ctx-band">
+      <div class="nest" style="--nz:600px">
+        <div class="ring r1"><span class="rl">DIY &middot; WHAT BEHAVIOUR LIVES</span></div>
+        <div class="ring r2"><span class="rl">INDIRECT &middot; SUBSTITUTES</span></div>
+        <div class="ring r3 hot"><span class="rl">DIRECT &middot; COMPETITORS</span></div>
+        <div class="core"></div>
+        <div class="core-lbl">USER</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>03 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 04 · WORKED FRAME · ANYA'S FIELD (ink) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="04 Anya's field">
+  <div class="el k"><span class="m BLU"></span><span>MEET ANYA &middot; A WORKED EXAMPLE</span></div>
+  <div class="el h1">Anya's field. Each layer, each 'but'.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb rows">
+        <div class="fr">
+          <div class="fr-tag">DIRECT</div>
+          <div class="fr-body">Sleep apps. Calm.</div>
+          <div class="fr-note">But teens uninstall them in a week.</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">INDIRECT</div>
+          <div class="fr-body">Screen-time. Phone-in-kitchen.</div>
+          <div class="fr-note">But she retrieves it at 11:40.</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">DIY</div>
+          <div class="fr-body">Phone on the pillow every night.</div>
+          <div class="fr-note">The 11pm reach is where behaviour lives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>04 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 05 · PREDICT THE GAP (ink, DO) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="05 Where is the gap">
+  <div class="el k"><span class="m BLU"></span><span>PREDICT &middot; 90 SECONDS &middot; TEAM CALL</span></div>
+  <div class="el" style="left:120px;top:168px;width:300px">
+    <span class="chip solid" style="--c:var(--BLU);color:#0B2A4A">DO</span>
+  </div>
+  <div class="el drill" style="top:288px">So where is the gap?</div>
+  <div class="el" style="left:120px;top:660px;width:1560px">
+    <div class="t-body" style="color:#CECECE">The room points to a missing feature. The reveal is a missing behaviour.</div>
+  </div>
+  <div class="el chk c-BLU"><span class="checkpoint" style="color:#1E9BFE"><span class="tick" style="background:#1E9BFE"></span>HOLD THE GUESS &middot; PLOT IT NEXT</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>05 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 06 · 2x2 SCATTER (ink, peak) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="06 The empty corner">
+  <div class="el k"><span class="m BLU"></span><span>THE TEACHING PEAK</span></div>
+  <div class="el h1">The empty corner is the bet.</div>
+  <div class="el" style="left:600px;top:336px;width:720px">
+    <div class="dgm ctx-band">
+      <div class="matrix" style="--mx:540px">
+        <div class="mx-q tl">HIGH EFFORT</div>
+        <div class="mx-q tr gap">EMPTY · HIGH OUTCOME / LOW EFFORT</div>
+        <div class="mx-q bl">LOW OUTCOME</div>
+        <div class="mx-q br">HIGH OUTCOME</div>
+        <div class="mx-plot" style="left:20%;top:30%;color:#1E9BFE"><span class="dot"></span><span class="lbl">SLEEP APPS</span></div>
+        <div class="mx-plot lbl-l" style="left:30%;top:60%;color:#1E9BFE"><span class="dot"></span><span class="lbl">SCREEN-TIME</span></div>
+        <div class="mx-plot lbl-up" style="left:25%;top:80%;color:#1E9BFE"><span class="dot"></span><span class="lbl">PHONE IN KITCHEN</span></div>
+        <div class="mx-plot you" style="left:75%;top:25%"><span class="dot"></span><span class="lbl">THE BET</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>06 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 07 · THE AXES DO THE TEACHING (paper, 2 cards) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="07 The axes">
+  <div class="el k"><span class="m BLUd"></span><span>HOW NOT TO LIE WITH A 2x2</span></div>
+  <div class="el h1">The axes do the teaching.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">PICK A REAL AXIS</div>
+        <div class="c-head">Outcome and effort. Not 'cheap and easy'.</div>
+        <div class="c-body">The axes must be things the user actually trades. Vague axes make every option look the same.</div>
+      </div>
+      <div class="card rule-top t-BLUd">
+        <div class="c-eb">PICK A REAL CORNER</div>
+        <div class="c-head">Empty because nothing covers it.</div>
+        <div class="c-body">Not empty because nobody tried. Ask why the corner is empty before you claim it.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>07 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 08 · GAP FORMULA (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="08 Gap formula">
+  <div class="el k"><span class="m BLUd"></span><span>THE GAP, AS ONE LINE</span></div>
+  <div class="el h1">Write the gap in one sentence.</div>
+  <div class="el" style="left:120px;top:384px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span class="run-BLU">Who</span>
+      <span>wants</span>
+      <span class="run-BLU">outcome</span>
+      <span>but</span>
+      <span class="run-BLU">blocker</span>
+      <span>so nothing today fills it.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:552px;width:1680px">
+    <div class="callout" style="--c:var(--BLUd);--fill:var(--BLU-soft)">
+      <div class="co-eb">ANYA, AS A WORKED FILL</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">Anya wants a better morning, but the 11pm reach kills it, so nothing today fills the need.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>08 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 09 · YOUR TURN (blue divider, 4-node sb) ═══════════════════════ -->
+<section class="s pl-blue" data-screen-label="09 Your turn">
+  <div class="el k"><span class="m INK"></span><span>YOUR TURN &middot; 46 MINUTES OF WORK</span></div>
+  <div class="el hero" style="top:240px">Your turn.</div>
+  <div class="el" style="left:120px;top:540px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr">
+          <div class="fr-tag">FILL</div>
+          <div class="fr-body">The three layers.</div>
+          <div class="fr-note">14 min &middot; your heads first</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">WIDEN</div>
+          <div class="fr-body">Behaviour, not apps.</div>
+          <div class="fr-note">7 min &middot; AI surfaces what you missed</div>
+        </div>
+        <div class="fr peak">
+          <div class="fr-tag">PLOT</div>
+          <div class="fr-body">Star the empty corner.</div>
+          <div class="fr-note">15 min &middot; largest block</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">NAME</div>
+          <div class="fr-body">Write the gap line.</div>
+          <div class="fr-note">10 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk INK"></span><span>09 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 10 · FILL · provisional layers (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="10 Fill the layers">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 1 &middot; FILL &middot; 14 MIN &middot; HARD STOP</span></div>
+  <div class="el h1">Fill the field. Honest first pass.</div>
+  <div class="el sub recede">Three layers, your own heads first. Widen with the AI next.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="sb">
+        <div class="fr">
+          <div class="fr-tag">DIRECT</div>
+          <div class="fr-body">Competitors.</div>
+          <div class="fr-note">Who already does this.</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">INDIRECT</div>
+          <div class="fr-body">Substitutes.</div>
+          <div class="fr-note">The not-quite, the workaround.</div>
+        </div>
+        <div class="fr">
+          <div class="fr-tag">DIY</div>
+          <div class="fr-body">Where behaviour lives.</div>
+          <div class="fr-note">What people already do at 11pm.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#8A6000"><span class="checkpoint" style="color:#8A6000"><span class="tick" style="background:#C99700"></span>NOT YET PLOTTED &middot; NOT YET WIDENED</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>10 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 11 · WIDEN (paper, pair, the suspect-frame) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="11 Widen to behaviour">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 2 &middot; WIDEN &middot; 7 MIN &middot; HARD STOP</span></div>
+  <div class="el h1">The AI widens you to behaviour. Not more apps.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px">
+    <div class="dgm ctx-band">
+      <div class="pair">
+        <div class="ps faint">
+          <div class="ps-tag">WHAT YOU LISTED</div>
+          <div class="ps-claim">Apps and substitutes.</div>
+          <div class="ps-note">The field you already know.</div>
+        </div>
+        <div class="hinge">
+          <div class="h-k">PROMPT THE AI FOR</div>
+          <div class="h-delta">Workarounds and do-nothings.</div>
+          <div class="h-arrow"></div>
+        </div>
+        <div class="ps figure">
+          <div class="ps-tag">WHAT THE AI SURFACES</div>
+          <div class="ps-claim">Behaviours, not products.</div>
+          <div class="ps-note">Phone-on-pillow. Doom-scrolling till sleep. Nothing at all.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:684px;width:1680px">
+    <div class="dies-if">
+      <div class="di-k">THE POINT</div>
+      <div class="di-body">The gap is a behaviour, not a missing app. Widen until you have behaviours nobody built for.</div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>11 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 12 · PLOT · the spine (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="12 Plot the wider field">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 3 &middot; PLOT &middot; 15 MIN &middot; THE SPINE</span></div>
+  <div class="el h1">Plot the wider field. Star the corner.</div>
+  <div class="el" style="left:120px;top:480px;width:1680px">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t"><span class="assert">Pick the axes.</span> Outcome and effort, in your user's words.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t"><span class="assert">Plot the field.</span> Direct, indirect, DIY. Every fix sits somewhere.</span></div>
+      <div class="nli"><span class="nl-n c-BLUd">03</span><span class="nl-t"><span class="assert">Star the empty corner.</span> Ask why nothing is there before you claim it.</span></div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#0B5FB0"><span class="checkpoint" style="color:#0B5FB0"><span class="tick" style="background:#0B5FB0"></span>FIELD PLOTTED &middot; CORNER STARRED</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>12 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 13 · NAME THE GAP (paper, formula) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="13 Name the gap">
+  <div class="el k"><span class="m BLUd"></span><span>STAGE 4 &middot; NAME &middot; 10 MIN</span></div>
+  <div class="el h1">Name the gap. Circle the riskiest word.</div>
+  <div class="el" style="left:120px;top:444px;width:1680px">
+    <div class="formula" style="--fx:56px">
+      <span class="run-BLU">Who</span>
+      <span>wants</span>
+      <span class="run-BLU">outcome</span>
+      <span>but</span>
+      <span class="run-BLU">blocker</span>
+      <span>so nothing today fills it.</span>
+    </div>
+  </div>
+  <div class="el" style="left:120px;top:612px;width:1680px">
+    <div class="callout" style="--c:var(--BLUd);--fill:var(--BLU-soft)">
+      <div class="co-eb">THE RISKIEST WORD</div>
+      <div class="co-body">A behaviour you cannot yet observe. Circle it. That is what M2 tests.</div>
+    </div>
+  </div>
+  <div class="el chk" style="color:#0B5FB0"><span class="checkpoint" style="color:#0B5FB0"><span class="tick" style="background:#0B5FB0"></span>GAP NAMED &middot; ONE WORD CIRCLED</span></div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>13 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 14 · RECAP · 3 STATS (paper) ═══════════════════════ -->
+<section class="s pl-paper" data-screen-label="14 What you now hold">
+  <div class="el k"><span class="m BLUd"></span><span>WHAT YOU NOW HOLD</span></div>
+  <div class="el h1">A field, a corner, a sentence.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="row3">
+      <div class="stat-card" style="--c:var(--BLUd)">
+        <div class="sc-n">3</div>
+        <div class="sc-l">LAYERS NAMED</div>
+        <div class="sc-d">Direct, indirect, DIY. Behaviour included.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--BLUd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">CORNER STARRED</div>
+        <div class="sc-d">Empty because nothing covers it, not because nobody tried.</div>
+      </div>
+      <div class="stat-card" style="--c:var(--BLUd)">
+        <div class="sc-n">1</div>
+        <div class="sc-l">GAP SENTENCE</div>
+        <div class="sc-d">Riskiest word circled. A behaviour, not an app.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">A behavioural gap survives a probe. A product nobody built does not.</div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLUd"></span><span>14 / 15</span></div>
+</section>
+
+<!-- ═══════════════════════ 15 · HANDOFF (ink) ═══════════════════════ -->
+<section class="s pl-ink" data-screen-label="15 Handoff">
+  <div class="el motif mz-corner br" style="--mz-op:0.16"></div>
+  <div class="el k"><span class="m BLU"></span><span>NEXT &middot; TUE PM &middot; OUT IN MARKET</span></div>
+  <div class="el hero" style="top:288px">Take the riskiest word<br>to the field.</div>
+  <div class="el" style="left:120px;top:660px;width:1680px">
+    <div class="row2">
+      <div class="card rule-top t-BLU">
+        <div class="c-eb c-BLU">M2 &middot; VALIDATION DESIGN</div>
+        <div class="c-head">The word becomes the experiment.</div>
+        <div class="c-body">Design an interview that can come back no.</div>
+      </div>
+      <div class="card rule-top t-MUTE">
+        <div class="c-eb">OUT IN MARKET #1</div>
+        <div class="c-head">Real behaviour decides.</div>
+        <div class="c-body">Not the whiteboard.</div>
+      </div>
+    </div>
+  </div>
+  <div class="el foot">HUDSON LAB VENTURES <span class="voice-chip">DRAFT &middot; VOICE PASS</span></div>
+  <div class="el pc"><span class="tk BLU"></span><span>15 / 15</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function(){var N=window.ResizeObserver;if(!N)return;
+    window.ResizeObserver=function(cb){return new N(function(e,o){requestAnimationFrame(function(){cb(e,o);});});};})();
+</script>
+<script src="../system/deck-stage.js"></script>
+<script src="../system/linter.js"></script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function(){
+  var RE=/ResizeObserver loop/;
+  window.addEventListener('error',function(e){if(e.message&&RE.test(e.message)){e.stopImmediatePropagation();e.preventDefault();return false;}},true);
+  ['error','warn'].forEach(function(m){var o=console[m];console[m]=function(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]==='string'&&RE.test(arguments[i]))return;}return o.apply(console,arguments);};});
+})();
+</script>
+<title>HLV · The Three Specialty Tracks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../system/kit.css" />
+<link rel="stylesheet" href="../system/motif.css" />
+<link rel="stylesheet" href="../system/diagrams.css" />
+<style>
+  deck-stage:not(:defined){visibility:hidden}
+  /* ── deck-local helpers (export-safe: hex only) ───────────────────────── */
+  /* minute-map proportion bar */
+  .mmap{display:flex;gap:6px;height:168px}
+  .mmap .seg{display:flex;flex-direction:column;justify-content:space-between;padding:18px 16px;overflow:hidden;box-sizing:border-box}
+  .mmap .seg b{font:700 22px/1.2 var(--type-mono);letter-spacing:0.01em}
+  .mmap .seg small{font:500 18px/1.18 var(--type-mono);opacity:0.85}
+  .mmap .seg.rcv{background:#D7D8DD;color:#33343A}
+  .mmap .seg.do{background:#0A8C3D;color:#FFFFFF}
+  .mmap .seg.main{background:#00D967;color:#06270F;outline:3px solid #0A8C3D;outline-offset:-3px}
+  .mmap .seg.aistep{background:#FFFFFF;color:#0A8C3D;border:3px solid #00D967}
+  .mmap .seg.aistep small{opacity:1;color:#565656}
+  .mlegend{display:flex;gap:60px;margin-top:36px;font:500 22px/1 var(--type-mono);letter-spacing:0.06em;text-transform:uppercase;color:#565656}
+  .mlegend span{display:inline-flex;align-items:center;gap:14px}
+  .mlegend i{width:24px;height:16px;display:inline-block}
+  /* arc rows (the deepening loop) */
+  .arc{display:flex;align-items:center;gap:24px}
+  .arc .lab{width:236px;flex:0 0 236px;font:700 40px/1 var(--type-display);letter-spacing:-0.015em}
+  .arc .cell{flex:1 1 0;border:1.5px solid #E4E4E4;background:#F4F3F1;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+  .arc .cell b{font:700 30px/1.1 var(--type-display);letter-spacing:-0.01em;color:#1E1E1E}
+  .arc .cell span{font:500 20px/1 var(--type-mono);letter-spacing:0.06em;text-transform:uppercase;color:#939393}
+  .arc .gt{font:700 36px/1 var(--type-mono);color:#939393;flex:0 0 auto}
+  .arc.b .lab{color:#0B5FB0} .arc.b .cell{border-color:#1E9BFE}
+  .arc.p .lab{color:#7649C2} .arc.p .cell{border-color:#B884FE}
+  .arc.g .lab{color:#0A8C3D} .arc.g .cell{border-color:#00D967}
+  /* keep overview-card eyebrows on one line */
+  section.s .card.boxed > .c-eb{white-space:nowrap}
+  /* compact week list */
+  .deflist.tight .dl-row{padding:16px 0}
+  /* status panel rows (robust flex list) */
+  .slist{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+  .slist .si{display:flex;gap:18px;align-items:flex-start;font:var(--t-body-small);color:#1E1E1E;text-wrap:normal}
+  .slist .si .sq{width:18px;height:18px;flex-shrink:0;margin-top:13px}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ══════════════════════════ 01 · COVER ══════════════════════════ -->
+<section class="s pl-ink" data-screen-label="01 Cover">
+  <div class="el motif mz-flood accent reg" style="--mz-op:0.22"></div>
+  <span class="gline h" style="left:0;top:96px;width:1920px"></span>
+  <span class="gline h" style="left:0;top:624px;width:1920px"></span>
+  <span class="gdot" style="left:120px;top:96px"></span>
+  <span class="gdot" style="left:1800px;top:96px"></span>
+  <span class="gdot" style="left:120px;top:624px"></span>
+  <div class="el k"><span class="m GRN"></span><span>HUDSON LAB VENTURES &middot; INTERNAL WALKTHROUGH</span></div>
+  <div class="el hero" style="top:312px">The three<br>specialty tracks.</div>
+  <div class="el sub" style="top:660px;color:#B9B9C0;width:1320px">What they are, how they run, and where the build stands. A walkthrough for Cate and Stacey.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRN"></span><span>01 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 02 · THE SPLIT ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="02 The split">
+  <div class="el k"><span class="m GRNd"></span><span>WEEK 2 &middot; HOW A TEAM SPLITS</span></div>
+  <div class="el h1">Each team splits into three specialists.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px"><div class="deflist" style="--dl-term:360px">
+    <div class="dl-row"><div class="dl-term c-BLUd">Market</div><div class="dl-def">Figures out who the customer is, and whether the need is real.</div></div>
+    <div class="dl-row"><div class="dl-term c-PURd">Product</div><div class="dl-def">Defines the thing, and builds it.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Business</div><div class="dl-def">Works out whether it can make money.</div></div>
+  </div></div>
+  <div class="el body-768" style="top:792px;width:1500px;color:#565656">One person on each team takes each job. They work apart, then bring it back together. Each track runs three sessions across the week.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>02 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 03 · BUSINESS OVERVIEW ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="03 Business overview">
+  <div class="el motif mz-corner br" style="--mz-op:0.10"></div>
+  <div class="el k"><span class="m GRNd"></span><span>THE BUSINESS TRACK &middot; MAKES THE MONEY WORK</span></div>
+  <div class="el h1">The Business track runs in three sessions.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px"><div class="row3">
+    <div class="card boxed t-GRNd" style="--card-min:456px">
+      <div class="c-eb">SESSION 1 &middot; 105 MIN</div>
+      <div class="c-head">Canvas Lite</div>
+      <div class="c-body">Who pays, what for, how much, and whether the price holds up.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-GRNd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">A one-line revenue statement.</span>
+      </div>
+    </div>
+    <div class="card boxed t-GRNd" style="--card-min:456px">
+      <div class="c-eb">SESSION 2 &middot; 135 MIN</div>
+      <div class="c-head">Napkin Economics</div>
+      <div class="c-body">Whether a single customer makes money once every cost is in.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-GRNd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">The unit economics and the one risk.</span>
+      </div>
+    </div>
+    <div class="card boxed t-GRNd" style="--card-min:456px">
+      <div class="c-eb" style="white-space:normal">SESSION 3 &middot; 105 MIN &middot; WITH MARKET</div>
+      <div class="c-head">The 100-Day Plan</div>
+      <div class="c-body">The first hundred days, written together with the market specialist.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-GRNd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">A sequenced plan and a budget.</span>
+      </div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>03 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 04 · B1 CANVAS LITE ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="04 B1 Canvas Lite">
+  <div class="el k"><span class="m GRNd"></span><span>BUSINESS &middot; SESSION 1 &middot; CANVAS LITE &middot; 105 MIN</span></div>
+  <div class="el h1">Who pays, and can you defend the price?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--GRNd)">
+      <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Fill a simple canvas: <span class="assert">who pays, what for, how much, how often.</span> The AI suggests a pricing pattern to start from.</span></div>
+      <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">Check the three traps: is the payer really the user, can you <span class="assert">defend the price against one real number,</span> and what does this model always get wrong.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A one-line revenue statement (who pays, how much, how often, for what), with the price defended and the trap named.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>04 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 05 · B2 NAPKIN ECONOMICS ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="05 B2 Napkin Economics">
+  <div class="el k"><span class="m GRNd"></span><span>BUSINESS &middot; SESSION 2 &middot; NAPKIN ECONOMICS &middot; 135 MIN</span></div>
+  <div class="el h1">Does one customer actually make money?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--GRNd)">
+      <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Work out the money for <span class="assert">one customer in one month.</span> The AI gives quick, optimistic numbers.</span></div>
+      <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">Put <span class="assert">every cost back in,</span> including getting the customer, which the AI leaves out. Then find <span class="assert">the one number that, if wrong, breaks the model.</span></span></div>
+    </div>
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">The unit economics, the break-even point, and the named risk. A sponsor reviews the math on Wednesday.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>05 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 06 · B3 100-DAY PLAN ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="06 B3 100-Day Plan">
+  <div class="el k"><span class="m GRNd"></span><span>BUSINESS &middot; SESSION 3 &middot; THE 100-DAY PLAN &middot; 105 MIN</span></div>
+  <div class="el h1">What would the first 100 days look like?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--GRNd)">
+      <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Business and market specialists <span class="assert">come back together</span> and turn the week's work into a plan, split into <span class="assert">validate, build, and grow.</span></span></div>
+      <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">Each part gets a goal, a few <span class="assert">actions they could start on Monday,</span> and one number to watch. Anything they cannot credibly start is cut.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--GRNd);--fill:var(--GRN-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A sequenced 100-day plan with a budget and a day-100 scorecard.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>06 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 07 · MINUTE MAP ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="07 Minute map">
+  <div class="el k"><span class="m GRNd"></span><span>INSIDE SESSION 2 &middot; NAPKIN ECONOMICS &middot; 135 MIN</span></div>
+  <div class="el h1">Inside a session, minute by minute.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px">
+    <div class="mmap">
+      <div class="seg rcv" style="flex:22"><b>Short teach</b><small>why it matters, with a worked example</small></div>
+      <div class="seg do" style="flex:14"><b>Work out the numbers</b><small>one customer, by hand</small></div>
+      <div class="seg aistep" style="flex:16"><b>Run it through AI</b><small>it fills it out, fast but optimistic</small></div>
+      <div class="seg main" style="flex:30"><b>Pull it apart</b><small>find the number that breaks it</small></div>
+      <div class="seg do" style="flex:18"><b>Map it out</b><small>break-even, the months ahead</small></div>
+      <div class="seg rcv" style="flex:5"><b>Recap</b><small>&nbsp;</small></div>
+    </div>
+    <div class="mlegend">
+      <span><i style="background:#D7D8DD"></i>Teacher talking</span>
+      <span><i style="background:#0A8C3D"></i>Students working</span>
+      <span><i style="background:#FFFFFF;border:2px solid #00D967"></i>The AI step</span>
+    </div>
+  </div>
+  <div class="el body-768" style="top:672px;width:1640px;color:#565656">Students work the numbers out themselves first, then run them through the AI, then pull that apart. The teach is short and up front; the longest blocks are the team's own thinking, on either side of the AI. Every session follows this shape: analog first, AI second.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>07 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 08 · MARKET OVERVIEW ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="08 Market overview">
+  <div class="el motif mz-corner br" style="--mz-op:0.10"></div>
+  <div class="el k"><span class="m BLUd"></span><span>THE MARKET TRACK &middot; FINDS THE CUSTOMER</span></div>
+  <div class="el h1">The Market track runs in three sessions.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px"><div class="row3">
+    <div class="card boxed t-BLUd" style="--card-min:456px">
+      <div class="c-eb">SESSION 1 &middot; 105 MIN</div>
+      <div class="c-head">Landscape Map</div>
+      <div class="c-body">How the problem is solved today, and where the gap is.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-BLUd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">A map of the field and the riskiest assumption.</span>
+      </div>
+    </div>
+    <div class="card boxed t-BLUd" style="--card-min:456px">
+      <div class="c-eb">SESSION 2 &middot; 135 MIN</div>
+      <div class="c-head">Validation Design</div>
+      <div class="c-body">Interviews that can prove the idea wrong, not just confirm it.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-BLUd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">An interview plan ready to run.</span>
+      </div>
+    </div>
+    <div class="card boxed t-BLUd" style="--card-min:456px">
+      <div class="c-eb">SESSION 3 &middot; PART OF WED</div>
+      <div class="c-head">First Moves</div>
+      <div class="c-body">The first ways to reach customers, and the first hundred users.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-BLUd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">First channels and a path to 100 users.</span>
+      </div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk BLUd"></span><span>08 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 09 · M1 LANDSCAPE MAP ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="09 M1 Landscape Map">
+  <div class="el k"><span class="m BLUd"></span><span>MARKET &middot; SESSION 1 &middot; LANDSCAPE MAP &middot; 105 MIN</span></div>
+  <div class="el h1">How is the problem solved today, and where is the gap?</div>
+  <div class="el" style="left:120px;top:396px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t">List what already solves this, in three layers: <span class="assert">direct competitors, indirect substitutes, and the do-it-yourself workarounds.</span></span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t">Place them on a grid to see the <span class="assert">empty space nobody fills,</span> then name the <span class="assert">riskiest thing you are assuming</span> about it.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--BLUd);--fill:var(--BLU-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A map of the field and the single riskiest assumption to test.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk BLUd"></span><span>09 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 10 · M2 VALIDATION DESIGN ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="10 M2 Validation Design">
+  <div class="el k"><span class="m BLUd"></span><span>MARKET &middot; SESSION 2 &middot; VALIDATION DESIGN &middot; 135 MIN</span></div>
+  <div class="el h1">How do you ask without leading the witness?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t">Turn the riskiest assumption into questions that can come back no. Two rules: <span class="assert">never mention your product,</span> and <span class="assert">ask what people actually did.</span></span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t">Decide in advance <span class="assert">what would count as a real signal,</span> so a polite yes does not get mistaken for proof.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--BLUd);--fill:var(--BLU-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">An interview plan they can run that same afternoon, out in the market.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk BLUd"></span><span>10 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 11 · M3 FIRST MOVES ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="11 M3 First Moves">
+  <div class="el k"><span class="m BLUd"></span><span>MARKET &middot; SESSION 3 &middot; FIRST MOVES &middot; PART OF WEDNESDAY</span></div>
+  <div class="el h1">How do you reach the first hundred customers?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--BLUd)">
+      <div class="nli"><span class="nl-n c-BLUd">01</span><span class="nl-t">List the ways you could reach customers and <span class="assert">score each by how many it reaches and how much effort it takes.</span></span></div>
+      <div class="nli"><span class="nl-n c-BLUd">02</span><span class="nl-t">Pick the first few and <span class="assert">sequence the first hundred users</span> over the early weeks.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--BLUd);--fill:var(--BLU-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">The first channels and a concrete path to the first hundred users. This joins the business plan on Wednesday.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk BLUd"></span><span>11 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 12 · PRODUCT OVERVIEW ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="12 Product overview">
+  <div class="el motif mz-corner br" style="--mz-op:0.10"></div>
+  <div class="el k"><span class="m PURd"></span><span>THE PRODUCT TRACK &middot; BUILDS THE THING</span></div>
+  <div class="el h1">The Product track runs in three sessions.</div>
+  <div class="el" style="left:120px;top:336px;width:1680px"><div class="row3">
+    <div class="card boxed t-PURd" style="--card-min:456px">
+      <div class="c-eb">SESSION 1 &middot; 105 MIN</div>
+      <div class="c-head">Solution Blueprint</div>
+      <div class="c-body">The user's experience, and the one moment that matters most.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-PURd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">A blueprint and a one-line product description.</span>
+      </div>
+    </div>
+    <div class="card boxed t-PURd" style="--card-min:456px">
+      <div class="c-eb">SESSION 2 &middot; 135 MIN</div>
+      <div class="c-head">Product Definition</div>
+      <div class="c-body">What the product is, and what goes in the first version.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-PURd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">A scoped first version.</span>
+      </div>
+    </div>
+    <div class="card boxed t-PURd" style="--card-min:456px">
+      <div class="c-eb">SESSION 3 &middot; 105 MIN</div>
+      <div class="c-head">Prototype Build</div>
+      <div class="c-body">A rough working version, tested on real people.</div>
+      <div class="c-foot" style="text-transform:none;margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px">
+        <span class="t-mono-22 c-PURd">Leaves with</span>
+        <span style="font:var(--t-body-small);color:#1E1E1E">A tested prototype.</span>
+      </div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk PURd"></span><span>12 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 13 · P1 SOLUTION BLUEPRINT ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="13 P1 Solution Blueprint">
+  <div class="el k"><span class="m PURd"></span><span>PRODUCT &middot; SESSION 1 &middot; SOLUTION BLUEPRINT &middot; 105 MIN</span></div>
+  <div class="el h1">What is the one moment the product must get right?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--PURd)">
+      <div class="nli"><span class="nl-n c-PURd">01</span><span class="nl-t">Sketch the user's experience as <span class="assert">a sequence of moments,</span> step by step.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">02</span><span class="nl-t">Find the <span class="assert">one moment the product lives or dies on,</span> and write what the product is in a single sentence.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--PURd);--fill:var(--PUR-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A blueprint of the experience with the key moment marked, and a one-line product description.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk PURd"></span><span>13 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 14 · P2 PRODUCT DEFINITION ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="14 P2 Product Definition">
+  <div class="el k"><span class="m PURd"></span><span>PRODUCT &middot; SESSION 2 &middot; PRODUCT DEFINITION &middot; 135 MIN</span></div>
+  <div class="el h1">What is in the first version, and what waits?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--PURd)">
+      <div class="nli"><span class="nl-n c-PURd">01</span><span class="nl-t">Define what the product is, and pick the <span class="assert">one feature worth telling a friend about.</span></span></div>
+      <div class="nli"><span class="nl-n c-PURd">02</span><span class="nl-t">Draw the line between <span class="assert">what is in the first version and what waits,</span> and name the biggest thing you are assuming.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--PURd);--fill:var(--PUR-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A scoped first version, clear enough to build a prototype from on Wednesday.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk PURd"></span><span>14 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 15 · P3 PROTOTYPE BUILD ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="15 P3 Prototype Build">
+  <div class="el k"><span class="m PURd"></span><span>PRODUCT &middot; SESSION 3 &middot; PROTOTYPE BUILD &middot; 105 MIN</span></div>
+  <div class="el h1">Does it survive contact with a real person?</div>
+  <div class="el" style="left:120px;top:372px;width:1680px"><div class="split-7x5">
+    <div class="numlist" style="--c:var(--PURd)">
+      <div class="nli"><span class="nl-n c-PURd">01</span><span class="nl-t">Build a <span class="assert">rough working version</span> using a build tool. Rough is fine; it is meant to be changed.</span></div>
+      <div class="nli"><span class="nl-n c-PURd">02</span><span class="nl-t">Test it on real people, <span class="assert">watch what they do,</span> and change one thing based on what you saw.</span></div>
+    </div>
+    <div class="callout" style="--c:var(--PURd);--fill:var(--PUR-soft)">
+      <div class="co-eb">WHAT THEY LEAVE WITH</div>
+      <div class="co-body" style="font:var(--t-body-small);color:#1E1E1E">A tested prototype, ready to show real users that afternoon.</div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk PURd"></span><span>15 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 16 · TEACH BACK ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="16 Teach back">
+  <div class="el k"><span class="m GRNd"></span><span>AFTER EACH ROUND</span></div>
+  <div class="el h1">Specialists rejoin and teach what they found.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px"><div class="numlist" style="--c:var(--GRNd)">
+    <div class="nli"><span class="nl-n c-GRNd">01</span><span class="nl-t">Each specialist gets <span class="assert">five minutes</span> to teach the rest of the team what they built, and where it is shaky.</span></div>
+    <div class="nli"><span class="nl-n c-GRNd">02</span><span class="nl-t">The team listens, then the <span class="assert">contradictions between the three come out.</span> The market read, the product scope, and the money do not always agree.</span></div>
+  </div></div>
+  <div class="el body-768" style="top:780px;width:1440px;color:#565656">A team can only plan around what it understands. This teach-back is where the three specialties become one team again.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>16 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 17 · THE WEEK ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="17 The week">
+  <div class="el k"><span class="m GRNd"></span><span>THE WEEK</span></div>
+  <div class="el h1">The week, day by day.</div>
+  <div class="el" style="left:120px;top:312px;width:1680px"><div class="deflist tight" style="--dl-term:300px">
+    <div class="dl-row"><div class="dl-term c-GRNd">Mon AM</div><div class="dl-def" style="color:#1E1E1E">Teams split into the three tracks.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Mon PM</div><div class="dl-def" style="color:#1E1E1E">First round of track sessions, then teach back to the team.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Tue AM</div><div class="dl-def" style="color:#1E1E1E">Second round of track sessions, then teach back to the team.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Tue PM</div><div class="dl-def" style="color:#1E1E1E"><strong>Teams go out and interview real people</strong> for the first time.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Wed AM</div><div class="dl-def" style="color:#1E1E1E">A sponsor reviews the work. Teams build a prototype and write the 100-day plan.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Wed PM</div><div class="dl-def" style="color:#1E1E1E"><strong>Teams test the prototype</strong> with real users.</div></div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>17 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 18 · WEDNESDAY CONVERGENCE ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="18 Convergence">
+  <div class="el k"><span class="m GRNd"></span><span>WEDNESDAY &middot; THE PLANS MEET</span></div>
+  <div class="el h1">Business and market combine, then everyone tests.</div>
+  <div class="el" style="left:120px;top:420px;width:1680px"><div class="dgm ctx-band"><div class="collision">
+    <div class="cl-src" style="--c:var(--GRNd)"><div class="cs-k">BUSINESS</div><div class="cs-n">&euro;4</div><div class="cs-cap">can afford to win a customer</div></div>
+    <div class="cl-arrow"></div>
+    <div class="cl-src" style="--c:var(--BLUd)"><div class="cs-k">MARKET</div><div class="cs-n">&euro;10</div><div class="cs-cap">this channel costs</div></div>
+    <div class="cl-arrow"></div>
+    <div class="cl-out"><div class="co-k">RECONCILED</div><div class="co-n" style="font-size:48px;white-space:nowrap">One plan</div></div>
+  </div></div></div>
+  <div class="el body-768" style="top:744px;width:1620px;color:#565656">The first test of the joint plan: the channels must cost no more than the business can afford. They settle that one number, then plan the hundred days.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>18 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 19 · AI / STUDENT ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="19 AI and student">
+  <div class="el k"><span class="m GRNd"></span><span>THE SAME IN EVERY SESSION</span></div>
+  <div class="el h1">The student does the work. The AI structures it.</div>
+  <div class="el" style="left:120px;top:360px;width:1680px"><div class="row3">
+    <div class="card boxed t-GRNd" style="--card-min:288px;border-color:#0A8C3D">
+      <div class="c-eb c-GRNd">1 &middot; THE STUDENT, FIRST</div>
+      <div class="c-body" style="font:var(--t-body);color:#1E1E1E">Works it out by hand: the numbers, the sketch, the plan.</div>
+    </div>
+    <div class="card boxed" style="--card-min:288px;border-color:#E4E4E4">
+      <div class="c-eb">2 &middot; THEN THE AI</div>
+      <div class="c-body" style="font:var(--t-body);color:#565656">Structures it and fills it out, faster. But optimistic, and it leaves things out.</div>
+    </div>
+    <div class="card boxed t-GRNd" style="--card-min:288px;border-color:#0A8C3D">
+      <div class="c-eb c-GRNd">3 &middot; THE STUDENT AGAIN</div>
+      <div class="c-body" style="font:var(--t-body);color:#1E1E1E">Checks it, puts back what is missing, decides what to trust.</div>
+    </div>
+  </div></div>
+  <div class="el body-768" style="top:732px;width:1560px;color:#565656">The thinking is the student's, on both sides. The AI speeds up the middle; it does not replace the judgment. This happens live, in the room, with a facilitator watching.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>19 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 20 · EACH TRACK ITS OWN WAY ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="20 Each track its way">
+  <div class="el k"><span class="m GRNd"></span><span>ONE THING WE NOTICED</span></div>
+  <div class="el h1">Each track works with the AI in its own way.</div>
+  <div class="el" style="left:120px;top:396px;width:1680px"><div class="deflist" style="--dl-term:360px">
+    <div class="dl-row"><div class="dl-term c-BLUd">Market</div><div class="dl-def" style="color:#1E1E1E">does its own research first, then uses the AI to design sharper tests.</div></div>
+    <div class="dl-row"><div class="dl-term c-PURd">Product</div><div class="dl-def" style="color:#1E1E1E">sketches its own design first, then uses the AI to turn it into something to build.</div></div>
+    <div class="dl-row"><div class="dl-term c-GRNd">Business</div><div class="dl-def" style="color:#1E1E1E">works out its own numbers first, then uses the AI to structure and pressure-test them.</div></div>
+  </div></div>
+  <div class="el body-768" style="top:792px;width:1560px;color:#565656">All three do the thinking themselves and use the AI to speed up the middle. We did not design this as a rule; it is a pattern we saw once the sessions were built.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>20 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 21 · ARCS ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="21 Arcs">
+  <div class="el k"><span class="m GRNd"></span><span>ACROSS THE TWO WEEKS</span></div>
+  <div class="el h1">The same kind of thinking, deeper each time.</div>
+  <div class="el" style="left:120px;top:360px;width:1680px;display:flex;flex-direction:column;gap:24px">
+    <div class="arc b">
+      <span class="lab">Market</span>
+      <div class="cell"><b>See the field</b><span>session 1</span></div><span class="gt">&rsaquo;</span>
+      <div class="cell"><b>Test it honestly</b><span>session 2</span></div><span class="gt">&rsaquo;</span>
+      <div class="cell"><b>First moves</b><span>session 3</span></div>
+    </div>
+    <div class="arc p">
+      <span class="lab">Product</span>
+      <div class="cell"><b>Find the moment</b><span>session 1</span></div><span class="gt">&rsaquo;</span>
+      <div class="cell"><b>Scope it</b><span>session 2</span></div><span class="gt">&rsaquo;</span>
+      <div class="cell"><b>Build and test</b><span>session 3</span></div>
+    </div>
+    <div class="arc g">
+      <span class="lab">Business</span>
+      <div class="cell"><b>Price it</b><span>session 1</span></div><span class="gt">&rsaquo;</span>
+      <div class="cell"><b>Check the money</b><span>session 2</span></div><span class="gt">&rsaquo;</span>
+      <div class="cell"><b>Plan 100 days</b><span>session 3</span></div>
+    </div>
+  </div>
+  <div class="el body-768" style="top:780px;width:1560px;color:#565656">The work gets harder and more concrete each session, and the three lines meet at the end of the week in one team plan.</div>
+  <div class="el foot">HUDSON LAB VENTURES</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>21 / 22</span></div>
+</section>
+
+<!-- ══════════════════════════ 22 · WHERE IT STANDS ══════════════════════════ -->
+<section class="s pl-paper" data-screen-label="22 Where it stands">
+  <div class="el k"><span class="m GRNd"></span><span>WHERE IT STANDS</span></div>
+  <div class="el h1">What is settled, and what still needs your eye.</div>
+  <div class="el" style="left:120px;top:360px;width:1680px"><div class="grid-2">
+    <div class="card fill" style="--fill:var(--GRN-soft);--card-min:468px;padding:36px 24px 44px">
+      <div class="c-eb c-GRNd">SETTLED</div>
+      <div class="slist">
+        <div class="si"><span class="sq" style="background:#0A8C3D"></span><span>The three tracks and the sessions in each.</span></div>
+        <div class="si"><span class="sq" style="background:#0A8C3D"></span><span>Students do the work first; the AI structures it, live in the room.</span></div>
+        <div class="si"><span class="sq" style="background:#0A8C3D"></span><span>The business canvas focuses on pricing.</span></div>
+        <div class="si"><span class="sq" style="background:#0A8C3D"></span><span>The joint 100-day plan is one shared worksheet.</span></div>
+        <div class="si"><span class="sq" style="background:#0A8C3D"></span><span>Product uses the build tool to make the prototype.</span></div>
+      </div>
+    </div>
+    <div class="card fill" style="--fill:var(--YEL-soft);--card-min:468px;padding:36px 24px 44px">
+      <div class="c-eb" style="color:#8A6000">STILL TO BUILD &middot; YOUR EYE ON THE RESULT</div>
+      <div class="slist">
+        <div class="si"><span class="sq" style="background:#C99700"></span><span>The four Solution Alignment sessions.</span></div>
+        <div class="si"><span class="sq" style="background:#C99700"></span><span>One introduction to the specialty tracks, including how students choose.</span></div>
+        <div class="si"><span class="sq" style="background:#C99700"></span><span>The M1 and P1 decks, rebuilt to match.</span></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="el foot">HUDSON LAB VENTURES &middot; 2026</div>
+  <div class="el pc"><span class="tk GRNd"></span><span>22 / 22</span></div>
+</section>
+
+</deck-stage>
+
+<script>
+  (function () { var N = window.ResizeObserver; if (!N) return;
+    window.ResizeObserver = function (cb) { return new N(function (e, o) {
+      requestAnimationFrame(function () { cb(e, o); }); }); }; })();
+</script>
+<script src="../system/deck-stage.js"></script>
+</body>
+</html>
